@@ -1,0 +1,190 @@
+.tablist>ul {
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.tablist ul li {
+  width: 150px;
+  padding: 10px 0;
+  margin: 0 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  /* font-weight: 700; */
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 50em;
+}
+
+.tablistinner li:hover {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+.tablistinner li.active {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+.active {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+.rank_wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 600px;
+}
+
+.rank_wrap .rankcard {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  background-color: #efefef;
+  position: relative;
+  grid-column: 1 / 1;
+  grid-row: 2 / 1;
+}
+
+.rank_wrap .rankcard:nth-child(1) {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.rank_wrap .rankcard:nth-child(2) {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.rank_wrap .rankcard:nth-child(3) {
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.rank_wrap .rankcard:nth-child(4) {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.rank_wrap .rankcard:nth-child(5) {
+  grid-column: 4 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.rank_wrap .rankcard figure {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80%;
+}
+
+.rank_wrap .rankcard figure img {
+  width: 100%;
+}
+
+.rankcard .txt_area {
+  position: absolute;
+  top: 3em;
+  left: 1.5em;
+}
+
+.rank_wrap .txt_area .rank_txt {
+  color: var(--primary);
+  font-size: 14px;
+  font-family: "campton";
+}
+
+.rank_wrap .txt_area .rank_txt p {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "campton";
+}
+
+.rank_wrap .txt_area .winename {
+  padding: 5px 0;
+  font-size: 0.8em;
+  color: #333;
+  width: 250px;
+}
+
+.rank_wrap .txt_area .price {
+  color: var(--secondary);
+  font-size: 1.2em;
+}
+
+.rank_wrap .tasty_area {
+  position: absolute;
+  left: 1.5em;
+  bottom: 2em;
+}
+
+.rank_wrap .tasty_area .inner {
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.rank_wrap .tasty_area .inner p {
+  font-size: 12px;
+  padding-right: 0.5em;
+}
+
+.rank_wrap .tasty_area .inner>div {
+  display: flex;
+  align-items: center;
+}
+
+.rank_wrap .tasty_area .inner>div svg {
+  fill: var(--primary);
+  stroke: var(--primary);
+}
+
+.rank_wrap .tasty_area .inner>ul li path {
+  color: var(--primary);
+}
+
+/* 랭크 1 영역 */
+.rankcard:first-child .txt_area {
+  position: absolute;
+  top: 5em;
+  left: 3em;
+}
+
+.rankcard:first-child .txt_area .rank_txt {
+  font-size: 20px;
+}
+
+.rankcard:first-child .txt_area .rank_txt p {
+  font-size: 45px;
+}
+
+.rankcard:first-child .txt_area .winename {
+  padding: 10px 0;
+  font-size: 1.2em;
+}
+
+.rankcard:first-child .txt_area .price {
+  font-size: 1.8em;
+}
+
+.rankcard:first-child .tasty_area {
+  left: 3em;
+  bottom: 5em;
+}
+
+.rankcard:first-child .tasty_area .inner p {
+  font-size: 15px;
+}
+
+.rankcard:first-child .tasty_area .inner>div svg {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+.smallWinename {
+  width: 120px !important;
+  word-break: keep-all;
+}
