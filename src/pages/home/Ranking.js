@@ -7,8 +7,6 @@ import { IoWater, IoWaterOutline } from "react-icons/io5";
 
 const tab = ["레드", "화이트", "스파클링", "주정강화"];
 
-
-
 const Ranking = () => {
   const [currentTab, setCurrentTab] = useState(0);
   // const [rankList, setRankList] = useState([]);
@@ -29,16 +27,22 @@ const Ranking = () => {
       console.log('실패함');
     }
   };
+    const [newData, setNewData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let rankData = await getData();
-      // console.log(rankData);
-    };
-    fetchData();
-  }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+        let rankData = await getData();
+        
+        var newData = Object.values(rankData[0]).reduce(function (accumulator, currentArray) {
+          return accumulator.concat(currentArray);
+        }, []);
+        setNewData(newData);
+        // console.log(newData);
+        };
+      fetchData();
+    }, []);
 
-  console.log(rank);
+  console.log(newData);
 
   return (
     <div>
@@ -63,58 +67,11 @@ const Ranking = () => {
               </ul>
             </div>
           </div>
-
           <div className={styled.rank_wrap}>
-            <div className={styled.rankcard}>
-              <figure>
-                <img
-                // width={index === 0 ? 500 : 217}
-                // height={index === 0 ? 500 : 217}
-                // src={rank[0].red[0].imageUrl}
-                // alt={`${rank.korName}_썸네일`}
-                />
-              </figure>
-              <div className={styled.txt_area}>
-                <div className={styled.rank_txt}>
-                  <span>RANK</span>
-                  <p>1</p>
-                </div>
-                <p
-                  className={[
-                    styled.winename]}
-                >
-                  한국이름
-                </p>
-                <p className={styled.price}>가격</p>
-              </div>
-            </div>
-            <div className={styled.tasty_area}>
-              <div className={styled.inner}>
-                <p>당도</p>
-                <div>
-                  <IoWater />, <IoWaterOutline />
-                </div>
-              </div>
-              <div className={styled.inner}>
-                <p>산도</p>
-                <div>
-                  <IoWater />, <IoWaterOutline />
-                </div>
-              </div>
-            </div>
-            {/* {rankList.map((data, index) => (
-              <Link
-                href={{
-                  pathname: `/product/detail/${data.engName}`,
-                  query: {
-                    id: data.pid,
-                    winename: data.engName,
-                  },
-                }}
-              >
+            {newData.map((data, index) => (
                 <div id={index} key={index} className={styled.rankcard}>
                   <figure>
-                    <Image
+                    <img
                       width={index === 0 ? 500 : 217}
                       height={index === 0 ? 500 : 217}
                       src={data.imageUrl}
@@ -140,19 +97,18 @@ const Ranking = () => {
                     <div className={styled.inner}>
                       <p>당도</p>
                       <div>
-                        {drawStar(data.sweet, <IoWater />, <IoWaterOutline />)}
+                        {/* {drawStar(data[index].sweet, <IoWater />, <IoWaterOutline />)} */}
                       </div>
                     </div>
                     <div className={styled.inner}>
                       <p>산도</p>
                       <div>
-                        {drawStar(data.acidity, <IoWater />, <IoWaterOutline />)}
+                        {/* {drawStar(data[index].acidity, <IoWater />, <IoWaterOutline />)} */}
                       </div>
                     </div>
                   </div>
                 </div>
-              </Link>
-            ))} */}
+            ))}
           </div>
         </div>
       </section>
