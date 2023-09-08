@@ -8,14 +8,6 @@ import { IoWater, IoWaterOutline } from "react-icons/io5";
 const tab = ["레드", "화이트", "스파클링", "주정강화"];
 
 const Ranking = () => {
-  const [currentTab, setCurrentTab] = useState(0);
-  // const [rankList, setRankList] = useState([]);
-  // const [fullRank, setFullRank] = useState(props);
-
-  // useEffect(() => {
-  //    setRankList(Object.values(fullRank)[currentTab]);
-  // }, [currentTab]);
-
   const [rank, setRank] = useState('');
   const getData = async () => {
     try {
@@ -27,22 +19,55 @@ const Ranking = () => {
       console.log('실패함');
     }
   };
-    const [newData, setNewData] = useState([]);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        let rankData = await getData();
-        
-        var newData = Object.values(rankData[0]).reduce(function (accumulator, currentArray) {
-          return accumulator.concat(currentArray);
-        }, []);
-        setNewData(newData);
-        // console.log(newData);
-        };
-      fetchData();
-    }, []);
+  const [newData, setNewData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      let rankData = await getData();
+      // 와인 랭킹 데이터 합침
+      var newData = Object.values(rankData[0]).reduce(function (accumulator, currentArray) {
+        return accumulator.concat(currentArray);
+      }, []);
+      setNewData(newData);
+      };
+    fetchData();
+  }, []);
 
-  console.log(newData);
+  const [currentTab, setCurrentTab] = useState(0);
+  const [rankList, setRankList] = useState([]);
+  useEffect(() => {
+    const rankInfo = newData.filter((data) => data.type === currentTab+1);
+    setRankList(rankInfo);
+  }, [currentTab]);
+
+  console.log(rankList)
+  
+  // 당도 아이콘
+  const sweetDraw = (score) => {
+    let i = 0;
+    let sweet = [];
+    let num = Math.round(score);
+    for (i = 0; i < num; i++){
+      sweet.push(<IoWater />);
+    }
+    for (i = 0; i < 5 - num; i++) {
+      sweet.push(<IoWaterOutline />);
+    }
+    return sweet;
+  }
+  //산미 아이콘
+  const acidDraw = (score) => {
+    let i = 0;
+    let acidity = [];
+    let num = Math.round(score);
+    for (i = 0; i < num; i++) {
+      acidity.push(<IoWater />);
+    }
+    for (i = 0; i < 5 - num; i++) {
+      acidity.push(<IoWaterOutline />);
+    }
+    return acidity;
+  }
 
   return (
     <div>
@@ -68,14 +93,14 @@ const Ranking = () => {
             </div>
           </div>
           <div className={styled.rank_wrap}>
-            {newData.map((data, index) => (
+            {rankList.map((data, index) => (
                 <div id={index} key={index} className={styled.rankcard}>
                   <figure>
                     <img
                       width={index === 0 ? 500 : 217}
                       height={index === 0 ? 500 : 217}
                       src={data.imageUrl}
-                      alt={`${data.pdname}_썸네일`}
+                      alt={`${data.korName}_썸네일`}
                     />
                   </figure>
                   <div className={styled.txt_area}>
@@ -97,13 +122,13 @@ const Ranking = () => {
                     <div className={styled.inner}>
                       <p>당도</p>
                       <div>
-                        {/* {drawStar(data[index].sweet, <IoWater />, <IoWaterOutline />)} */}
+                        {sweetDraw(data.sweet)}
                       </div>
                     </div>
                     <div className={styled.inner}>
                       <p>산도</p>
                       <div>
-                        {/* {drawStar(data[index].acidity, <IoWater />, <IoWaterOutline />)} */}
+                        {acidDraw(data.acidity)}
                       </div>
                     </div>
                   </div>
