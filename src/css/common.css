@@ -191,8 +191,13 @@ button {
 }
 
 /*컴포넌트 여백*/
+
 section {
   padding: 150px 0 170px;
+}
+
+section.main-banner-sec {
+  padding: 0;
 }
 
 /*home.css 공통 영역*/
