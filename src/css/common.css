@@ -196,18 +196,18 @@ section {
 }
 
 /*home.css 공통 영역*/
-.sub_tit__ {
+.title-sec {
   padding: 25px 0 40px;
   text-align: center;
   position: relative;
 }
 
-.sub_tit__ h4 {
+.title-sec h4 {
   font-size: 26px;
   font-weight: 700;
 }
 
-.sub_tit__ span {
+.title-sec span {
   display: block;
   position: absolute;
   top: 0;

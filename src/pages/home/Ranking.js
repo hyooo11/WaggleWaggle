@@ -1,14 +1,12 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-// import React, { useEffect, useState } from "react";
 import styled from "./Ranking.module.css";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
-// import { drawStar } from "../util/util";
 
 const tab = ["레드", "화이트", "스파클링", "주정강화"];
 
 const Ranking = () => {
-  const [rank, setRank] = useState('');
+  const [rank, setRank] = useState([]);
   const getData = async () => {
     try {
       const result = await axios.get('/api/product/rank');
@@ -16,7 +14,7 @@ const Ranking = () => {
       setRank(copy);
       return copy;
     } catch (error) {
-      console.log('실패함');
+      console.log('와인 랭킹 데이터 가져오기 실패');
     }
   };
 
@@ -29,25 +27,23 @@ const Ranking = () => {
         return accumulator.concat(currentArray);
       }, []);
       setNewData(newData);
-      };
+    };
     fetchData();
   }, []);
 
   const [currentTab, setCurrentTab] = useState(0);
   const [rankList, setRankList] = useState([]);
   useEffect(() => {
-    const rankInfo = newData.filter((data) => data.type === currentTab+1);
+    const rankInfo = newData.filter((data) => data.type === currentTab + 1);
     setRankList(rankInfo);
   }, [currentTab]);
 
-  console.log(rankList)
-  
   // 당도 아이콘
   const sweetDraw = (score) => {
     let i = 0;
     let sweet = [];
     let num = Math.round(score);
-    for (i = 0; i < num; i++){
+    for (i = 0; i < num; i++) {
       sweet.push(<IoWater />);
     }
     for (i = 0; i < 5 - num; i++) {
@@ -70,10 +66,10 @@ const Ranking = () => {
   }
 
   return (
-    <div>
-      <section>
+    <>
+      <section className="ranking-sec">
         <div className="maxframe">
-          <div className="sub_tit__">
+          <div className="title-sec">
             <h4>카테고리별 랭킹</h4>
             <span>CATECORY’S RANKING</span>
           </div>
@@ -82,6 +78,7 @@ const Ranking = () => {
               <ul className={styled.tablistinner}>
                 {tab.map((tabname, index) => (
                   <li
+                    id={index}
                     key={index}
                     className={index === currentTab ? styled.active : ""}
                     onClick={() => setCurrentTab(index)}
@@ -94,50 +91,50 @@ const Ranking = () => {
           </div>
           <div className={styled.rank_wrap}>
             {rankList.map((data, index) => (
-                <div id={index} key={index} className={styled.rankcard}>
-                  <figure>
-                    <img
-                      width={index === 0 ? 500 : 217}
-                      height={index === 0 ? 500 : 217}
-                      src={data.imageUrl}
-                      alt={`${data.korName}_썸네일`}
-                    />
-                  </figure>
-                  <div className={styled.txt_area}>
-                    <div className={styled.rank_txt}>
-                      <span>RANK</span>
-                      <p>{`0${index + 1}`}</p>
-                    </div>
-                    <p
-                      className={[
-                        styled.winename,
-                        index > 0 ? styled.smallWinename : "",
-                      ].join(" ")}
-                    >
-                      {data.korName}
-                    </p>
-                    <p className={styled.price}>{data.price}</p>
+              <div id={index} key={index} className={styled.rankcard}>
+                <figure>
+                  <img
+                    width={index === 0 ? 500 : 217}
+                    height={index === 0 ? 500 : 217}
+                    src={data.imageUrl}
+                    alt={`${data.korName}_썸네일`}
+                  />
+                </figure>
+                <div className={styled.txt_area}>
+                  <div className={styled.rank_txt}>
+                    <span>RANK</span>
+                    <p>{`0${index + 1}`}</p>
                   </div>
-                  <div className={styled.tasty_area}>
-                    <div className={styled.inner}>
-                      <p>당도</p>
-                      <div>
-                        {sweetDraw(data.sweet)}
-                      </div>
+                  <p
+                    className={[
+                      styled.winename,
+                      index > 0 ? styled.smallWinename : "",
+                    ].join(" ")}
+                  >
+                    {data.korName}
+                  </p>
+                  <p className={styled.price}>{data.price}</p>
+                </div>
+                <div className={styled.tasty_area}>
+                  <div className={styled.inner}>
+                    <p>당도</p>
+                    <div>
+                      {sweetDraw(data.sweet)}
                     </div>
-                    <div className={styled.inner}>
-                      <p>산도</p>
-                      <div>
-                        {acidDraw(data.acidity)}
-                      </div>
+                  </div>
+                  <div className={styled.inner}>
+                    <p>산도</p>
+                    <div>
+                      {acidDraw(data.acidity)}
                     </div>
                   </div>
                 </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 

@@ -1,0 +1,63 @@
+.reviewSec {
+  background-color: #f7f7f7;
+}
+
+.reviewList {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 30px;
+}
+
+.reviewList>li {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.1);
+}
+
+.reviewList>li figure {
+  background-color: #333;
+  width: 100%;
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.reviewList>li figure img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reviewList .txtBox {
+  padding: 1.2rem;
+  background-color: #fff;
+}
+
+.reviewList .txtBox .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.reviewList .txtBox>span {
+  display: block
+}
+
+.reviewList .txtBox .desc {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
