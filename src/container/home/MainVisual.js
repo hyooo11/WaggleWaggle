@@ -1,3 +1,5 @@
+'use client'
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -13,9 +15,7 @@ const MainVisual = () => {
   return (
     <>
       <section className="main-banner-sec">
-        <Swiper
-          pagination={true} modules={[Pagination]} className="mySwiper"
-        >
+        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
           {BannerImgs.map((imgs, index) => (
             <SwiperSlide id={index} key={index}>
               <img src={imgs} alt='' />

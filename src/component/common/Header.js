@@ -1,10 +1,14 @@
+
+'use client'
+
+
 import { Link } from "react-router-dom";
 
 const Header = () => {
    return (
       <>
          <header>
-            <div>
+            {/* <div>
                <Link to="/">
                   <img src="/media/img/wagu-w.svg" />
                </Link>
@@ -16,7 +20,7 @@ const Header = () => {
             <div>
                <Link to="/login">로그인</Link>
                <Link to="/join">회원가입</Link>
-            </div>
+            </div> */}
 
          </header>
 
