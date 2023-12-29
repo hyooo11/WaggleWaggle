@@ -15,7 +15,7 @@ const BestReview = () => {
       const result = await axios.get('api/community/best-review');
       let copy = [result.data.data];
       setBestReview(copy[0]);
-      console.log('베스트 리뷰 데이터 가져오기 성공');
+      // console.log('베스트 리뷰 데이터 가져오기 성공');
     } catch (error) {
       console.log('베스트 리뷰 데이터 가져오기 실패');
     }
@@ -24,7 +24,7 @@ const BestReview = () => {
     fetchData();
   }, []);
 
-  console.log(bestReview)
+  // console.log(bestReview)
   return (
     <>
       <section className={styled.reviewSec}>
@@ -36,7 +36,7 @@ const BestReview = () => {
           <div>
             <ul className={styled.reviewList}>
               {bestReview.map((data, index) => (
-                <li id={index} key={index} onClick={() => { modalState ? setModalState(false) : (setModalState(true), setModalIndex(index)) }}>
+                <li id={index} key={index} onClick={() => { setModalState(true), setModalIndex(index) }}>
                   <figure>
                     <img src={data.reviewImg1} alt="" />
                   </figure>
@@ -51,7 +51,7 @@ const BestReview = () => {
             </ul>
           </div>
         </div>
-        {modalIndex && <Modal modalState={modalState} closeModal={closeModal}>
+        {modalState && <Modal closeModal={closeModal}>
           <span>{bestReview[modalIndex].writerNick}</span>
           <figure>
             <img src={bestReview[modalIndex].reviewImg1} alt="" />

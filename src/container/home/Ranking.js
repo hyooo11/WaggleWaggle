@@ -1,44 +1,40 @@
 'use client'
-
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import axios from "axios";
 import styled from "./Ranking.module.css";
+import { useState, useEffect } from "react";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
 
-const tab = ["레드", "화이트", "스파클링", "주정강화"];
+const tab = [
+  { label: '레드', values: 'red' },
+  { label: '화이트', values: 'white' },
+  { label: '스파클링', values: 'sparkling' },
+  { label: '주정강화', values: 'port' }
+]
 
 const Ranking = () => {
-  const [rank, setRank] = useState([]);
-  const getData = async () => {
-    try {
-      const result = await axios.get('/api/product/rank');
-      let copy = [...rank, result.data.data];
-      setRank(copy);
-      return copy;
-    } catch (error) {
-      console.log('와인 랭킹 데이터 가져오기 실패');
-    }
-  };
-
-  const [newData, setNewData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      let rankData = await getData();
-      // 와인 랭킹 데이터 합침
-      var newData = Object.values(rankData[0]).reduce(function (accumulator, currentArray) {
-        return accumulator.concat(currentArray);
-      }, []);
-      setNewData(newData);
-    };
-    fetchData();
-  }, []);
-
   const [currentTab, setCurrentTab] = useState(0);
+  const [rankData, setRankData] = useState([]);
   const [rankList, setRankList] = useState([]);
+
+  const getListData = async () => {
+    await axios.get('/api/product/rank')
+      .then((result) => {
+        let copy = result.data.data;
+        setRankData(copy)
+      })
+      .catch((error) => {
+        console.log('와인랭킹 데이터 가져오기 실패');
+      })
+  }
+
   useEffect(() => {
-    const rankInfo = newData.filter((data) => data.type === currentTab + 1);
-    setRankList(rankInfo);
-  }, [currentTab]);
+    getListData()
+  }, [])
+
+  useEffect(() => {
+    const rankInfo = rankData[tab[currentTab].values]
+    setRankList(rankInfo)
+  }, [currentTab, rankData])
 
   // 당도 아이콘
   const sweetDraw = (score) => {
@@ -67,6 +63,10 @@ const Ranking = () => {
     return acidity;
   }
 
+  if (rankList == undefined) {
+    return null;
+  }
+
   return (
     <>
       <section className="ranking-sec">
@@ -85,7 +85,7 @@ const Ranking = () => {
                     className={index === currentTab ? styled.active : ""}
                     onClick={() => setCurrentTab(index)}
                   >
-                    {tabname}
+                    {tabname.label}
                   </li>
                 ))}
               </ul>
@@ -138,6 +138,7 @@ const Ranking = () => {
       </section>
     </>
   )
+
 }
 
 export default Ranking;

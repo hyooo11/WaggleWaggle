@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <MainVisual />
       <BestReview />
-      {/* <Ranking /> */}
+      <Ranking />
     </>
   )
 }
