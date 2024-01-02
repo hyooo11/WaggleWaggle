@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* reset */
 /* root */
 /* layout */
@@ -160,30 +164,32 @@ button {
 }
 
 /* root */
-/*주석 안에 내용중에 적절한거 꺼내서 수정해서 쓰거나 추가해서 쓰자구*/
-:root {
-  --primary: #61002e;
-  --primary-txt: #61002e;
-  /* --primary-hover: #565656;
-   --primary-bg: #F6F6F6;
-   --primary-bg-hover: #e0e0e0;
-   --primary-icon: #7B7B7B; */
-  --secondary: #c4b8b9;
-  --secondary-txt: #c4b8b9;
-  /* --secondary-hover: #6e4a32;
-   --secondary-bg: #FFF7F2;
-   --secondary-icon: #7B7B7B;
-   --gradient: linear-gradient(to right, #231815 0%, #231815 100%);
-   --o-gradient: -o-linear-gradient(left, #231815 0%, #231815 100%);
-   --webkit-gradient: -webkit-gradient(linear, left top, right top, from(#231815), to(#231815));
-   --aTag-color: #8B674F;
-   --breakpoint-xs: 0;
-   --breakpoint-sm: 576px;
-   --breakpoint-md: 768px;
-   --breakpoint-lg: 1366px;
-   --breakpoint-xl: 1920px; */
+@layer base {
+  :root {
+    --color-primary: #61002e;
+    --color-secondary: #61002e;
+    --primary: #61002e;
+    --primary-txt: #61002e;
+    /* --primary-hover: #565656;
+    --primary-bg: #F6F6F6;
+    --primary-bg-hover: #e0e0e0;
+    --primary-icon: #7B7B7B; */
+    --secondary: #c4b8b9;
+    --secondary-txt: #c4b8b9;
+    /* --secondary-hover: #6e4a32;
+    --secondary-bg: #FFF7F2;
+    --secondary-icon: #7B7B7B;
+    --gradient: linear-gradient(to right, #231815 0%, #231815 100%);
+    --o-gradient: -o-linear-gradient(left, #231815 0%, #231815 100%);
+    --webkit-gradient: -webkit-gradient(linear, left top, right top, from(#231815), to(#231815));
+    --aTag-color: #8B674F;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1366px;
+    --breakpoint-xl: 1920px; */
+  }
 }
-
 /* layout */
 .maxframe {
   max-width: 1200px;

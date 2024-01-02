@@ -1,31 +1,26 @@
-
 'use client'
 
-
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 
 const Header = () => {
-   return (
-      <>
-         <header>
-            {/* <div>
-               <Link to="/">
-                  <img src="/media/img/wagu-w.svg" />
-               </Link>
-               <Link to="/product">PRODUCT</Link>
-               <Link to="/community">COMMUNITY</Link>
-               <Link to="/qna">QnA</Link>
-               <Link to="/notice">NOTICE</Link>
-            </div>
-            <div>
-               <Link to="/login">로그인</Link>
-               <Link to="/join">회원가입</Link>
-            </div> */}
+  return (
+    <header>
+      <div>
+        <Link href="/">
+          <img src="/media/img/wagu-w.svg" />
+        </Link>
+        <Link href="/product">PRODUCT</Link>
+        <Link href="/community">COMMUNITY</Link>
+        <Link href="/qna">QnA</Link>
+        <Link href="/notice">NOTICE</Link>
+      </div>
+      <div>
+        <Link href="/login">로그인</Link>
+        <Link href="/signup">회원가입</Link>
+      </div>
 
-         </header>
-
-      </>
-   )
+    </header>
+  )
 }
 
 export default Header;
