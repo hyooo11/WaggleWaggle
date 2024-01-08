@@ -52,7 +52,7 @@ const SignUp = () => {
         message:
           "비밀번호 영소문자, 숫자, 특수문자(@#$%^&+=!)가 포함되어야 하며 최소 8자 이상 입력하세요.",
       }),
-    username: yup
+    name: yup
       .string()
       .required("이름을 입력해 주세요.")
       .matches(validateForm.nameRegex, {
@@ -97,7 +97,7 @@ const SignUp = () => {
   } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
-    // JSON.stringify(data);
+    // .post("/api/auth/join", { ...data })
     await axios({
       method: "post",
       url: "/api/auth/join",
@@ -181,20 +181,20 @@ const SignUp = () => {
         </div>
         <span className="err-msg">{errors.password?.message}</span>
         <div className="tr-form">
-          <label htmlFor="username" className="th-label">
+          <label htmlFor="name" className="th-label">
             <span className="req">이름</span>
           </label>
           <div className="td-form">
             <input
               type="text"
-              id="username"
-              name="username"
-              {...register("username")}
+              id="name"
+              name="name"
+              {...register("name")}
               className="form-control"
             />
           </div>
         </div>
-        <span className="err-msg">{errors.username?.message}</span>
+        <span className="err-msg">{errors.name?.message}</span>
 
         <div className="tr-form">
           <label htmlFor="nickName" className="th-label">
