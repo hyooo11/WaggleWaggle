@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DaumPostcode from "react-daum-postcode";
-import Modal from "../../ui/Modal";
+import Modal from "../../component/ui/Modal";
 import { useState } from "react";
+import Button from "../../component/ui/Button";
+import { useRouter } from "next/navigation";
 
 const validateForm = {
   // 아이디 : 영소문자 숫자 조합, 3~20자 이내
@@ -23,6 +25,7 @@ const validateForm = {
 };
 
 const SignUp = () => {
+  const router = useRouter();
   const [modalState, setModalState] = useState(false);
   const closeModal = () => setModalState(false);
   const [addressInput, setAddressInput] = useState("");
@@ -49,12 +52,6 @@ const SignUp = () => {
         message:
           "비밀번호 영소문자, 숫자, 특수문자(@#$%^&+=!)가 포함되어야 하며 최소 8자 이상 입력하세요.",
       }),
-    // passwordConfirm: yup
-    //   .string()
-    //   .required("비밀번호를 확인해 주세요")
-    //   .test("matchPassword", "비밀번호가 일치하지 않습니다.", function (value) {
-    //     return value === this.resolve(yup.ref("password"));
-    //   }),
     username: yup
       .string()
       .required("이름을 입력해 주세요.")
@@ -100,6 +97,7 @@ const SignUp = () => {
   } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
+    // JSON.stringify(data);
     await axios({
       method: "post",
       url: "/api/auth/join",
@@ -146,152 +144,130 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container mx-auto max-w-screen-lg">
-      <h2 className="text-3xl font-bold">회원가입하기</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="id" className="text-lg min-w-40 font-semibold">
-            아이디
+    <div className="maxframe sub_p_wrap px-72">
+      <div className="sub_p_title center">
+        <h2 className="">SING UP</h2>
+        <span>회원정보입력</span>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="table-form">
+        <div className="tr-form">
+          <label htmlFor="id" className="th-label">
+            <span className="req">아이디</span>
           </label>
-          <input
-            type="text"
-            id="id"
-            name="id"
-            {...register("id")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.id?.message}</span>
+          <div className="td-form">
+            <input
+              type="text"
+              id="id"
+              name="id"
+              {...register("id")}
+              className="form-control"
+            />
+          </div>
         </div>
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="password" className="text-lg min-w-40 font-semibold">
-            비밀번호
+        <span className="err-msg">{errors.id?.message}</span>
+        <div className="tr-form">
+          <label htmlFor="password" className="th-label">
+            <span className="req">비밀번호</span>
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            {...register("password")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.password?.message}</span>
+          <div className="td-form">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              {...register("password")}
+              className="form-control"
+            />
+          </div>
         </div>
-
-        {/* <div className="flex items-center my-4 h-14">
-          <label
-            htmlFor="passwordConfirm"
-            className="text-lg min-w-40 font-semibold"
-          >
-            비밀번호 확인
+        <span className="err-msg">{errors.password?.message}</span>
+        <div className="tr-form">
+          <label htmlFor="username" className="th-label">
+            <span className="req">이름</span>
           </label>
-          <input
-            type="password"
-            id="passwordConfirm"
-            name="passwordConfirm"
-            {...register("passwordConfirm")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.passwordConfirm?.message}</span>
-        </div> */}
-
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="username" className="text-lg min-w-40 font-semibold">
-            이름
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            {...register("username")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.username?.message}</span>
+          <div className="td-form">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              {...register("username")}
+              className="form-control"
+            />
+          </div>
         </div>
+        <span className="err-msg">{errors.username?.message}</span>
 
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="nickName" className="text-lg min-w-40 font-semibold">
-            닉네임
+        <div className="tr-form">
+          <label htmlFor="nickName" className="th-label">
+            <span className="req">닉네임</span>
           </label>
-          <input
-            type="text"
-            id="nickName"
-            name="nickName"
-            {...register("nickName")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.nickName?.message}</span>
+          <div className="td-form">
+            <input
+              type="text"
+              id="nickName"
+              name="nickName"
+              {...register("nickName")}
+              className="form-control"
+            />
+          </div>
         </div>
+        <span className="err-msg">{errors.nickName?.message}</span>
 
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="email" className="text-lg min-w-40 font-semibold">
-            이메일
+        <div className="tr-form">
+          <label htmlFor="email" className="th-label">
+            <span className="req">이메일</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            {...register("email")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-            placeholder="이메일 입력"
-          />
-          <span>{errors.email?.message}</span>
+          <div className="td-form">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              {...register("email")}
+              placeholder="이메일 입력"
+              className="form-control"
+            />
+          </div>
         </div>
+        <span className="err-msg">{errors.email?.message}</span>
 
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="address" className="text-lg min-w-40 font-semibold">
-            주소
+        <div className="tr-form">
+          <label htmlFor="address" className="th-label">
+            <span className="req">주소</span>
           </label>
-          <input
-            type="address"
-            id="address"
-            name="address"
-            {...register("address")}
-            value={addressInput}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-            placeholder="주소검색하기"
-            onClick={() => {
-              setModalState(true);
-            }}
-          />
-          <span>{errors.email?.message}</span>
+          <div className="td-form">
+            <input
+              type="address"
+              id="address"
+              name="address"
+              {...register("address")}
+              value={addressInput}
+              placeholder="주소검색하기"
+              onClick={() => {
+                setModalState(true);
+              }}
+              className="form-control"
+            />
+          </div>
         </div>
-
-        {/* <div className="flex items-center my-4 h-14">
-          <label
-            htmlFor="addressDetail"
-            className="text-lg min-w-40 font-semibold"
-          >
-            상세주소
+        <span className="err-msg">{errors.address?.message}</span>
+        <div className="tr-form">
+          <label htmlFor="phone" className="th-label">
+            <span className="req">휴대폰 번호</span>
           </label>
-          <input
-            type="address"
-            id="addressDetail"
-            name="addressDetail"
-            {...register("addressDetail")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-            placeholder="상세주소 입력"
-          />
-          <span>{errors.email?.message}</span>
-        </div> */}
-
-        <div className="flex items-center my-4 h-14">
-          <label htmlFor="phone" className="text-lg min-w-40 font-semibold">
-            휴대폰 번호
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            {...register("phone")}
-            className="w-full h-full max-w-md border-gray-light border rounded-md py-1 px-2"
-          />
-          <span>{errors.phone?.message}</span>
+          <div className="td-form">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              {...register("phone")}
+              className="form-control"
+            />
+          </div>
         </div>
-        <button
-          type="submit"
-          className="min-w-40 py-4 mx-2 bg-primary rounded-full text-white"
-        >
-          회원가입
-        </button>
+        <span className="err-msg">{errors.phone?.message}</span>
+        <div className="btn-area">
+          <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
+          <Button type={"positive"} text={"회원가입"} />
+        </div>
 
         {modalState && (
           <Modal closeModal={closeModal}>

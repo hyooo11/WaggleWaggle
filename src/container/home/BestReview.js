@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
 import axios from "axios";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import styled from "./BestReview.module.css";
-import Modal from "../../ui/Modal";
+import Modal from "../../component/ui/Modal";
 
 const BestReview = () => {
   const [bestReview, setBestReview] = useState([]);
@@ -12,12 +12,12 @@ const BestReview = () => {
   const closeModal = () => setModalState(false);
   const fetchData = async () => {
     try {
-      const result = await axios.get('api/community/best-review');
+      const result = await axios.get("api/community/best-review");
       let copy = [result.data.data];
       setBestReview(copy[0]);
       // console.log('베스트 리뷰 데이터 가져오기 성공');
     } catch (error) {
-      console.log('베스트 리뷰 데이터 가져오기 실패');
+      console.log("베스트 리뷰 데이터 가져오기 실패");
     }
   };
   useEffect(() => {
@@ -36,7 +36,13 @@ const BestReview = () => {
           <div>
             <ul className={styled.reviewList}>
               {bestReview.map((data, index) => (
-                <li id={index} key={index} onClick={() => { setModalState(true), setModalIndex(index) }}>
+                <li
+                  id={index}
+                  key={index}
+                  onClick={() => {
+                    setModalState(true), setModalIndex(index);
+                  }}
+                >
                   <figure>
                     <img src={data.reviewImg1} alt="" />
                   </figure>
@@ -51,15 +57,17 @@ const BestReview = () => {
             </ul>
           </div>
         </div>
-        {modalState && <Modal closeModal={closeModal}>
-          <span>{bestReview[modalIndex].writerNick}</span>
-          <figure>
-            <img src={bestReview[modalIndex].reviewImg1} alt="" />
-          </figure>
-          <p>{bestReview[modalIndex].reviewTitle}</p>
-        </Modal>}
+        {modalState && (
+          <Modal closeModal={closeModal}>
+            <span>{bestReview[modalIndex].writerNick}</span>
+            <figure>
+              <img src={bestReview[modalIndex].reviewImg1} alt="" />
+            </figure>
+            <p>{bestReview[modalIndex].reviewTitle}</p>
+          </Modal>
+        )}
       </section>
     </>
-  )
-}
+  );
+};
 export default BestReview;
