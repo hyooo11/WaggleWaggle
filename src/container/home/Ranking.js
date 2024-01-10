@@ -1,15 +1,15 @@
-'use client'
+"use client";
 import axios from "axios";
 import styled from "./Ranking.module.css";
 import { useState, useEffect } from "react";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
 
 const tab = [
-  { label: '레드', values: 'red' },
-  { label: '화이트', values: 'white' },
-  { label: '스파클링', values: 'sparkling' },
-  { label: '주정강화', values: 'port' }
-]
+  { label: "레드", values: "red" },
+  { label: "화이트", values: "white" },
+  { label: "스파클링", values: "sparkling" },
+  { label: "주정강화", values: "port" },
+];
 
 const Ranking = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -17,51 +17,48 @@ const Ranking = () => {
   const [rankList, setRankList] = useState([]);
 
   const getListData = async () => {
-    await axios.get('/api/product/rank')
+    await axios
+      .get("/api/product/rank")
       .then((result) => {
         let copy = result.data.data;
-        setRankData(copy)
+        setRankData(copy);
       })
       .catch((error) => {
-        console.log('와인랭킹 데이터 가져오기 실패');
-      })
-  }
+        console.log("와인랭킹 데이터 가져오기 실패");
+      });
+  };
 
   useEffect(() => {
-    getListData()
-  }, [])
+    getListData();
+  }, []);
 
   useEffect(() => {
-    const rankInfo = rankData[tab[currentTab].values]
-    setRankList(rankInfo)
-  }, [currentTab, rankData])
+    const rankInfo = rankData[tab[currentTab].values];
+    setRankList(rankInfo);
+  }, [currentTab, rankData]);
 
   // 당도 아이콘
   const sweetDraw = (score) => {
-    let i = 0;
-    let sweet = [];
-    let num = Math.round(score);
-    for (i = 0; i < num; i++) {
-      sweet.push(<IoWater />);
-    }
-    for (i = 0; i < 5 - num; i++) {
-      sweet.push(<IoWaterOutline />);
-    }
+    let sweet = Array.from({ length: 5 }, (_, index) =>
+      index < Math.round(score) ? (
+        <IoWater key={index} />
+      ) : (
+        <IoWaterOutline key={index} />
+      )
+    );
     return sweet;
-  }
+  };
   //산미 아이콘
   const acidDraw = (score) => {
-    let i = 0;
-    let acidity = [];
-    let num = Math.round(score);
-    for (i = 0; i < num; i++) {
-      acidity.push(<IoWater />);
-    }
-    for (i = 0; i < 5 - num; i++) {
-      acidity.push(<IoWaterOutline />);
-    }
+    let acidity = Array.from({ length: 5 }, (_, index) =>
+      index < Math.round(score) ? (
+        <IoWater key={index} />
+      ) : (
+        <IoWaterOutline key={index} />
+      )
+    );
     return acidity;
-  }
+  };
 
   if (rankList == undefined) {
     return null;
@@ -120,15 +117,11 @@ const Ranking = () => {
                 <div className={styled.tasty_area}>
                   <div className={styled.inner}>
                     <p>당도</p>
-                    <div>
-                      {sweetDraw(data.sweet)}
-                    </div>
+                    <div>{sweetDraw(data.sweet)}</div>
                   </div>
                   <div className={styled.inner}>
                     <p>산도</p>
-                    <div>
-                      {acidDraw(data.acidity)}
-                    </div>
+                    <div>{acidDraw(data.acidity)}</div>
                   </div>
                 </div>
               </div>
@@ -137,8 +130,7 @@ const Ranking = () => {
         </div>
       </section>
     </>
-  )
-
-}
+  );
+};
 
 export default Ranking;

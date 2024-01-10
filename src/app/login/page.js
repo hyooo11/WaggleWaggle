@@ -1,13 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Button from "../../component/ui/Button";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getCookie } from "cookies-next";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loginCheck, loginUser } from "../../store/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
+
   const schema = yup.object().shape({
     id: yup.string().required("id를 입력해주세요."),
     password: yup.string().required("비밀번호를 입력해주세요."),
@@ -19,24 +24,10 @@ const Login = () => {
     formState: { errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
 
-  const onSubmit = async (data) => {
-    await axios({
-      method: "post",
-      url: "/api/auth/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        id: data.id,
-        password: data.password,
-      },
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  const onSubmit = (data) => {
+    const userData = data;
+    dispatch(loginUser(userData));
+    dispatch(loginCheck(getCookie("token")));
   };
 
   return (

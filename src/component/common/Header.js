@@ -4,13 +4,14 @@ import Link from "next/link";
 import style from "./Header.module.css";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [pageState, setPageState] = useState("");
   const pathname = usePathname();
   useEffect(() => {
     if (pathname === "/") {
-      console.log("Main");
       setPageState("MainPage");
     } else {
       setPageState("SubPage");
