@@ -7,66 +7,42 @@ import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import LocalStorage from "../../util/localstorage";
 import { loginCheck, clearUser, setToken } from "../../store/userSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const userPid = LocalStorage.getItem("pid");
+  const refreshToken = getCookie("refreshToken");
+
+  // console.log(userPid, refreshToken);
+
+  useEffect(() => {
+    //로그인할떄 받은 리프레시토큰을 가져와서
+    const reissueToken = async () => {
+      if (userPid && refreshToken) {
+        await axios
+          .post("/api/auth/refresh", {
+            pid: userPid,
+            refreshToken: refreshToken,
+          })
+          .then((response) => {
+            dispatch(loginCheck(response.data.data.reissueToken));
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        console.log("리프레시 토큰 없음");
+      }
+    };
+    reissueToken();
+  }, []);
+
   const user = useSelector((state) => {
     return state.user;
   });
-  console.log(user);
-
-  // const reissueToken = () => {
-  //   const token = getCookie("token");
-  //   if (token !== undefined && token !== null) {
-  //     dispatch(loginCheck(token));
-  //     console.log("토큰 있어염");
-  //     //유효한 토큰인지 확인
-  //     const tokenState = useSelector((state) => {
-  //       return state.user;
-  //     });
-  //     console.log(tokenState);
-  //   } else {
-  //     console.log("토큰없졍염");
-  //     //토큰 재발급 요청
-  //   }
-  // };
-
-  const TokenState = () => {
-    const token = getCookie("token");
-
-    if (token) {
-      dispatch(loginCheck(token));
-    } else {
-      const userPid = localStorage.getItem("pid");
-      const userRefreshToken = localStorage.getItem("refreshToken");
-      const reissueToken = async () => {
-        await axios
-          .post("/api/auth/refresh", {
-            pid: JSON.parse(userPid),
-            refreshToken: JSON.stringify(userRefreshToken),
-          })
-          .then(function (response) {
-            dispatch(loginCheck(response.data.data.reissueToken));
-            dispatch(
-              setToken(
-                userPid,
-                response.data.data.reissueToken,
-                userRefreshToken
-              )
-            );
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        reissueToken;
-      };
-    }
-  };
-
-  useEffect(() => {
-    TokenState();
-  }, []);
 
   const [pageState, setPageState] = useState("");
   const pathname = usePathname();
