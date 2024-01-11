@@ -7,10 +7,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { getCookie } from "cookies-next";
 
 import { useDispatch, useSelector } from "react-redux";
-import { loginCheck, loginUser } from "../../store/userSlice";
+import { loginUser } from "../../store/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const loginMsg = useSelector((state) => {
+    if (state.user.loginMsg !== undefined) {
+      return state.user.loginMsg;
+    }
+  });
   const router = useRouter();
 
   const schema = yup.object().shape({
@@ -27,7 +32,6 @@ const Login = () => {
   const onSubmit = (data) => {
     const userData = data;
     dispatch(loginUser(userData));
-    dispatch(loginCheck(getCookie("token")));
   };
 
   return (
@@ -67,6 +71,7 @@ const Login = () => {
           </div>
         </div>
         <span className="err-msg">{errors.password?.message}</span>
+        <div>{loginMsg}</div>
         <div className="btn-area">
           <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
           <Button type={"positive"} text={"로그인"} />

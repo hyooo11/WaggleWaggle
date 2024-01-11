@@ -1,6 +1,5 @@
 // "use client";
 import StoreProvider from "./StoreProvider";
-import { CookiesProvider } from "react-cookie";
 import store from "../store";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -19,11 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <StoreProvider store={store}>
-          {/* <CookiesProvider> */}
           <Header />
           {children}
           <Footer />
-          {/* </CookiesProvider> */}
         </StoreProvider>
       </body>
     </html>
