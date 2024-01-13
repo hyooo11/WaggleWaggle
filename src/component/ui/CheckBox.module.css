@@ -1,0 +1,57 @@
+.CheckBox input[type="checkbox"],
+.TextCheckBox input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+}
+.CheckBox label,
+.TextCheckBox label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding-left: 30px;
+  margin: 0;
+  line-height: 20px;
+  transition: color 0.3s ease-out;
+}
+.TextCheckBox label {
+  padding: 0;
+}
+.CheckBox label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.8em;
+  /* line-height: 20px; */
+  border-radius: 0;
+  background-color: #fff;
+  font-size: 1.2em;
+}
+.CheckBox input[type="checkbox"]:checked ~ label:before {
+  content: "";
+  width: 16px;
+  padding-left: 2px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  line-height: 1.1;
+  background-color: #61002e;
+}
+.TextCheckBox input[type="checkbox"] + .text_area {
+  background-color: #ffffff;
+  display: block;
+  padding: 0.3rem 1.5rem;
+  color: #797979;
+  cursor: pointer;
+  background-color: #efefef;
+  border: 1px solid #797979;
+  border-radius: 50em;
+  font-size: 16px;
+}
+.TextCheckBox input[type="checkbox"]:not(old):checked + .text_area {
+  background-color: #61002e;
+  border: 1px solid #61002e;
+  color: #ffffff;
+}

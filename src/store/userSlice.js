@@ -1,11 +1,10 @@
-"use client";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setCookie, deleteCookie } from "cookies-next";
 
 // 로그인 되지 않은 초기상태
 const initialState = {
-  isLoding: false, //로딩중
+  isLoading: false, //로딩중
   isLogin: false, //로그인 유무
   isLoginError: false, //로그인 에러
   isClearing: false, //로그아웃중
@@ -86,12 +85,12 @@ const user = createSlice({
     //pending: 대기중, fulfilled: 성공 , rejected: 실패
     builder
       .addCase(loginUser.pending, (state, action) => {
-        state.isLoding = true;
+        state.isLoading = true;
         state.isLogin = false;
         state.isLoginError = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoding = false;
+        state.isLoading = false;
         state.isLoginError = false;
         if (action.payload.data.message === "success") {
           state.isLogin = true;
@@ -114,7 +113,7 @@ const user = createSlice({
         }
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.isLoding = false;
+        state.isLoading = false;
         state.isLogin = false;
         state.isLoginError = true;
       });

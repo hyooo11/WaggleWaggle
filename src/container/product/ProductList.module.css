@@ -1,0 +1,100 @@
+.ProductList ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ProductList ul a {
+  display: block;
+}
+.ProductList .card {
+  width: 25%;
+}
+.ProductList .card > a {
+  display: block;
+  margin: 0 5px 30px;
+}
+.ProductList .img_box {
+  position: relative;
+}
+.ProductList .img_box figure {
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  margin: 0;
+  border-radius: 5px;
+  background-color: #efefef;
+}
+.ProductList .img_box figure img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ProductList .img_box .like_btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+.ProductList .img_box .like_btn svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--primary);
+  stroke: var(--primary);
+}
+.ProductList .title {
+  text-align: center;
+}
+.ProductList .kor_name {
+  margin: 1rem 0 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.ProductList .eng_name {
+  font-size: 14px;
+  color: var(--primary);
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.ProductList .desc {
+  margin: 0.5rem 0;
+  font-size: 14px;
+  color: #999;
+  color: var(--secondary);
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.ProductList .hash_tag {
+  display: flex;
+  justify-content: center;
+}
+.ProductList .hash_tag span {
+  padding: 0.1rem 0.4rem;
+  margin: 0 1px;
+  background-color: var(--secondary);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 13px;
+}
+.ProductList .price {
+  margin-top: 1rem;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}

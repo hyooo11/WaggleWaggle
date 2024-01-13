@@ -1,14 +1,13 @@
 "use client";
-
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loginCheck, clearUser } from "../../store/userSlice";
+import { useState, useEffect } from "react";
+import LocalStorage from "../../util/localstorage";
+import { getCookie } from "cookies-next";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import style from "./Header.module.css";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { getCookie } from "cookies-next";
-import LocalStorage from "../../util/localstorage";
-import { loginCheck, clearUser, setToken } from "../../store/userSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
