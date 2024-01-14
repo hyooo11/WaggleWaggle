@@ -7,12 +7,26 @@
   display: block;
 }
 .ProductList .card {
+  position: relative;
   width: 25%;
+}
+.ProductList .like_btn {
+  position: absolute;
+  top: 1rem;
+  left: 1.2rem;
+  z-index: 1;
+}
+.ProductList .like_btn svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--primary);
+  stroke: var(--primary);
 }
 .ProductList .card > a {
   display: block;
   margin: 0 5px 30px;
 }
+
 .ProductList .img_box {
   position: relative;
 }
@@ -33,17 +47,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.ProductList .img_box .like_btn {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-.ProductList .img_box .like_btn svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--primary);
-  stroke: var(--primary);
-}
+
 .ProductList .title {
   text-align: center;
 }

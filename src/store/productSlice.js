@@ -19,7 +19,7 @@ export const productItem = createAsyncThunk(
     try {
       const response = await axios.get(
         `/api/product/wine/${userPid === null ? 0 : userPid}/search?page=${
-          pageNum === null || undefined ? 1 : pageNum
+          pageNum === undefined || pageNum === null ? 1 : pageNum
         }`,
         {
           headers: {

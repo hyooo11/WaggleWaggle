@@ -18,11 +18,13 @@ const Product = () => {
   useEffect(() => {
     setTotalItems(state);
   }, [state]);
-  // console.log(totalItems);
 
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
-  dispatch(productItem(page));
+
+  useEffect(() => {
+    dispatch(productItem(page));
+  }, [page]);
 
   // console.log(page);
 

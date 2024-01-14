@@ -9,11 +9,17 @@ const CheckBox = ({ text, inputId, inputName }) => {
   );
 };
 
-const TextCheckBox = ({ text, inputId, inputName }) => {
+const TextCheckBox = ({ text, inputId, inputName, isChecked, onChange }) => {
   return (
     <div className={style.TextCheckBox}>
       <label htmlFor={inputId}>
-        <input type="checkbox" id={inputId} name={inputName} />
+        <input
+          type="checkbox"
+          id={inputId}
+          name={inputName}
+          checked={isChecked}
+          onChange={onChange}
+        />
         <span className={style.text_area}>
           <span>{text}</span>
         </span>
