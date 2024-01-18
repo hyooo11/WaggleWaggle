@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../container/product/ProductList";
 import Pagination from "../../component/ui/Pagination";
 import { useSearchParams } from "next/navigation";
+import { TbFilterPlus, TbFilterMinus } from "react-icons/tb";
 
 const Product = () => {
   const [totalItems, setTotalItems] = useState();
@@ -34,14 +35,16 @@ const Product = () => {
       <div className="sub_p_title maxframe">
         <h2 className="">PRODUCT</h2>
         <span>상품리스트</span>
+        <button
+          className="filter_btn"
+          onClick={() => {
+            filterToggle ? setfilterToggle(false) : setfilterToggle(true);
+          }}
+        >
+          {filterToggle ? <TbFilterMinus /> : <TbFilterPlus />}
+        </button>
       </div>
-      <button
-        onClick={() => {
-          filterToggle ? setfilterToggle(false) : setfilterToggle(true);
-        }}
-      >
-        필터
-      </button>
+
       <div className="Product">
         {filterToggle ? <SearchFilter /> : null}
 

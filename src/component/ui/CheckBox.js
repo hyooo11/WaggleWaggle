@@ -9,7 +9,22 @@ const CheckBox = ({ text, inputId, inputName }) => {
   );
 };
 
-const TextCheckBox = ({ text, inputId, inputName, isChecked, onChange }) => {
+const TextCheckBox = ({
+  text,
+  inputId,
+  inputName,
+  setStateList,
+  stateList,
+  value,
+}) => {
+  const CheckHandler = (value, isChecked) => {
+    if (isChecked) {
+      setStateList((prev) => [...prev, value]);
+    } else {
+      setStateList(stateList.filter((item) => item !== value));
+    }
+  };
+
   return (
     <div className={style.TextCheckBox}>
       <label htmlFor={inputId}>
@@ -17,8 +32,9 @@ const TextCheckBox = ({ text, inputId, inputName, isChecked, onChange }) => {
           type="checkbox"
           id={inputId}
           name={inputName}
-          checked={isChecked}
-          onChange={onChange}
+          onChange={(e) => {
+            CheckHandler(value, e.target.checked);
+          }}
         />
         <span className={style.text_area}>
           <span>{text}</span>

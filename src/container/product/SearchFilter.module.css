@@ -9,5 +9,6 @@
 }
 .SearchFilter .fillter_box {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
