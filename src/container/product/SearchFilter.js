@@ -13,7 +13,7 @@ import { winetype, tastyscore, country } from "./SearchFiterList";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 
-const SearchFilter = () => {
+const SearchFilter = ({ setSearchData }) => {
   const dispatch = useDispatch();
   const [wineType, setWineType] = useState([]);
   const [body, setBody] = useState([]);
@@ -21,22 +21,21 @@ const SearchFilter = () => {
   const [acidity, setAcidity] = useState([]);
   const [tannin, setTannin] = useState([]);
   const [countryList, setCountryList] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 35000]);
+  const [priceRange, setPriceRange] = useState([0, 100000]);
 
-  const searchData = {
-    type: wineType,
-    body: body,
-    sweet: sweet,
-    acidity: acidity,
-    tannin: tannin,
-    country: countryList,
-    maxPrice: priceRange[0],
-    minPrice: priceRange[1],
-  };
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(productItem(searchData));
+      setSearchData({
+        type: wineType,
+        body: body,
+        sweet: sweet,
+        acidity: acidity,
+        tannin: tannin,
+        country: countryList,
+        maxPrice: priceRange[0],
+        minPrice: priceRange[1],
+      });
     },
     [wineType, body, sweet, acidity, tannin, countryList, priceRange]
   );
@@ -151,9 +150,9 @@ const SearchFilter = () => {
               range
               className="rc-slider"
               min={0}
-              max={350000}
+              max={100000}
               step={10000}
-              defaultValue={[0, 350000]}
+              defaultValue={[0, 100000]}
               dots={true}
               value={priceRange}
               onChange={(e) => {

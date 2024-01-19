@@ -4,7 +4,6 @@ import Button from "../../component/ui/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getCookie } from "cookies-next";
 
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";

@@ -82,7 +82,14 @@ const Header = () => {
             WAGU
           </Link>
           <nav className={`${style.gnb} ${isScroll ? style.fixed : ""}`}>
-            <Link href="/product">PRODUCT</Link>
+            <Link
+              href={{
+                pathname: "/product",
+                query: { page: 1 },
+              }}
+            >
+              PRODUCT
+            </Link>
             <Link href="/community">COMMUNITY</Link>
             <Link href="/qna">QnA</Link>
             <Link href="/notice">NOTICE</Link>

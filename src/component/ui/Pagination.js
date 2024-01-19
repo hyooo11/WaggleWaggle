@@ -25,16 +25,21 @@ const Pagination = ({
           <Link href={`?page=${start - 1}`}>이전</Link>
         </li>
         {[...Array(pageCount)].map(
-          (_, i) =>
-            start + i <= totalPages && (
-              <li key={i}>
-                <Link href={`?page=${start + i}`}>
+          (_, index) =>
+            start + index <= totalPages && (
+              <li key={index}>
+                <Link
+                  href={{
+                    pathname: "/product",
+                    query: { page: start + index },
+                  }}
+                >
                   <span
                     className={`${style.page} ${
-                      currentPage === start + i && style.active
+                      currentPage === start + index && style.active
                     }`}
                   >
-                    {start + i}
+                    {start + index}
                   </span>
                 </Link>
               </li>

@@ -14,16 +14,17 @@ const initialState = {
 //상품리스트 가져오기
 export const productItem = createAsyncThunk(
   "product/fetchList",
-  async (pageNum, { rejectWithValue }) => {
+  async ({ page }, { rejectWithValue }) => {
     const userPid = LocalStorage.getItem("pid");
     try {
       const response = await axios.get(
-        `/api/product/wine/${userPid === null ? 0 : userPid}/search?page=${
-          pageNum === undefined || pageNum === null ? 1 : pageNum
-        }`,
+        `/api/product/wine/${userPid === null ? 0 : userPid}/search`,
         {
           headers: {
             "Content-Type": "application/json",
+          },
+          params: {
+            page: page === undefined || page === null ? 1 : page,
           },
         }
       );
