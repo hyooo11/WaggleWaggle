@@ -1,6 +1,6 @@
 // "use client";
-import StoreProvider from "./StoreProvider";
-import store from "../store";
+import StoreProvider from "../redux/StoreProvider";
+import store from "../redux/store";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../component/common/Header.js";

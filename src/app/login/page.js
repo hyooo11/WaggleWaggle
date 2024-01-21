@@ -1,12 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Button from "../../component/ui/Button";
+import Button from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../store/userSlice";
+import { loginUser } from "../../redux/features/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();

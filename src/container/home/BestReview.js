@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "./BestReview.module.css";
-import Modal from "../../component/ui/Modal";
+import Modal from "../../ui/Modal";
 
 const BestReview = () => {
   const [bestReview, setBestReview] = useState([]);

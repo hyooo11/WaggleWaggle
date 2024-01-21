@@ -1,6 +1,12 @@
 "use client";
 import { TextCheckBox } from "../../ui/CheckBox";
 import style from "./SearchFilter.module.css";
+import {
+  productList,
+  productItemCount,
+  productItem,
+} from "../../redux/features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useCallback } from "react";
 import Button from "../../ui/Button";
 import { winetype, tastyscore, country } from "./SearchFiterList";
@@ -8,6 +14,7 @@ import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const SearchFilter = ({ setSearchData }) => {
+  const dispatch = useDispatch();
   const [wineType, setWineType] = useState([]);
   const [body, setBody] = useState([]);
   const [sweet, setSweet] = useState([]);
@@ -16,19 +23,22 @@ const SearchFilter = ({ setSearchData }) => {
   const [countryList, setCountryList] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 100000]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setSearchData({
-      type: wineType,
-      body: body,
-      sweet: sweet,
-      acidity: acidity,
-      tannin: tannin,
-      country: countryList,
-      maxPrice: priceRange[1],
-      minPrice: priceRange[0],
-    });
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setSearchData({
+        type: wineType,
+        body: body,
+        sweet: sweet,
+        acidity: acidity,
+        tannin: tannin,
+        country: countryList,
+        maxPrice: priceRange[0],
+        minPrice: priceRange[1],
+      });
+    },
+    [wineType, body, sweet, acidity, tannin, countryList, priceRange]
+  );
 
   return (
     <div className={style.SearchFilter}>

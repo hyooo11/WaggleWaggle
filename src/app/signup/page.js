@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DaumPostcode from "react-daum-postcode";
-import Modal from "../../component/ui/Modal";
+import Modal from "../../ui/Modal";
 import { useState } from "react";
-import Button from "../../component/ui/Button";
+import Button from "../../ui/Button";
 import { useRouter } from "next/navigation";
 
 const validateForm = {

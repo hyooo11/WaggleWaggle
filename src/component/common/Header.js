@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { loginCheck, clearUser } from "../../store/userSlice";
+import { loginCheck, clearUser } from "../../redux/features/userSlice";
 import { useState, useEffect } from "react";
-import LocalStorage from "../../util/localstorage";
+import LocalStorage from "../../util/LocalStorage";
 import { getCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -82,14 +82,7 @@ const Header = () => {
             WAGU
           </Link>
           <nav className={`${style.gnb} ${isScroll ? style.fixed : ""}`}>
-            <Link
-              href={{
-                pathname: "/product",
-                query: { page: 1 },
-              }}
-            >
-              PRODUCT
-            </Link>
+            <Link href="/product?page=1">PRODUCT</Link>
             <Link href="/community">COMMUNITY</Link>
             <Link href="/qna">QnA</Link>
             <Link href="/notice">NOTICE</Link>

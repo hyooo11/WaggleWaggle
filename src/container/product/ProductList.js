@@ -1,25 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { productItem, productItemCount } from "../../store/productSlice";
-import { useDispatch, useSelector } from "react-redux";
 import style from "./ProductList.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
 import axios from "axios";
-import LocalStorage from "../../util/localstorage";
+import LocalStorage from "../../util/LocalStorage";
 
-const ProductList = () => {
+const ProductList = ({ productList }) => {
   const [selectWine, setSelectWine] = useState(0);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(productItem());
-    dispatch(productItemCount());
-  }, [dispatch]);
-
-  const productList = useSelector((state) => {
-    return state.product.data;
-  });
 
   const likeToggle = async () => {
     const userPid = LocalStorage.getItem("pid");

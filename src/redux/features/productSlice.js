@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import LocalStorage from "../util/localstorage";
+import LocalStorage from "../../util/LocalStorage";
 
 //아무것도 검색되지 않은 상품리스트 초기상태
 const initialState = {
@@ -14,17 +14,14 @@ const initialState = {
 //상품리스트 가져오기
 export const productItem = createAsyncThunk(
   "product/fetchList",
-  async ({ page }, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     const userPid = LocalStorage.getItem("pid");
     try {
       const response = await axios.get(
-        `/api/product/wine/${userPid === null ? 0 : userPid}/search`,
+        `/api/product/wine/${userPid === null ? 0 : userPid}/search${params}`,
         {
           headers: {
             "Content-Type": "application/json",
-          },
-          params: {
-            page: page === undefined || page === null ? 1 : page,
           },
         }
       );
@@ -38,9 +35,9 @@ export const productItem = createAsyncThunk(
 //상품리스트 갯수 가져오기
 export const productItemCount = createAsyncThunk(
   "product/fetchListCount",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/api/product/wine/count`, {
+      const response = await axios.get(`/api/product/wine/count?${params}`, {
         headers: {
           "Content-Type": "application/json",
         },

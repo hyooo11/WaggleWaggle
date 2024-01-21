@@ -7,6 +7,7 @@ const Pagination = ({
   itemCountPerPage, // 페이지 당 보여줄 데이터 개수
   pageCount, // 보여줄 페이지 개수
   currentPage, // 현재 페이지
+  queryState,
 }) => {
   const totalPages = Math.ceil(totalItems / itemCountPerPage); // 총 페이지 개수
   const [start, setStart] = useState(1); // 시작 페이지
@@ -22,7 +23,14 @@ const Pagination = ({
     <div className={style.Pagination}>
       <ul>
         <li className={`${style.move} ${noPrev && style.visible}`}>
-          <Link href={`?page=${start - 1}`}>이전</Link>
+          <Link
+            href={{
+              pathname: "/product",
+              query: { page: start - 1, ...queryState },
+            }}
+          >
+            이전
+          </Link>
         </li>
         {[...Array(pageCount)].map(
           (_, index) =>
@@ -31,7 +39,7 @@ const Pagination = ({
                 <Link
                   href={{
                     pathname: "/product",
-                    query: { page: start + index },
+                    query: { page: start + index, ...queryState },
                   }}
                 >
                   <span
@@ -46,7 +54,14 @@ const Pagination = ({
             )
         )}
         <li className={`${style.move} ${noNext && style.visible}`}>
-          <Link href={`?page=${start + pageCount}`}>다음</Link>
+          <Link
+            href={{
+              pathname: "/product",
+              query: { page: start + pageCount, ...queryState },
+            }}
+          >
+            다음
+          </Link>
         </li>
       </ul>
     </div>
