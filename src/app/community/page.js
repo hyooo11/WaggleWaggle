@@ -1,17 +1,16 @@
-import CommunityList from "../../container/community/CommunityList";
+"use client";
+import Community from "../../container/community/Community";
+import { getReviewList } from "../../api/communityAPI";
+import { useEffect, useState } from "react";
 
-const Community = () => {
-  return (
-    <div className="maxframe sub_p_wrap">
-      <div className="sub_p_title">
-        <h2 className="">COMMUNITY</h2>
-        <span>와구 회원님들과 함께하는 즐거운 와인이야기</span>
-      </div>
-      <div className="Product">
-        <CommunityList />
-      </div>
-    </div>
-  );
+const CommunityPage = () => {
+  const [reviewList, setReviewList] = useState([]);
+
+  useEffect(() => {
+    getReviewList().then((response) => setReviewList(response.data.data));
+  }, []);
+
+  return <Community reviewList={reviewList} />;
 };
 
-export default Community;
+export default CommunityPage;

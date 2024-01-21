@@ -1,7 +1,11 @@
-const CommunityList = () => {
+const CommunityList = ({ reviewList }) => {
   return (
-    <div>
-      <div>커뮤니티 리스트</div>
+    <div className="maxframe sub_p_wrap">
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
     </div>
   );
 };

@@ -24,7 +24,6 @@ const BestReview = () => {
     fetchData();
   }, []);
 
-  // console.log(bestReview)
   return (
     <>
       <section className={styled.reviewSec}>
