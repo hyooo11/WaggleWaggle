@@ -1,6 +1,6 @@
-import MainVisual from '../container/home/MainVisual.js'
-import BestReview from '../container/home/BestReview.js'
-import Ranking from '../container/home/Ranking.js'
+import MainVisual from "../container/home/MainVisual.js";
+import BestReview from "../container/home/BestReview.js";
+import Ranking from "../container/home/Ranking.js";
 
 export default function Page() {
   return (
@@ -9,5 +9,5 @@ export default function Page() {
       <BestReview />
       <Ranking />
     </>
-  )
+  );
 }

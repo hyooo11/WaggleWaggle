@@ -1,3 +1,25 @@
+.MainSwiper .swiper-pagination {
+  bottom: 0;
+  top: inherit;
+  background-color: var(--secondary);
+}
+
+.MainSwiper .swiper-pagination-progressbar-fill {
+  background-color: var(--primary);
+}
+
+.MainSwiper .swiper-slide figure {
+  position: relative;
+  padding-top: 42.33%;
+}
+.MainSwiper .swiper-slide figure img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .SwiperPerView {
   padding-bottom: 50px;
   /* max-width: 300px; */

@@ -2,8 +2,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
 import "./Swiper.css";
+
+const MainSwiper = ({ bannerImgs }) => {
+  return (
+    <Swiper
+      slidesPerView={1}
+      centeredSlides={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      loop={true}
+      pagination={{
+        clickable: true,
+        type: "progressbar",
+      }}
+      modules={[Pagination, Autoplay, A11y]}
+      className="MainSwiper"
+    >
+      {bannerImgs.map((data, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <figure>
+              <img src={data} />
+            </figure>
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
+  );
+};
 
 const SwiperPerView = ({ ImageArr }) => {
   const images = ImageArr.filter((value) => value !== null);
@@ -49,4 +79,4 @@ const SwiperPerView = ({ ImageArr }) => {
   );
 };
 
-export { SwiperPerView };
+export { SwiperPerView, MainSwiper };

@@ -1,40 +1,32 @@
 "use client";
-
-import axios from "axios";
+import { getBestReview } from "@/api/homeAPI.js";
 import { useState, useEffect } from "react";
 import styled from "./BestReview.module.css";
 import Modal from "../../ui/Modal";
 
-const BestReview = () => {
+const BestReview = ({}) => {
   const [bestReview, setBestReview] = useState([]);
   const [modalState, setModalState] = useState(false);
   const [modalIndex, setModalIndex] = useState("");
   const closeModal = () => setModalState(false);
-  const fetchData = async () => {
-    try {
-      const result = await axios.get("api/community/best-review");
-      let copy = [result.data.data];
-      setBestReview(copy[0]);
-      // console.log('베스트 리뷰 데이터 가져오기 성공');
-    } catch (error) {
-      console.log("베스트 리뷰 데이터 가져오기 실패");
-    }
-  };
+
   useEffect(() => {
-    fetchData();
+    getBestReview().then((response) => {
+      setBestReview(response.data.data);
+    });
   }, []);
 
   return (
-    <>
-      <section className={styled.reviewSec}>
-        <div className="maxframe">
-          <div className="title-sec">
-            <h4>와구 베스트 리뷰</h4>
-            <span>WAGU BEST REVIEW</span>
-          </div>
-          <div>
-            <ul className={styled.reviewList}>
-              {bestReview.map((data, index) => (
+    <section className={styled.reviewSec}>
+      <div className="maxframe">
+        <div className="title-sec">
+          <h4>와구 베스트 리뷰</h4>
+          <span>WAGU BEST REVIEW</span>
+        </div>
+        <div>
+          <ul className={styled.reviewList}>
+            {bestReview &&
+              bestReview.map((data, index) => (
                 <li
                   id={index}
                   key={index}
@@ -53,20 +45,19 @@ const BestReview = () => {
                   </div>
                 </li>
               ))}
-            </ul>
-          </div>
+          </ul>
         </div>
-        {modalState && (
-          <Modal closeModal={closeModal}>
-            <span>{bestReview[modalIndex].writerNick}</span>
-            <figure>
-              <img src={bestReview[modalIndex].reviewImg1} alt="" />
-            </figure>
-            <p>{bestReview[modalIndex].reviewTitle}</p>
-          </Modal>
-        )}
-      </section>
-    </>
+      </div>
+      {modalState && (
+        <Modal closeModal={closeModal}>
+          <span>{bestReview[modalIndex].writerNick}</span>
+          <figure>
+            <img src={bestReview[modalIndex].reviewImg1} alt="" />
+          </figure>
+          <p>{bestReview[modalIndex].reviewTitle}</p>
+        </Modal>
+      )}
+    </section>
   );
 };
 export default BestReview;

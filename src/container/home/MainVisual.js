@@ -1,29 +1,21 @@
-'use client'
+"use client";
+import { MainSwiper } from "@/ui/Swiper";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
-
-const BannerImgs = [
+const bannerImgs = [
+  "/media/img/mainBanner5.jpg",
   "/media/img/mainBanner1.jpg",
-  "/media/img/mainBanner1.jpg",
-  "/media/img/mainBanner1.jpg",
-]
+  "/media/img/mainBanner2.jpg",
+  "/media/img/mainBanner3.jpg",
+  "/media/img/mainBanner4.jpg",
+];
 
 const MainVisual = () => {
   return (
     <>
       <section className="main-banner-sec">
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-          {BannerImgs.map((imgs, index) => (
-            <SwiperSlide id={index} key={index}>
-              <img src={imgs} alt='' />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <MainSwiper bannerImgs={bannerImgs} />
       </section>
     </>
-  )
-}
+  );
+};
 export default MainVisual;
