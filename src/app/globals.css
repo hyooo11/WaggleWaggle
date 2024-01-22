@@ -252,11 +252,13 @@ section.main-banner-sec {
   color: #bcbcbc;
 }
 
-.sub_p_wrap .sub_p_title .filter_btn {
+.sub_p_wrap .sub_p_title > button {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+}
+.sub_p_wrap .sub_p_title .filter_btn {
   width: 30px;
   height: 30px;
 }

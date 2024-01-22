@@ -97,7 +97,6 @@ const SignUp = () => {
   } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
-    // .post("/api/auth/join", { ...data })
     await axios({
       method: "post",
       url: "/api/auth/join",

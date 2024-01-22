@@ -2,6 +2,7 @@
 import Community from "@/component/community/Community";
 import { getReviewList } from "@/api/communityAPI";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@/redux/hook";
 
 const CommunityPage = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -10,7 +11,10 @@ const CommunityPage = () => {
     getReviewList().then((response) => setReviewList(response.data.data));
   }, []);
 
-  return <Community reviewList={reviewList} />;
+  const user = useAppSelector((state) => state.user);
+  console.log(user);
+
+  return <Community reviewList={reviewList} user={user} />;
 };
 
 export default CommunityPage;

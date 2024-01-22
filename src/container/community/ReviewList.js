@@ -3,7 +3,6 @@ import style from "./ReviewList.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const ReviewList = ({ reviewList }) => {
-  console.log(reviewList);
   return (
     <div className={style.ReviewList}>
       <ul className={style.review_wrap}>
