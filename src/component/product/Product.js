@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import SearchFilter from "../container/product/SearchFilter";
-import ProductList from "../container/product/ProductList";
-import Pagination from "../ui/Pagination";
+import SearchFilter from "../../container/product/SearchFilter";
+import ProductList from "../../container/product/ProductList";
+import Pagination from "../../ui/Pagination";
 import { TbFilterPlus, TbFilterMinus } from "react-icons/tb";
 
 const Product = ({ productList, productCount }) => {

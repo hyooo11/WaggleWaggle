@@ -1,4 +1,4 @@
-import CommunityList from "./CommunityList";
+import ReviewList from "@/container/community/ReviewList";
 
 const Community = ({ reviewList }) => {
   return (
@@ -8,7 +8,7 @@ const Community = ({ reviewList }) => {
         <span>와구 회원님들과 함께하는 즐거운 와인이야기</span>
       </div>
       <div className="Product">
-        <CommunityList reviewList={reviewList} />
+        <ReviewList reviewList={reviewList} />
       </div>
     </div>
   );

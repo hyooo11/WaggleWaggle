@@ -7,7 +7,7 @@ import {
   productItem,
   productItemCount,
 } from "../../redux/features/productSlice";
-import Product from "../../component/Product";
+import Product from "../../component/product/Product";
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();

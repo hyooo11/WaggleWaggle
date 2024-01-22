@@ -1,0 +1,50 @@
+.SwiperPerView {
+  padding-bottom: 50px;
+  /* max-width: 300px; */
+}
+.SwiperPerView.slidesPerView_min_slide {
+  padding: 0 300px 50px;
+}
+
+.SwiperPerView .swiper-wrapper {
+  align-items: center;
+}
+.SwiperPerView .swiper-slide {
+  transition: all 0.2s ease-in-out;
+  filter: grayscale(1);
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+.SwiperPerView.slidesPerView_min_slide .swiper-slide {
+  opacity: 0;
+}
+.SwiperPerView .swiper-slide-active {
+  filter: none;
+  opacity: 1;
+  transform: scale(1);
+}
+.SwiperPerView.slidesPerView_min_slide .swiper-slide-active {
+  opacity: 1;
+}
+.SwiperPerView .swiper-slide figure {
+  position: relative;
+  padding-top: 100%;
+  background-color: #ccc;
+}
+.SwiperPerView .swiper-slide figure img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.SwiperPerView .swiper-button-prev:after,
+.SwiperPerView .swiper-button-next:after {
+  color: var(--primary);
+}
+.SwiperPerView .swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--secondary);
+}
+.SwiperPerView .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--primary);
+}

@@ -1,6 +1,6 @@
 "use client";
-import Community from "../../container/community/Community";
-import { getReviewList } from "../../api/communityAPI";
+import Community from "@/component/community/Community";
+import { getReviewList } from "@/api/communityAPI";
 import { useEffect, useState } from "react";
 
 const CommunityPage = () => {

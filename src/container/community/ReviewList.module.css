@@ -1,0 +1,91 @@
+.review_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.review_wrap a {
+  display: block;
+  margin: 0 10px 40px;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+.review_wrap .review_card {
+  width: 25%;
+}
+.user_info {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+}
+.user_info figure {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50rem;
+  overflow: hidden;
+}
+.user_info figure img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: block;
+}
+.user_info span {
+  width: calc(100% - 3rem);
+  padding-left: 0.5rem;
+  font-weight: 700;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.review_img figure {
+  position: relative;
+  padding-top: 100%;
+  /* background-color: #333; */
+}
+.review_img figure img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.review_info {
+  padding: 1rem 0.5rem;
+}
+.like_wrap {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+.like_wrap .icon {
+  padding-right: 5px;
+}
+.like_wrap .icon svg {
+  fill: var(--primary);
+}
+.txt_wrap p {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.txt_wrap .tit {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.txt_wrap .desc {
+  color: #888888;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.txt_wrap .date {
+  font-size: 14px;
+  color: #c8c8c8;
+}
