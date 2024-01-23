@@ -2,6 +2,7 @@
   bottom: 0;
   top: inherit;
   background-color: var(--secondary);
+  height: 5px;
 }
 
 .MainSwiper .swiper-pagination-progressbar-fill {

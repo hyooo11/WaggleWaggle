@@ -1,33 +1,22 @@
 "use client";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { getProductDetail } from "@/api/productAPI";
+import ProductDetail from "@/component/product/ProductDetail";
 
-const ProductDetail = (props) => {
+const ProductDetailPage = (props) => {
   const winePid = props.params.id;
-  const [wineDetail, setWineDetail] = useState("");
-
-  const getDatailData = async () => {
-    await axios
-      .get(`/api/product/wine/detail?pid=${winePid}`)
-      .then((result) => {
-        setWineDetail(result.data);
-      })
-      .catch((error) => {
-        console.log("디테일 실패");
-      });
-  };
-
+  const [productDetail, setProductDetail] = useState();
   useEffect(() => {
-    getDatailData();
+    getProductDetail(winePid).then((response) => {
+      setProductDetail(response.data.data);
+    });
   }, []);
 
   return (
     <div>
-      <div>
-        <figure>{wineDetail && <img src={wineDetail.data.imageUrl} />}</figure>
-      </div>
+      <ProductDetail productDetail={productDetail} />
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;

@@ -2,28 +2,38 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Button from "@/ui/Button";
-import StarRatings from "react-star-ratings";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 
 const wineType = ["레드", "화이트", "로제", "스파클링", "주정강화"];
+const StarRatings = dynamic(() => import("react-star-ratings"), {
+  ssr: false,
+});
+
 const ReviewEditor = () => {
   const router = useRouter();
-  const [rating, setRating] = useState(0);
+  const [filePreview, setFilePreview] = useState("");
 
-  const changeRating = (newRating) => {
-    setRating(newRating);
-    // 여기에서 평가를 서버로 보내거나 다른 필요한 작업을 수행할 수 있습니다.
-  };
   const {
     register,
     control,
     setValue,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
+  const preview = watch("files");
+  useEffect(() => {
+    if (preview && preview.length > 0) {
+      const file = preview[0];
+      setFilePreview(URL.createObjectURL(file));
+    }
+  }, [preview]);
+
   const onSubmit = (data) => console.log(data);
 
+  // console.log(watch("files"));
   return (
     <div className="maxframe sub_p_wrap">
       <div className="sub_p_title">
@@ -93,16 +103,22 @@ const ReviewEditor = () => {
           </div>
         </div>
         <div className="tr-form">
-          <label htmlFor="reviewImage" className="th-label">
+          <label htmlFor="files" className="th-label">
             <span className="req">이미지 업로드</span>
           </label>
           <div className="td-form">
             <input
               type="file"
-              id="reviewImage"
-              name="reviewImage"
-              className="form-control"
+              id="files"
+              name="files"
+              {...register("files")}
+              // className="hidden"
+              accept="image/*"
+              multiple
             />
+          </div>
+          <div>
+            <img src={filePreview} />
           </div>
         </div>
         <div className="tr-form">

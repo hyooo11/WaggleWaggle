@@ -12,7 +12,6 @@ const CommunityPage = () => {
   }, []);
 
   const user = useAppSelector((state) => state.user);
-  console.log(user);
 
   return <Community reviewList={reviewList} user={user} />;
 };
