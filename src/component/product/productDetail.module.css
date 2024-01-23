@@ -1,0 +1,17 @@
+.sec_1 {
+  display: flex;
+}
+.sec_1 > div {
+  width: 100%;
+}
+.sec_1 .thumnail .figure {
+  position: relative;
+  padding-top: 100%;
+}
+.sec_1 .thumnail .figure img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
