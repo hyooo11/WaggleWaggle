@@ -1,9 +1,11 @@
 "use client";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray, useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Button from "@/ui/Button";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+import LocalStorage from "@/util/LocalStorage";
+import axios from "axios";
 
 const wineType = ["레드", "화이트", "로제", "스파클링", "주정강화"];
 const StarRatings = dynamic(() => import("react-star-ratings"), {
@@ -11,8 +13,8 @@ const StarRatings = dynamic(() => import("react-star-ratings"), {
 });
 
 const ReviewEditor = () => {
-  const router = useRouter();
-  const [filePreview, setFilePreview] = useState("");
+  const [fileData, setFileData] = useState([]);
+  const [fileView, setFileView] = useState([]);
 
   const {
     register,
@@ -23,17 +25,84 @@ const ReviewEditor = () => {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
-  const preview = watch("files");
-  useEffect(() => {
-    if (preview && preview.length > 0) {
-      const file = preview[0];
-      setFilePreview(URL.createObjectURL(file));
+  const addFilesData = (e) => {
+    const selectedPhoto = e.target.files[0];
+    const photoURL = URL.createObjectURL(selectedPhoto);
+    console.log(selectedPhoto);
+    if (selectedPhoto) {
+      setFileData((prevFile) => [...prevFile, selectedPhoto]);
+      setFileView((prevView) => [...prevView, photoURL]);
     }
-  }, [preview]);
+  };
 
-  const onSubmit = (data) => console.log(data);
+  const removeFileData = (index) => {
+    const updateFileData = [...fileData];
+    const updateFileView = [...fileView];
+    updateFileData.splice(index, 1);
+    updateFileView.splice(index, 1);
+    setFileData(updateFileData);
+    setFileView(updateFileView);
+  };
 
-  // console.log(watch("files"));
+  const hashList = watch("hashList", []);
+
+  const addHashtag = () => {
+    const inputValue = watch("hashTag");
+    if (inputValue.trim() !== "") {
+      setValue("hashList", [...hashList, `#${inputValue}`]);
+      setValue("inputValue", "");
+    }
+  };
+
+  // console.log(fileData);
+
+  const removeHashtag = (index) => {
+    const updatedHashtags = [...hashList];
+    updatedHashtags.splice(index, 1);
+    setValue("hashList", updatedHashtags);
+  };
+
+  const onSubmit = async (data) => {
+    const userPid = LocalStorage.getItem("pid");
+    const formData = new FormData();
+
+    const newReviewPost = {
+      reviewTitle: data.reviewTitle,
+      wineType: data.wineType,
+      wineName: data.wineName,
+      winePrice: data.winePrice,
+      starPoint: data.starPoint,
+      desc: data.desc,
+      writerId: userPid,
+      hashTag: data.hashList,
+    };
+
+    fileData.map((data) => {
+      formData.append("files", data);
+    });
+
+    formData.append("review", JSON.stringify(newReviewPost));
+
+    console.log(formData);
+
+    await axios({
+      method: "post",
+      url: "/api/community/review",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      data: formData,
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // console.log(data);
+    // console.log([...formData.entries()]);
+  };
   return (
     <div className="maxframe sub_p_wrap">
       <div className="sub_p_title">
@@ -102,25 +171,7 @@ const ReviewEditor = () => {
             </div>
           </div>
         </div>
-        <div className="tr-form">
-          <label htmlFor="files" className="th-label">
-            <span className="req">이미지 업로드</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="file"
-              id="files"
-              name="files"
-              {...register("files")}
-              // className="hidden"
-              accept="image/*"
-              multiple
-            />
-          </div>
-          <div>
-            <img src={filePreview} />
-          </div>
-        </div>
+
         <div className="tr-form">
           <label htmlFor="starPoint" className="th-label">
             <span className="req">별점</span>
@@ -143,6 +194,39 @@ const ReviewEditor = () => {
           </div>
         </div>
         <div className="tr-form">
+          <label htmlFor="files" className="th-label">
+            <span className="req">이미지 업로드</span>
+          </label>
+          <div className="td-form">
+            <input
+              {...register("files")}
+              type="file"
+              accept="image/*"
+              onChange={addFilesData}
+            />
+          </div>
+        </div>
+        <div className="tr-form">
+          <label htmlFor="files" className="th-label"></label>
+
+          <ul className="image_preview">
+            {fileView &&
+              fileView.map((data, index) => (
+                <li key={index} className="item">
+                  <p className="imgs">
+                    <img src={data} alt={`data-${index}`} />
+                  </p>
+                  <button
+                    className="remove_btn"
+                    onClick={() => removeFileData(index)}
+                  >
+                    삭제
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </div>
+        <div className="tr-form">
           <label htmlFor="desc" className="th-label">
             <span className="req">내용</span>
           </label>
@@ -154,6 +238,31 @@ const ReviewEditor = () => {
               {...register("desc")}
               className="form-control"
             />
+          </div>
+        </div>
+
+        <div className="tr-form">
+          <label htmlFor="hashTag" className="th-label">
+            <span className="req">해시태그</span>
+          </label>
+          <div className="td-form">
+            <input
+              type="text"
+              id="hashTag"
+              name="hashTag"
+              {...register("hashTag")}
+              className="form-control"
+              laceholder="Enter hashtags"
+            />
+            <span onClick={addHashtag}>Add Hashtag</span>
+          </div>
+          <div>
+            {hashList.map((tag, index) => (
+              <div key={index}>
+                <span>{tag} </span>
+                <span onClick={() => removeHashtag(index)}>Remove</span>
+              </div>
+            ))}
           </div>
         </div>
 

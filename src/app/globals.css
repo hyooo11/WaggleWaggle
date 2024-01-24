@@ -268,7 +268,7 @@ section.main-banner-sec {
   height: 100%;
 }
 
-/* FORM 공통 CSS(로그인 회원가입) */
+/* FORM 공통 CSS */
 .table-form .tr-form {
   display: flex;
   min-height: 60px;
@@ -316,6 +316,31 @@ section.main-banner-sec {
   border: 1px solid #cccccc;
   border-radius: 5px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.table-form .image_preview {
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 300px;
+}
+.table-form .image_preview .item {
+  position: relative;
+  width: 20%;
+}
+.table-form .image_preview .imgs {
+  width: 100%;
+}
+.table-form .image_preview .imgs img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.table-form .image_preview .remove_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* BUTTON */
