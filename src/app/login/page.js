@@ -4,17 +4,13 @@ import Button from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { loginUser } from "@/redux/features/userSlice";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const loginMsg = useSelector((state) => {
-    if (state.user.loginMsg !== undefined) {
-      return state.user.loginMsg;
-    }
-  });
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const loginState = useAppSelector((state) => state.user);
 
   const schema = yup.object().shape({
     id: yup.string().required("id를 입력해주세요."),
@@ -30,6 +26,10 @@ const Login = () => {
   const onSubmit = (data) => {
     const userData = data;
     dispatch(loginUser(userData));
+    if (loginState.isLogin === true) {
+      router.push("/");
+      router.replace("/");
+    }
   };
 
   return (
@@ -69,7 +69,6 @@ const Login = () => {
           </div>
         </div>
         <span className="err-msg">{errors.password?.message}</span>
-        <div>{loginMsg}</div>
         <div className="btn-area">
           <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
           <Button type={"positive"} text={"로그인"} />

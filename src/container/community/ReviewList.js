@@ -2,12 +2,12 @@ import Link from "next/link";
 import style from "./ReviewList.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-const ReviewList = ({ reviewList }) => {
+const ReviewList = ({ renderList }) => {
   return (
     <div className={style.ReviewList}>
       <ul className={style.review_wrap}>
-        {reviewList &&
-          reviewList.map((data, index) => {
+        {renderList &&
+          renderList.map((data, index) => {
             return (
               <li key={data.reviewId} className={style.review_card}>
                 <Link href={`community/detail/${data.reviewId}`}>

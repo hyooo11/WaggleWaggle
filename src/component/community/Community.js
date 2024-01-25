@@ -2,9 +2,43 @@
 import ReviewList from "@/container/community/ReviewList";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
+import { getReviewList, getReviewLastPage } from "@/api/communityAPI";
+import { useAppSelector } from "@/redux/hook";
+import { useEffect, useState } from "react";
 
-const Community = ({ reviewList, user }) => {
+const Community = () => {
   const router = useRouter();
+  const [reviewList, setReviewList] = useState([]);
+  const [renderList, setRenderList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState([]);
+  const user = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    getReviewList(page).then((response) => setRenderList(response.data.data));
+    getReviewLastPage().then((response) => setLastPage(response.data.data));
+  }, []);
+
+  console.log(page);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, offsetHeight } = document.documentElement;
+      if (window.innerHeight + Math.ceil(scrollTop) >= offsetHeight - 10) {
+        setPage((prevPage) => prevPage + 1);
+        getReviewList(page).then((response) =>
+          setReviewList(response.data.data)
+        );
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setRenderList((prevRenderList) => [...prevRenderList, ...reviewList]);
+  }, [page]);
+
   const clickEdit = () => {
     if (user.isLogin === true) {
       router.push("/community/write");
@@ -26,7 +60,7 @@ const Community = ({ reviewList, user }) => {
         )}
       </div>
       <div className="Product">
-        <ReviewList reviewList={reviewList} />
+        <ReviewList renderList={renderList} />
       </div>
     </div>
   );
