@@ -14,7 +14,11 @@ const EditPage = (props) => {
   }, []);
   return (
     <div>
-      <ReviewEditor isEdit={true} originData={originData} />
+      <ReviewEditor
+        isEdit={true}
+        originData={originData}
+        reviewPid={reviewPid}
+      />
     </div>
   );
 };

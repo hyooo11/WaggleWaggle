@@ -1,22 +1,21 @@
 "use client";
 import { useForm, Controller, useFieldArray, useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { getCookie } from "cookies-next";
 import Button from "@/ui/Button";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import LocalStorage from "@/util/LocalStorage";
 import axios from "axios";
-
-const wineType = ["레드", "화이트", "로제", "스파클링", "주정강화"];
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
+const wineType = ["레드", "화이트", "로제", "스파클링", "주정강화"];
 
-const ReviewEditor = ({ isEdit, originData }) => {
+const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   const [fileData, setFileData] = useState([]);
   const [fileView, setFileView] = useState([]);
-
-  console.log(originData);
+  const [editFileList, setEditFileList] = useState([]);
+  const [fileDelete, setFileDelete] = useState([]);
 
   const {
     register,
@@ -26,17 +25,22 @@ const ReviewEditor = ({ isEdit, originData }) => {
     watch,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-
+  //신규 이미지 등록
   const addFilesData = (e) => {
     const selectedPhoto = e.target.files[0];
     const photoURL = URL.createObjectURL(selectedPhoto);
     console.log(selectedPhoto);
+    if (fileView.length > 4) {
+      alert("이미지는 5장 이하로 등록 가능합니다 :)");
+      return;
+    }
     if (selectedPhoto) {
       setFileData((prevFile) => [...prevFile, selectedPhoto]);
       setFileView((prevView) => [...prevView, photoURL]);
     }
   };
 
+  //이미지 삭제
   const removeFileData = (index) => {
     const updateFileData = [...fileData];
     const updateFileView = [...fileView];
@@ -47,7 +51,6 @@ const ReviewEditor = ({ isEdit, originData }) => {
   };
 
   const hashList = watch("hashList", []);
-
   const addHashtag = () => {
     const inputValue = watch("hashTag");
     if (inputValue.trim() !== "") {
@@ -61,22 +64,47 @@ const ReviewEditor = ({ isEdit, originData }) => {
     updatedHashtags.splice(index, 1);
     setValue("hashList", updatedHashtags);
   };
+  //기존이미지 & 삭제된 이미지 데이터 저장
+  useEffect(() => {
+    if (originData && isEdit == true) {
+      const originFile = originData.reviewImgs.filter((data) => data !== null);
+      setEditFileList(originFile.filter((value) => fileView.includes(value)));
+      setFileDelete(originFile.filter((value) => !fileView.includes(value)));
+    }
+  }, [fileView]);
+
+  //수정 페이지 기존 데이터
   useEffect(() => {
     if (originData && isEdit === true) {
       setValue("reviewTitle", originData.reviewTitle);
       setValue("wineType", originData.wineType);
+      setValue("wineName", originData.wineName);
       setValue("winePrice", originData.winePrice);
       setValue("starPoint", originData.starPoint);
-
       setValue("desc", originData.desc);
       setValue("hashTag", originData.hashTag);
-      setFileView(originData.reviewImgs);
+      setFileView(originData.reviewImgs.filter((data) => data !== null));
     }
   }, [originData]);
 
   const onSubmit = async (data) => {
-    const userPid = LocalStorage.getItem("pid");
+    const userPid = getCookie("pid");
     const formData = new FormData();
+    //수정이미지 null값 추가
+    const newEditFileList = editFileList.concat(
+      Array(5 - editFileList.length).fill(null)
+    );
+    const editReviewPost = {
+      reviewId: reviewPid,
+      reviewTitle: data.reviewTitle,
+      wineType: data.wineType,
+      wineName: data.wineName,
+      winePrice: data.winePrice,
+      starPoint: data.starPoint,
+      desc: data.desc,
+      hashTag: data.hashList,
+      reviewImgs: newEditFileList,
+    };
 
     const newReviewPost = {
       reviewTitle: data.reviewTitle,
@@ -89,16 +117,26 @@ const ReviewEditor = ({ isEdit, originData }) => {
       hashTag: data.hashList,
     };
 
-    fileData.map((data) => {
-      formData.append("files", data);
-    });
+    if (fileData.length > 0) {
+      fileData.map((data) => {
+        formData.append("files", data);
+      });
+    }
+    if (isEdit === true) {
+      formData.append("review", JSON.stringify(editReviewPost));
+    } else {
+      formData.append("review", JSON.stringify(newReviewPost));
+    }
+    if (fileDelete.length > 0) {
+      formData.append("deleteUrl", fileDelete);
+    }
 
-    formData.append("review", JSON.stringify(newReviewPost));
-
-    console.log(formData);
+    for (const value of formData.values()) {
+      console.log(value);
+    }
 
     await axios({
-      method: "post",
+      method: `${isEdit === true ? "put" : "post"}`,
       url: "/api/community/review",
       headers: {
         "Content-Type": "multipart/form-data",
@@ -229,12 +267,12 @@ const ReviewEditor = ({ isEdit, originData }) => {
                   <p className="imgs">
                     <img src={data} alt={`data-${index}`} />
                   </p>
-                  <button
+                  <span
                     className="remove_btn"
                     onClick={() => removeFileData(index)}
                   >
                     삭제
-                  </button>
+                  </span>
                 </li>
               ))}
           </ul>
