@@ -16,7 +16,7 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
       .then(router.push("/community"))
       .catch((errors) => console.log(errors));
   };
-  console.log(reviewDetail);
+
   return (
     <div className={style.ReviewDetail}>
       {reviewDetail && (

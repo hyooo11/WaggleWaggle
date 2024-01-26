@@ -12,7 +12,7 @@ const CommunityDetail = ({ reviewDetail }) => {
       </div>
       <div className="ProductDetail">
         <ReviewDetail reviewDetail={reviewDetail} userPid={userPid} />
-        <ReviewComment />
+        <ReviewComment reviewDetail={reviewDetail} />
       </div>
     </div>
   );
