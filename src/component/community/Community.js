@@ -4,40 +4,43 @@ import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
 import { getReviewList, getReviewLastPage } from "@/api/communityAPI";
 import { useAppSelector } from "@/redux/hook";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Community = () => {
   const router = useRouter();
   const [reviewList, setReviewList] = useState([]);
   const [renderList, setRenderList] = useState([]);
-  const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState([]);
+  const page = useRef(1);
   const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    getReviewList(page).then((response) => setRenderList(response.data.data));
+    getReviewList(page.current).then((response) =>
+      setRenderList(response.data.data)
+    );
     getReviewLastPage().then((response) => setLastPage(response.data.data));
   }, []);
-
-  console.log(page);
 
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, offsetHeight } = document.documentElement;
-      if (window.innerHeight + Math.ceil(scrollTop) >= offsetHeight - 10) {
-        setPage((prevPage) => prevPage + 1);
-        getReviewList(page).then((response) =>
-          setReviewList(response.data.data)
-        );
+      if (
+        page.current <= lastPage &&
+        window.innerHeight + Math.ceil(scrollTop) >= offsetHeight - 10
+      ) {
+        page.current++;
+        getReviewList(page.current).then((response) => {
+          setReviewList(response.data.data);
+          setRenderList((prevRenderList) => [
+            ...prevRenderList,
+            ...response.data.data,
+          ]);
+        });
       }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setRenderList((prevRenderList) => [...prevRenderList, ...reviewList]);
-  }, [page]);
+  }, [reviewList, renderList]);
 
   return (
     <div className="maxframe sub_p_wrap">

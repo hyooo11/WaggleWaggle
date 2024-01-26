@@ -4,7 +4,9 @@ import { SwiperPerView } from "@/ui/Swiper";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
 
-const ReviewDetail = ({ reviewDetail }) => {
+const ReviewDetail = ({ reviewDetail, userPid }) => {
+  // console.log(reviewDetail.writerId);
+  // console.log(userPid);
   const router = useRouter();
   const goEdit = () => {
     router.push(`/community/write/edit/${reviewDetail.reviewId}`);
@@ -14,9 +16,12 @@ const ReviewDetail = ({ reviewDetail }) => {
     <div className={style.ReviewDetail}>
       {reviewDetail && (
         <>
-          <div>
+          {JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
             <Button text={"수정하기"} onClick={goEdit} />
-          </div>
+          ) : (
+            <></>
+          )}
+
           <div
             className={style.title_wrap}
             style={{ backgroundImage: `url(${reviewDetail.reviewImgs[0]})` }}

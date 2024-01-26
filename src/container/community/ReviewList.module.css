@@ -45,6 +45,7 @@
 .review_img figure {
   position: relative;
   padding-top: 100%;
+  overflow: hidden;
   /* background-color: #333; */
 }
 .review_img figure img {
