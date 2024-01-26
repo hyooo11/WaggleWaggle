@@ -1,10 +1,10 @@
 "use client";
-import { useForm, Controller, useFieldArray, useWatch } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useForm, Controller } from "react-hook-form";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { getCookie } from "cookies-next";
 import Button from "@/ui/Button";
-import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { postEditorHandler } from "@/api/communityAPI";
 import axios from "axios";
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
@@ -131,20 +131,10 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
       formData.append("deleteUrl", fileDelete);
     }
 
-    await axios({
-      method: `${isEdit === true ? "put" : "post"}`,
-      url: "/api/community/review",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      data: formData,
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const method = `${isEdit === true ? "put" : "post"}`;
+    postEditorHandler(method, formData)
+      .then((response) => console.log(response))
+      .catch((errors) => console.log(errors));
   };
   return (
     <div className="maxframe sub_p_wrap">

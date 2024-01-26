@@ -30,19 +30,14 @@ export const getReviewDetail = async (reviewPid) => {
   return response;
 };
 
-export const postWrite = async (data) => {
-  await axios({
-    method: "post",
+export const postEditorHandler = async (method, data) => {
+  const response = await axios({
+    method: method,
     url: "/api/community/review",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    data: {},
-  })
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    data: data,
+  });
+  return response;
 };
