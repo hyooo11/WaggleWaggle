@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getReviewDetail } from "../../../../api/communityAPI";
+import { getReviewDetail } from "@/api/communityAPI";
 import CommunityDetail from "@/component/community/CommunityDetail";
 
 const CommunityDetailPage = (props) => {

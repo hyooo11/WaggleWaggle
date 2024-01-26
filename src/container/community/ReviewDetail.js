@@ -3,13 +3,18 @@ import style from "./ReviewDetail.module.css";
 import { SwiperPerView } from "@/ui/Swiper";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
+import { postEditorHandler } from "@/api/communityAPI";
 
 const ReviewDetail = ({ reviewDetail, userPid }) => {
-  // console.log(reviewDetail.writerId);
-  // console.log(userPid);
   const router = useRouter();
   const goEdit = () => {
     router.push(`/community/write/edit/${reviewDetail.reviewId}`);
+  };
+  const reviewDelete = () => {
+    const data = { reviewId: reviewDetail.reviewId };
+    postEditorHandler("DELETE", data)
+      .then(router.push("/community"))
+      .catch((errors) => console.log(errors));
   };
   console.log(reviewDetail);
   return (
@@ -17,7 +22,14 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
       {reviewDetail && (
         <>
           {JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
-            <Button text={"수정하기"} onClick={goEdit} />
+            <div>
+              <Button text={"수정하기"} onClick={goEdit} type={"positive"} />
+              <Button
+                text={"삭제하기"}
+                onClick={reviewDelete}
+                type={"default"}
+              />
+            </div>
           ) : (
             <></>
           )}
