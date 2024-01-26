@@ -3,16 +3,18 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { loginCheck, clearUser } from "../../redux/features/userSlice";
 import { useState, useEffect } from "react";
-import LocalStorage from "../../util/LocalStorage";
 import { getCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import style from "./Header.module.css";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const query = useSearchParams();
 
-  const userPid = LocalStorage.getItem("pid");
+  const userPid = getCookie("pid");
   const refreshToken = getCookie("refreshToken");
 
   // console.log(userPid, refreshToken);
@@ -66,6 +68,14 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  //middleware
+  useEffect(() => {
+    if (query.get("alert")) {
+      alert(query.get("alert"));
+      router.push("/login");
+    }
+  }, [query]);
 
   return (
     <header

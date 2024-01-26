@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { loginUser } from "@/redux/features/userSlice";
+import { useEffect } from "react";
 
 const Login = () => {
   const router = useRouter();
@@ -26,11 +27,13 @@ const Login = () => {
   const onSubmit = (data) => {
     const userData = data;
     dispatch(loginUser(userData));
+  };
+  useEffect(() => {
     if (loginState.isLogin === true) {
       router.push("/");
       router.replace("/");
     }
-  };
+  }, [loginState]);
 
   return (
     <div className="maxframe sub_p_wrap px-72">

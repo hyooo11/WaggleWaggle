@@ -39,13 +39,6 @@ const Community = () => {
     setRenderList((prevRenderList) => [...prevRenderList, ...reviewList]);
   }, [page]);
 
-  const clickEdit = () => {
-    if (user.isLogin === true) {
-      router.push("/community/write");
-    } else {
-      alert("로그인이 필요한 기능입니다.");
-    }
-  };
   return (
     <div className="maxframe sub_p_wrap">
       <div className="sub_p_title">
@@ -55,7 +48,9 @@ const Community = () => {
           <Button
             text={"글쓰기"}
             type={"positive"}
-            onClick={clickEdit}
+            onClick={() => {
+              router.push("/community/write");
+            }}
           ></Button>
         )}
       </div>

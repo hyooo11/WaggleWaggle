@@ -65,7 +65,7 @@ export const loginCheck = createAsyncThunk(
 //토큰 웹스토리지 저장
 export const setToken = (pid, refreshToken) => {
   // localStorage.setItem("refreshToken", refreshToken);
-  localStorage.setItem("pid", pid);
+  setCookie("pid", pid);
   setCookie("refreshToken", refreshToken);
 };
 
@@ -77,7 +77,7 @@ const user = createSlice({
     clearUser(state, action) {
       state.isLogin = false;
       state.data.memberInfo = null;
-      localStorage.removeItem("pid");
+      deleteCookie("pid");
       deleteCookie("refreshToken");
     },
   },

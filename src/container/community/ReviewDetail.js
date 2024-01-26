@@ -1,13 +1,22 @@
 "use client";
 import style from "./ReviewDetail.module.css";
 import { SwiperPerView } from "@/ui/Swiper";
+import Button from "@/ui/Button";
+import { useRouter } from "next/navigation";
 
 const ReviewDetail = ({ reviewDetail }) => {
+  const router = useRouter();
+  const goEdit = () => {
+    router.push(`/community/write/edit/${reviewDetail.reviewId}`);
+  };
   console.log(reviewDetail);
   return (
     <div className={style.ReviewDetail}>
       {reviewDetail && (
         <>
+          <div>
+            <Button text={"수정하기"} onClick={goEdit} />
+          </div>
           <div
             className={style.title_wrap}
             style={{ backgroundImage: `url(${reviewDetail.reviewImgs[0]})` }}

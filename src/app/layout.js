@@ -1,4 +1,3 @@
-// "use client";
 import StoreProvider from "../redux/StoreProvider";
 import store from "../redux/store";
 import { Inter } from "next/font/google";

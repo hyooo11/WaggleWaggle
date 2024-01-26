@@ -12,9 +12,11 @@ const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
 
-const ReviewEditor = () => {
+const ReviewEditor = ({ isEdit, originData }) => {
   const [fileData, setFileData] = useState([]);
   const [fileView, setFileView] = useState([]);
+
+  console.log(originData);
 
   const {
     register,
@@ -54,13 +56,23 @@ const ReviewEditor = () => {
     }
   };
 
-  // console.log(fileData);
-
   const removeHashtag = (index) => {
     const updatedHashtags = [...hashList];
     updatedHashtags.splice(index, 1);
     setValue("hashList", updatedHashtags);
   };
+  useEffect(() => {
+    if (originData && isEdit === true) {
+      setValue("reviewTitle", originData.reviewTitle);
+      setValue("wineType", originData.wineType);
+      setValue("winePrice", originData.winePrice);
+      setValue("starPoint", originData.starPoint);
+
+      setValue("desc", originData.desc);
+      setValue("hashTag", originData.hashTag);
+      setFileView(originData.reviewImgs);
+    }
+  }, [originData]);
 
   const onSubmit = async (data) => {
     const userPid = LocalStorage.getItem("pid");
@@ -99,9 +111,6 @@ const ReviewEditor = () => {
       .catch(function (error) {
         console.log(error);
       });
-
-    // console.log(data);
-    // console.log([...formData.entries()]);
   };
   return (
     <div className="maxframe sub_p_wrap">
@@ -131,7 +140,11 @@ const ReviewEditor = () => {
               <span className="req">와인타입</span>
             </label>
             <div className="td-form">
-              <select {...register("wineType")} className="form-control">
+              <select
+                name="wineType"
+                {...register("wineType")}
+                className="form-control"
+              >
                 {wineType.map((data, index) => {
                   return (
                     <option key={index} value={data}>
