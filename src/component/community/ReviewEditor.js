@@ -131,10 +131,6 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
       formData.append("deleteUrl", fileDelete);
     }
 
-    for (const value of formData.values()) {
-      console.log(value);
-    }
-
     await axios({
       method: `${isEdit === true ? "put" : "post"}`,
       url: "/api/community/review",
