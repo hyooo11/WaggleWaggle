@@ -19,21 +19,16 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
 
   return (
     <div className={style.ReviewDetail}>
+      {userPid && JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
+        <div>
+          <Button text={"수정하기"} onClick={goEdit} type={"positive"} />
+          <Button text={"삭제하기"} onClick={reviewDelete} type={"default"} />
+        </div>
+      ) : (
+        <></>
+      )}
       {reviewDetail && (
         <>
-          {JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
-            <div>
-              <Button text={"수정하기"} onClick={goEdit} type={"positive"} />
-              <Button
-                text={"삭제하기"}
-                onClick={reviewDelete}
-                type={"default"}
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-
           <div
             className={style.title_wrap}
             style={{ backgroundImage: `url(${reviewDetail.reviewImgs[0]})` }}
