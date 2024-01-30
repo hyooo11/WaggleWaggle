@@ -8,3 +8,16 @@ export const getComment = async (data) => {
   });
   return response;
 };
+
+export const postComment = async (method, data, token) => {
+  const response = await axios({
+    method: method,
+    url: "/api/comment",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `bearer ${token}`,
+    },
+    data: data,
+  });
+  return response;
+};

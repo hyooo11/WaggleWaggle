@@ -1,5 +1,5 @@
 import ReviewDetail from "@/container/community/ReviewDetail";
-import ReviewComment from "@/container/community/ReviewComment";
+import Comment from "@/container/community/Comment";
 import { getCookie } from "cookies-next";
 
 const CommunityDetail = ({ reviewDetail }) => {
@@ -12,7 +12,7 @@ const CommunityDetail = ({ reviewDetail }) => {
       </div>
       <div className="ProductDetail">
         <ReviewDetail reviewDetail={reviewDetail} userPid={userPid} />
-        <ReviewComment reviewDetail={reviewDetail} />
+        <Comment reviewDetail={reviewDetail} />
       </div>
     </div>
   );

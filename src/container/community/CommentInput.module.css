@@ -1,0 +1,20 @@
+.CommentInput {
+  display: flex;
+}
+.CommentInput .txt_box {
+  width: calc(100% - 80px);
+}
+.CommentInput .txt_box input {
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border: 1px solid #c8c8c8;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.CommentInput .submit_btn {
+  width: 80px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: var(--primary);
+  color: #fff;
+}

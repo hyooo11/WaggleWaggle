@@ -80,6 +80,12 @@ const user = createSlice({
       deleteCookie("pid");
       deleteCookie("refreshToken");
     },
+    //엑세스 토큰 재발급시(header.js)
+    setAccessToken(state, action) {
+      if (action.payload.newToken) {
+        state.data.token = action.payload.newToken;
+      }
+    },
   },
   extraReducers: (builder) => {
     //pending: 대기중, fulfilled: 성공 , rejected: 실패
@@ -96,13 +102,10 @@ const user = createSlice({
           state.isLogin = true;
           setToken(
             action.payload.data.memberInfo.pid,
-            // action.payload.data.token,
             action.payload.data.refreshToken
           );
-          loginCheck(
-            // action.payload.data.memberInfo.pid,
-            action.payload.data.token
-          );
+          loginCheck(action.payload.data.token);
+          state.data.token = action.payload.data.token;
           state.data.memberInfo = action.payload.data.memberInfo;
         } else if (action.payload.data.message === "id error!") {
           state.isLogin = false;
@@ -131,6 +134,6 @@ const user = createSlice({
     });
   },
 });
-export let { clearUser } = user.actions;
+export const { clearUser, setAccessToken } = user.actions;
 
 export default user;

@@ -19,7 +19,9 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
 
   return (
     <div className={style.ReviewDetail}>
-      {userPid && JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
+      {reviewDetail &&
+      userPid &&
+      JSON.parse(reviewDetail.writerId) === JSON.parse(userPid) ? (
         <div>
           <Button text={"수정하기"} onClick={goEdit} type={"positive"} />
           <Button text={"삭제하기"} onClick={reviewDelete} type={"default"} />

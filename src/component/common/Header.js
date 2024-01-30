@@ -1,7 +1,11 @@
 "use client";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { loginCheck, clearUser } from "../../redux/features/userSlice";
+import {
+  loginCheck,
+  clearUser,
+  setAccessToken,
+} from "../../redux/features/userSlice";
 import { useState, useEffect } from "react";
 import { getCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
@@ -29,7 +33,9 @@ const Header = () => {
             refreshToken: refreshToken,
           })
           .then((response) => {
-            dispatch(loginCheck(response.data.data.reissueToken));
+            const newReissueToken = response.data.data.reissueToken;
+            dispatch(loginCheck(newReissueToken));
+            dispatch(setAccessToken({ newToken: newReissueToken }));
           })
           .catch((error) => {
             console.error(error);
@@ -39,7 +45,7 @@ const Header = () => {
       }
     };
     reissueToken();
-  }, []);
+  }, [userPid, refreshToken, dispatch]);
 
   const user = useSelector((state) => {
     return state.user;
