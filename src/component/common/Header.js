@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useAppSelector, useAppDispatch } from "@/redux/hook";
 import {
   loginCheck,
   clearUser,
@@ -14,7 +15,7 @@ import style from "./Header.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const query = useSearchParams();
 
@@ -47,7 +48,7 @@ const Header = () => {
     reissueToken();
   }, [userPid, refreshToken, dispatch]);
 
-  const user = useSelector((state) => {
+  const user = useAppSelector((state) => {
     return state.user;
   });
 
