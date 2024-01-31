@@ -29,6 +29,7 @@ const NewCommentForm = ({ newCommentHandler }) => {
 const EditCommentForm = ({
   prevDesc,
   commentId,
+  tagWriterId,
   editCommentHandler,
   setCommentEditBtn,
 }) => {
@@ -36,8 +37,9 @@ const EditCommentForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editCommentHandler(comment, commentId);
-    setComment("");
+    console.log(tagWriterId);
+    editCommentHandler(comment, commentId, tagWriterId);
+    // setComment("");
     setCommentEditBtn(!commentId);
   };
   return (
@@ -55,13 +57,21 @@ const EditCommentForm = ({
   );
 };
 
-const ReplyCommentForm = () => {
+const ReplyCommentForm = ({
+  parentId,
+  tagWriterId,
+  replyCommentHandler,
+  setReplyCommentBtn,
+  commentId,
+}) => {
   const [comment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // newCommentHandler(comment);
-    setComment("");
+    console.log(comment, parentId, tagWriterId);
+    replyCommentHandler(comment, parentId, tagWriterId);
+    // setComment("");
+    setReplyCommentBtn(!commentId);
   };
   return (
     <form onSubmit={handleSubmit} className={style.NewCommentForm}>

@@ -20,8 +20,6 @@ const Comment = ({ reviewPid }) => {
     getComment();
   }, []);
 
-  console.log(comments);
-
   //새댓글 등록 api
   const newCommentHandler = (desc) => {
     const data = {
@@ -34,11 +32,12 @@ const Comment = ({ reviewPid }) => {
   };
 
   //댓글 수정 api
-  const editCommentHandler = (desc, commentId) => {
+  const editCommentHandler = (desc, commentId, tagWriterId) => {
     const data = {
       reviewId: reviewPid,
       commentId: commentId,
       comment: desc,
+      tagWriterId: tagWriterId,
     };
     postComment("put", data, token)
       .then(getComment)
@@ -46,9 +45,18 @@ const Comment = ({ reviewPid }) => {
   };
 
   //대댓글 등록 api
-  const replyCommentHandler = () => {};
+  const replyCommentHandler = (desc, parentId, tagWriterId) => {
+    const data = {
+      reviewId: reviewPid,
+      comment: desc,
+      parentId: parentId,
+      tagWriterId: tagWriterId,
+    };
+    postComment("post", data, token)
+      .then(getComment)
+      .catch((error) => console.log(error));
+  };
 
-  console.log(reviewPid);
   return (
     <div>
       <CommentList
