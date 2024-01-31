@@ -1,5 +1,5 @@
 import StoreProvider from "../redux/StoreProvider";
-import store from "../redux/store";
+// import store from "../redux/store";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../component/common/Header.js";
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider store={store}>
+        <StoreProvider>
           <Header />
           {children}
           <Footer />
