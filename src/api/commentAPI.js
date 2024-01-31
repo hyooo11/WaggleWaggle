@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getComment = async (data) => {
+export const getCommentList = async (data) => {
   const response = await axios.get(`/api/comment?reviewId=${data}`, {
     headers: {
       "Content-Type": "application/json",

@@ -4,23 +4,26 @@
   display: flex;
   align-items: center;
 }
-.comment_box .info_box {
-  display: flex;
-  align-items: center;
-}
 .comment_box figure {
+  position: relative;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50em;
   overflow: hidden;
 }
-.child_ figure {
-  width: 2rem;
-  height: 2rem;
+.comment_box figure img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .comment_box .txt_box {
   padding-left: 16px;
   width: calc(100% - 10rem);
+}
+.comment_box .top_box {
+  display: flex;
+  align-items: center;
 }
 .comment_box .nickname {
   font-weight: 700;
@@ -34,27 +37,37 @@
 .comment_box .edit_btn {
   background-color: #efefef;
   padding: 3px 5px;
+  cursor: pointer;
 }
-.comment_box .sub_box > div {
+.comment_box .bottom_box > div {
   display: flex;
   align-items: center;
   padding-top: 10px;
 }
-.comment_box .sub_box > div p {
+.comment_box .bottom_box > div p {
   font-size: 15px;
   padding-right: 10px;
 }
-.comment_box .sub_box > div p span {
+.comment_box .bottom_box > div p span {
   color: var(--primary);
 }
-.comment_box .sub_box > div p span svg {
+.comment_box .bottom_box > div p span svg {
   display: inline;
 }
-
 .comment_box .like_btn {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
   display: flex;
+}
+
+.child_ figure {
+  width: 2rem;
+  height: 2rem;
+}
+
+.child_ figure {
+  width: 2rem;
+  height: 2rem;
 }

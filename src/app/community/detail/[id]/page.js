@@ -13,7 +13,7 @@ const CommunityDetailPage = (props) => {
   }, []);
   return (
     <div>
-      <CommunityDetail reviewDetail={reviewDetail} />
+      <CommunityDetail reviewDetail={reviewDetail} reviewPid={reviewPid} />
     </div>
   );
 };

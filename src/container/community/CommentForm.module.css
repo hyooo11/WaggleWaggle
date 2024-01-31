@@ -1,17 +1,17 @@
-.CommentInput {
+.NewCommentForm {
   display: flex;
 }
-.CommentInput .txt_box {
+.NewCommentForm .input_box {
   width: calc(100% - 80px);
 }
-.CommentInput .txt_box input {
+.NewCommentForm input {
   width: 100%;
   padding: 0.7rem 0.5rem;
   border: 1px solid #c8c8c8;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.CommentInput .submit_btn {
+.NewCommentForm button {
   width: 80px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;

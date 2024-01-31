@@ -2,7 +2,7 @@ import ReviewDetail from "@/container/community/ReviewDetail";
 import Comment from "@/container/community/Comment";
 import { getCookie } from "cookies-next";
 
-const CommunityDetail = ({ reviewDetail }) => {
+const CommunityDetail = ({ reviewDetail, reviewPid }) => {
   const userPid = getCookie("pid");
   return (
     <div className="maxframe sub_p_wrap">
@@ -12,7 +12,7 @@ const CommunityDetail = ({ reviewDetail }) => {
       </div>
       <div className="ProductDetail">
         <ReviewDetail reviewDetail={reviewDetail} userPid={userPid} />
-        <Comment reviewDetail={reviewDetail} />
+        <Comment reviewPid={reviewPid} />
       </div>
     </div>
   );
