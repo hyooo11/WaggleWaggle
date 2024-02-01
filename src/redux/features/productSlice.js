@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import LocalStorage from "../../util/LocalStorage";
+import { getCookie } from "cookies-next";
 
 //아무것도 검색되지 않은 상품리스트 초기상태
 const initialState = {
@@ -15,10 +15,10 @@ const initialState = {
 export const productItem = createAsyncThunk(
   "product/fetchList",
   async (params, { rejectWithValue }) => {
-    const userPid = LocalStorage.getItem("pid");
+    const userPid = getCookie("pid");
     try {
       const response = await axios.get(
-        `/api/product/wine/${userPid === null ? 0 : userPid}/search${params}`,
+        `/api/product/wine/${!userPid ? 0 : userPid}/search${params}`,
         {
           headers: {
             "Content-Type": "application/json",

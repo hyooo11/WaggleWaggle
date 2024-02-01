@@ -26,7 +26,7 @@ const MainSwiper = ({ bannerImgs }) => {
         return (
           <SwiperSlide key={index}>
             <figure>
-              <img src={data} />
+              <img src={data} alt={`메인배너_${index}`} />
             </figure>
           </SwiperSlide>
         );
@@ -70,7 +70,7 @@ const SwiperPerView = ({ ImageArr }) => {
         return (
           <SwiperSlide key={index}>
             <figure>
-              <img src={data} />
+              <img src={data} alt={`${index}번째 이미지`} />
             </figure>
           </SwiperSlide>
         );

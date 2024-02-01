@@ -1,17 +1,18 @@
 "use client";
 import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { getCookie } from "cookies-next";
 import Button from "@/ui/Button";
 import { postEditorHandler } from "@/api/communityAPI";
-import axios from "axios";
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
 const wineType = ["레드", "화이트", "로제", "스파클링", "주정강화"];
 
 const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
+  const router = useRouter();
   const [fileData, setFileData] = useState([]);
   const [fileView, setFileView] = useState([]);
   const [editFileList, setEditFileList] = useState([]);
@@ -66,7 +67,7 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   };
   //기존이미지 & 삭제된 이미지 데이터 저장
   useEffect(() => {
-    if (originData && isEdit == true) {
+    if (originData && isEdit === true) {
       const originFile = originData.reviewImgs.filter((data) => data !== null);
       setEditFileList(originFile.filter((value) => fileView.includes(value)));
       setFileDelete(originFile.filter((value) => !fileView.includes(value)));
@@ -221,7 +222,10 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
               render={({ field }) => (
                 <StarRatings
                   rating={field.value}
-                  starRatedColor="orange"
+                  starRatedColor="rgb(255, 224, 140)"
+                  starEmptyColor="rgb(234, 234, 234)"
+                  starDimension="30px"
+                  starSpacing="2px"
                   changeRating={(newRating) => setValue("starPoint", newRating)}
                   numberOfStars={5}
                   name="starPoint"

@@ -82,7 +82,7 @@ const Header = () => {
       alert(query.get("alert"));
       router.push("/login");
     }
-  }, [query]);
+  }, [query, router]);
 
   return (
     <header
@@ -117,8 +117,8 @@ const Header = () => {
           </div>
         ) : (
           <div className={`${style.navLight} ${isScroll ? style.fixed : ""}`}>
-            <Link href="/login">로그인</Link>
-            <Link href="/signup">회원가입</Link>
+            <Link href="/auth/login">로그인</Link>
+            <Link href="/auth/signup">회원가입</Link>
           </div>
         )}
       </div>

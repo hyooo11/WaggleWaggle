@@ -1,16 +1,25 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useAppSelector, useAppDispatch } from "@/redux/hook";
+import { productItem, productItemCount } from "@/redux/features/productSlice";
 
-import { useState } from "react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import SearchFilter from "../../container/product/SearchFilter";
-import ProductList from "../../container/product/ProductList";
-import Pagination from "../../ui/Pagination";
+import SearchFilter from "@/container/product/SearchFilter";
+import ProductList from "@/container/product/ProductList";
+import Pagination from "@/ui/Pagination";
+
 import { TbFilterPlus, TbFilterMinus } from "react-icons/tb";
 
-const Product = ({ productList, productCount }) => {
+const Product = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const product = useAppSelector((state) => state.product);
   const [filterToggle, setfilterToggle] = useState(false);
-  const [queryState, setQueryState] = useState();
+  const [queryState, setQueryState] = useState([]);
+  const query = useSearchParams();
+
+  const productList = product.data;
+  const productCount = product.searchCount;
 
   const removeNullUndefinedValues = (obj) => {
     const cleanedObject = {};
@@ -32,6 +41,25 @@ const Product = ({ productList, productCount }) => {
     setQueryState(cleanedSearchData);
   };
 
+  //상품리스트 조회
+  useEffect(() => {
+    const params = window.location.search;
+    if (params.length > 0) {
+      dispatch(productItem(params));
+    }
+  }, [query, dispatch]);
+
+  //상품 갯수 조회
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has("page")) {
+      searchParams.delete("page");
+      const countParams = searchParams.toString();
+      dispatch(productItemCount(countParams));
+      setQueryState(countParams);
+    }
+  }, [query, dispatch]);
+
   const currentPage = useSearchParams().get("page");
 
   return (
@@ -48,12 +76,9 @@ const Product = ({ productList, productCount }) => {
           {filterToggle ? <TbFilterMinus /> : <TbFilterPlus />}
         </button>
       </div>
-      <p className="maxframe">{`총 ${productCount}개의 상품이 있습니다.`}</p>
-      <div className="Product">
+      <div>
         {filterToggle ? <SearchFilter setSearchData={setSearchData} /> : null}
-
         <ProductList productList={productList} />
-
         <Pagination
           totalItems={productCount}
           currentPage={parseInt(currentPage)}

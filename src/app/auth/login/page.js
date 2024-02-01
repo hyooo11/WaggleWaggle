@@ -1,14 +1,15 @@
 "use client";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Button from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { loginUser } from "@/redux/features/userSlice";
-import { useEffect } from "react";
+import InputForm from "@/ui/InputForm";
+import Button from "@/ui/Button";
 
-const Login = () => {
+const LoginPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const loginState = useAppSelector((state) => state.user);
@@ -33,7 +34,7 @@ const Login = () => {
       router.push("/");
       router.replace("/");
     }
-  }, [loginState]);
+  }, [loginState, router]);
 
   return (
     <div className="maxframe sub_p_wrap px-72">
@@ -41,36 +42,21 @@ const Login = () => {
         <h2 className="">SING IN</h2>
         <span>로그인하기</span>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className="table-form">
-        <div className="tr-form">
-          <label htmlFor="id" className="th-label">
-            아이디
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="id"
-              name="id"
-              {...register("id")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"아이디"}
+          type={"text"}
+          name={"id"}
+          register={register}
+        />
         <span className="err-msg">{errors.id?.message}</span>
-        <div className="tr-form">
-          <label htmlFor="password" className="th-label">
-            비밀번호
-          </label>
-          <div className="td-form">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              {...register("password")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"비밀번호"}
+          type={"password"}
+          name={"password"}
+          register={register}
+        />
         <span className="err-msg">{errors.password?.message}</span>
         <div className="btn-area">
           <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
@@ -81,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

@@ -6,6 +6,7 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .modalContent {
@@ -14,32 +15,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 20px;
-  border-radius: 2rem;
+  padding: 1.5rem 0 2rem;
+  border-radius: 1rem;
 }
 
 .closeBtn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  padding: 1rem;
+  top: 0;
+  right: 0;
   font-size: 20px;
   cursor: pointer;
-}
-
-.closeBtn::before {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 2px;
-  background-color: #333;
-  transform: rotate(45deg);
-}
-
-.closeBtn::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 2px;
-  background-color: #333;
-  transform: rotate(-45deg);
 }

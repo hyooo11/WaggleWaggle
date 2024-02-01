@@ -1,10 +1,10 @@
 "use client";
 import { TextCheckBox } from "../../ui/CheckBox";
 import style from "./SearchFilter.module.css";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Button from "../../ui/Button";
 import { winetype, tastyscore, country } from "./SearchFiterList";
-import Slider, { Range } from "rc-slider";
+import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const SearchFilter = ({ setSearchData }) => {

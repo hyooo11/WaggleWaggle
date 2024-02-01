@@ -43,7 +43,10 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
             </p>
             <div className={style.writer_info}>
               <figure>
-                <img src={reviewDetail.writerProfileImg} />
+                <img
+                  src={reviewDetail.writerProfileImg}
+                  alt={`${reviewDetail.writerNickName}님의 프로필`}
+                />
               </figure>
               <p>{reviewDetail.writerNickName}</p>
               <p>{reviewDetail.regiDate.slice(0, 10)}</p>

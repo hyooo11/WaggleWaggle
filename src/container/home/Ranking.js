@@ -51,7 +51,7 @@ const Ranking = () => {
     return acidity;
   };
 
-  if (rankList == undefined) {
+  if (rankList === undefined) {
     return null;
   }
 

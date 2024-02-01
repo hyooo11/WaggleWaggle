@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { EditCommentForm, ReplyCommentForm } from "./CommentForm";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+// import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import style from "./CommentItem.module.css";
 
 const CommentItem = ({
@@ -38,7 +39,7 @@ const CommentItem = ({
     <>
       <div className={`${style.comment_box} ${itemStyle}`}>
         <figure>
-          <img src={data.writerProfile} />
+          <img src={data.writerProfile} alt={`${data.nickname}님의 프로필`} />
         </figure>
         <div className={style.txt_box}>
           <div className={style.top_box}>

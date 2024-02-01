@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import CommentItem from "./CommentItem";
 
 const CommentList = ({ comments, editCommentHandler, replyCommentHandler }) => {

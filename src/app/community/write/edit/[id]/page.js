@@ -11,7 +11,7 @@ const EditPage = (props) => {
     getReviewDetail(reviewPid).then((response) => {
       setOriginData(response.data.data);
     });
-  }, []);
+  }, [reviewPid]);
   return (
     <div>
       <ReviewEditor

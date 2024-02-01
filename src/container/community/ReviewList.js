@@ -1,6 +1,6 @@
 import Link from "next/link";
 import style from "./ReviewList.module.css";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 
 const ReviewList = ({ renderList }) => {
   return (
@@ -13,13 +13,16 @@ const ReviewList = ({ renderList }) => {
                 <Link href={`community/detail/${data.reviewId}`}>
                   <div className={style.user_info}>
                     <figure>
-                      <img src={data.writerProfileImg} />
+                      <img
+                        src={data.writerProfileImg}
+                        alt={`${data.writerNickName}님의 프로필`}
+                      />
                     </figure>
                     <span>{data.writerNickName}</span>
                   </div>
                   <div className={style.review_img}>
                     <figure>
-                      <img src={data.reviewImgs[0]} />
+                      <img src={data.reviewImgs[0]} alt="대표이미지" />
                     </figure>
                   </div>
                   <div className={style.review_info}>

@@ -1,13 +1,14 @@
 "use client";
 import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DaumPostcode from "react-daum-postcode";
-import Modal from "../../ui/Modal";
-import { useState } from "react";
-import Button from "../../ui/Button";
-import { useRouter } from "next/navigation";
+import InputForm from "@/ui/InputForm";
+import Modal from "@/ui/Modal";
+import Button from "@/ui/Button";
 
 const validateForm = {
   // 아이디 : 영소문자 숫자 조합, 3~20자 이내
@@ -24,7 +25,7 @@ const validateForm = {
   phoneRegex: /^\d{2,3}-\d{3,4}-\d{4}$/,
 };
 
-const SignUp = () => {
+const SignUpPage = () => {
   const router = useRouter();
   const [modalState, setModalState] = useState(false);
   const closeModal = () => setModalState(false);
@@ -149,83 +150,40 @@ const SignUp = () => {
         <span>회원정보입력</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="table-form">
-        <div className="tr-form">
-          <label htmlFor="id" className="th-label">
-            <span className="req">아이디</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="id"
-              name="id"
-              {...register("id")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"아이디"}
+          type={"text"}
+          name={"id"}
+          register={register}
+        />
         <span className="err-msg">{errors.id?.message}</span>
-        <div className="tr-form">
-          <label htmlFor="password" className="th-label">
-            <span className="req">비밀번호</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              {...register("password")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"비밀번호"}
+          type={"password"}
+          name={"password"}
+          register={register}
+        />
         <span className="err-msg">{errors.password?.message}</span>
-        <div className="tr-form">
-          <label htmlFor="name" className="th-label">
-            <span className="req">이름</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              {...register("name")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"이름"}
+          type={"text"}
+          name={"name"}
+          register={register}
+        />
         <span className="err-msg">{errors.name?.message}</span>
-
-        <div className="tr-form">
-          <label htmlFor="nickName" className="th-label">
-            <span className="req">닉네임</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="nickName"
-              name="nickName"
-              {...register("nickName")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"닉네임"}
+          type={"text"}
+          name={"nickName"}
+          register={register}
+        />
         <span className="err-msg">{errors.nickName?.message}</span>
-
-        <div className="tr-form">
-          <label htmlFor="email" className="th-label">
-            <span className="req">이메일</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              {...register("email")}
-              placeholder="이메일 입력"
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"이메일"}
+          type={"email"}
+          name={"email"}
+          register={register}
+        />
         <span className="err-msg">{errors.email?.message}</span>
 
         <div className="tr-form">
@@ -248,20 +206,12 @@ const SignUp = () => {
           </div>
         </div>
         <span className="err-msg">{errors.address?.message}</span>
-        <div className="tr-form">
-          <label htmlFor="phone" className="th-label">
-            <span className="req">휴대폰 번호</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              {...register("phone")}
-              className="form-control"
-            />
-          </div>
-        </div>
+        <InputForm
+          label={"휴대폰 번호"}
+          type={"tel"}
+          name={"phone"}
+          register={register}
+        />
         <span className="err-msg">{errors.phone?.message}</span>
         <div className="btn-area">
           <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
@@ -278,4 +228,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

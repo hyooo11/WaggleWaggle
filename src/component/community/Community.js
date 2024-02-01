@@ -1,10 +1,10 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/hook";
+import { getReviewList, getReviewLastPage } from "@/api/communityAPI";
 import ReviewList from "@/container/community/ReviewList";
 import Button from "@/ui/Button";
-import { useRouter } from "next/navigation";
-import { getReviewList, getReviewLastPage } from "@/api/communityAPI";
-import { useAppSelector } from "@/redux/hook";
-import { useEffect, useRef, useState } from "react";
 
 const Community = () => {
   const router = useRouter();
@@ -40,7 +40,7 @@ const Community = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [reviewList, renderList]);
+  }, [reviewList, renderList, lastPage]);
 
   return (
     <div className="maxframe sub_p_wrap">
