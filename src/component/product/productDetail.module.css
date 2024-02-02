@@ -1,5 +1,9 @@
+.ProductDetail section {
+  padding: 0;
+}
 .sec_1 {
   display: flex;
+  align-items: center;
 }
 .sec_1 > div {
   width: 100%;
@@ -7,6 +11,7 @@
 .sec_1 .thumnail figure {
   position: relative;
   padding-top: 100%;
+  background-color: #e0d8ea;
 }
 .sec_1 .thumnail figure img {
   width: 100%;
@@ -15,20 +20,67 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.sec_1 .main_txt_box {
+  padding: 0 50px;
+}
 .sec_1 .main_txt_box h3 {
   font-size: 1.8rem;
+  padding-bottom: 0.5rem;
+}
+.sec_1 .main_txt_box span {
+  display: block;
 }
 .sec_1 .main_txt_box .eng_name {
-  display: block;
+  /* display: block; */
   color: var(--secondary);
 }
+.sec_1 .main_txt_box .desc {
+  padding: 1rem 0;
+  color: #787878;
+  line-height: 1.1;
+}
+.sec_1 .main_txt_box .tasty > p {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+.sec_1 .main_txt_box .tasty > p span:first-child {
+  width: 80px;
+}
+.sec_1 .main_txt_box .tasty > p span:last-child {
+  display: flex;
+}
+.sec_1 .main_txt_box .tasty svg {
+  width: 13px;
+  height: 13px;
+  margin: 0 2px;
+  fill: var(--primary);
+}
 .sec_1 .snack_icon_wrap .desc {
-  display: block;
+  line-height: 1.1;
 }
 .sec_1 .snack_icon_wrap {
   display: flex;
+  align-items: center;
+  padding: 1rem 0 0;
+}
+
+.sec_1 .snack_icon_wrap > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  text-align: center;
 }
 .sec_1 .snack_icon_wrap span {
   display: block;
-  width: 50px;
+  width: 42px;
+  /* margin-right: 1rem; */
+}
+.sec_1 .snack_icon_wrap > span {
+  width: 80px;
+}
+.sec_1 .price {
+  font-weight: 700;
+  font-size: 1.8rem;
+  padding: 1rem 0 2rem;
 }
