@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import style from "./productDetail.module.css";
+import style from "./ProductDetail.module.css";
 
 const ProductDetail = ({ productDetail }) => {
   console.log(productDetail);
@@ -26,7 +26,8 @@ const ProductDetail = ({ productDetail }) => {
             </div>
             <div className={style.main_txt_box}>
               <h3>{productDetail.korName}</h3>
-              <span>{productDetail.engName}</span>
+              <span className={style.eng_name}>{productDetail.engName}</span>
+              <span className={style.desc}>{productDetail.desc}</span>
               <div className={style.snack_icon_wrap}>
                 {snackList.map((data, index) => {
                   return (

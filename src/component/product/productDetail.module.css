@@ -4,14 +4,31 @@
 .sec_1 > div {
   width: 100%;
 }
-.sec_1 .thumnail .figure {
+.sec_1 .thumnail figure {
   position: relative;
   padding-top: 100%;
 }
-.sec_1 .thumnail .figure img {
+.sec_1 .thumnail figure img {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.sec_1 .main_txt_box h3 {
+  font-size: 1.8rem;
+}
+.sec_1 .main_txt_box .eng_name {
+  display: block;
+  color: var(--secondary);
+}
+.sec_1 .snack_icon_wrap .desc {
+  display: block;
+}
+.sec_1 .snack_icon_wrap {
+  display: flex;
+}
+.sec_1 .snack_icon_wrap span {
+  display: block;
+  width: 100px;
 }
