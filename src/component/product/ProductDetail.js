@@ -12,8 +12,6 @@ const ProductDetail = ({ productDetail }) => {
     }
   }, [productDetail]);
 
-  console.log(snackList);
-
   return (
     <div className="maxframe sub_p_wrap">
       <>
