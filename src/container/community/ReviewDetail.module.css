@@ -1,7 +1,10 @@
+.top_area {
+  margin-bottom: 100px;
+}
+
 .title_wrap {
   width: 100%;
-  padding: 100px 0;
-  margin-bottom: 100px;
+  padding: 100px 0 60px;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
@@ -20,12 +23,37 @@
   color: #fff;
   font-size: 2rem;
   text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
 }
 .title_wrap .hash_tag {
   position: absolute;
-  top: 1rem;
+  top: 3.5rem;
   left: 50%;
   transform: translatex(-50%);
+}
+.title_wrap .hash_tag span {
+  background-color: var(--secondary);
+  color: var(--primary);
+  border-radius: 50em;
+  padding: 2px 8px;
+  margin: 0 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.wine_info {
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #efefef;
+}
+.wine_info > p {
+  margin: 0 1rem;
+}
+
+.wine_info > p span:first-child {
+  margin-right: 0.5rem;
+  font-weight: 700;
 }
 .writer_info {
   position: relative;
@@ -38,9 +66,11 @@
   position: relative;
   width: 2.5rem;
   height: 2.5rem;
+  margin-right: 1rem;
   border-radius: 50rem;
   overflow: hidden;
 }
+
 .writer_info figure img {
   position: absolute;
   top: 50%;
@@ -48,6 +78,9 @@
   transform: translate(-50%, -50%);
   width: 100%;
   display: block;
+}
+.writer_info p:nth-child(2) {
+  margin-right: 0.5rem;
 }
 .ReviewDetail .desc {
   padding: 1rem 0;

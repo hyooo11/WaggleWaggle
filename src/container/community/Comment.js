@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { getCommentList, postComment } from "@/api/commentAPI";
 import { useAppSelector } from "@/redux/hook";
 import CommentList from "./CommentList";
@@ -9,13 +9,13 @@ const Comment = ({ reviewPid }) => {
   const [comments, setComments] = useState();
   const token = useAppSelector((state) => state.user.data.token);
   //댓글 초기리스트 api
-  const getComment = useCallback(() => {
+  const getComment = () => {
     if (reviewPid) {
       getCommentList(reviewPid)
         .then((response) => setComments(response.data.data))
         .catch((error) => console.log(error));
     }
-  });
+  };
   useEffect(() => {
     getComment();
   }, []);
@@ -58,7 +58,7 @@ const Comment = ({ reviewPid }) => {
   };
 
   return (
-    <div>
+    <div className="pt-10 border-t border-t-gray-200 mt-20">
       <CommentList
         comments={comments}
         editCommentHandler={editCommentHandler}

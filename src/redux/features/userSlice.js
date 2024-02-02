@@ -64,7 +64,6 @@ export const loginCheck = createAsyncThunk(
 
 //토큰 웹스토리지 저장
 export const setToken = (pid, refreshToken) => {
-  // localStorage.setItem("refreshToken", refreshToken);
   setCookie("pid", pid);
   setCookie("refreshToken", refreshToken);
 };

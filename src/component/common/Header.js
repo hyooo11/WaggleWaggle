@@ -80,7 +80,7 @@ const Header = () => {
   useEffect(() => {
     if (query.get("alert")) {
       alert(query.get("alert"));
-      router.push("/login");
+      router.push("/auth/login");
     }
   }, [query, router]);
 
