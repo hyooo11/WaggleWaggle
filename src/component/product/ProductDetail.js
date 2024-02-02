@@ -31,12 +31,12 @@ const ProductDetail = ({ productDetail }) => {
   };
 
   return (
-    <div className={`maxframe sub_p_wrap ${style.ProductDetail}`}>
+    <div className="maxframe sub_p_wrap">
       <div className="sub_p_title ">
         <h2 className="">PRODUCT DETAIL</h2>
         <span>상품상세페이지</span>
       </div>
-      <>
+      <div className={style.ProductDetail}>
         {productDetail && (
           <>
             <section className={style.sec_1}>
@@ -116,7 +116,7 @@ const ProductDetail = ({ productDetail }) => {
             <section className={style.sec_2}></section>
           </>
         )}
-      </>
+      </div>
     </div>
   );
 };
