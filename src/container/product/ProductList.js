@@ -30,7 +30,6 @@ const ProductList = ({ productList }) => {
           } else if (response.data.data.action === "delete") {
             alert("좋아하는 상품 삭제");
           }
-
           console.log(response);
         })
         .catch(function (error) {

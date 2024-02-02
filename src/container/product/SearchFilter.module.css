@@ -4,11 +4,17 @@
   background-color: #efefef;
 }
 .SearchFilter .tit {
+  padding: 1rem 0 0.5rem;
   font-size: 16px;
   font-weight: 700;
 }
 .SearchFilter .fillter_box {
+  padding-bottom: 0.2rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.SearchFilter .fillter_box > p {
+  width: 80px;
 }

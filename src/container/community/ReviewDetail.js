@@ -18,8 +18,6 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
       .catch((errors) => console.log(errors));
   };
 
-  console.log(reviewDetail);
-
   return (
     <div className={style.ReviewDetail}>
       {reviewDetail &&
@@ -43,7 +41,7 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
               <h3>{reviewDetail.reviewTitle}</h3>
               <p className={style.hash_tag}>
                 {reviewDetail.hashTag.map((data, index) => {
-                  return <span>{data}</span>;
+                  return <span key={index}>{data}</span>;
                 })}
               </p>
               <div className={style.writer_info}>
@@ -58,19 +56,19 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
               </div>
             </div>
             <div className={style.wine_info}>
-              <p>
+              <div>
                 <span>와인타입</span>
                 <span>{reviewDetail.wineType}</span>
-              </p>
-              <p>
+              </div>
+              <div>
                 <span>와인이름</span>
                 <span>{reviewDetail.wineName}</span>
-              </p>
-              <p>
+              </div>
+              <div>
                 <span>구매가격</span>
                 <span>{reviewDetail.winePrice}</span>
-              </p>
-              <p>
+              </div>
+              <div>
                 <span>별점</span>
                 <span>
                   <StarRatings
@@ -81,7 +79,7 @@ const ReviewDetail = ({ reviewDetail, userPid }) => {
                     starSpacing="0px"
                   />
                 </span>
-              </p>
+              </div>
             </div>
           </div>
           <SwiperPerView ImageArr={reviewDetail.reviewImgs} />

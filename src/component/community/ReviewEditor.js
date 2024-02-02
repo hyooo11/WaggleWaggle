@@ -1,9 +1,12 @@
 "use client";
 import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { getCookie } from "cookies-next";
+import InputForm from "@/ui/InputForm";
 import Button from "@/ui/Button";
 import { postEditorHandler } from "@/api/communityAPI";
 const StarRatings = dynamic(() => import("react-star-ratings"), {
@@ -18,6 +21,16 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   const [editFileList, setEditFileList] = useState([]);
   const [fileDelete, setFileDelete] = useState([]);
 
+  const schema = yup.object().shape({
+    reviewTitle: yup.string().required("제목을 입력해주세요."),
+    wineName: yup.string().required("와인 이름을 입력해주세요."),
+    winePrice: yup.string().required("구매가격을 입력해주세요."),
+    starPoint: yup.string().required("별점을 선택해주세요."),
+    desc: yup.string().required("내용을 입력해주세요."),
+    hashTag: yup.string().required("해시태그를 입력해주세요."),
+    reviewImgs: yup.string().required("리뷰이미지를 선택해주세요."),
+  });
+
   const {
     register,
     control,
@@ -25,7 +38,7 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({ mode: "onChange" });
+  } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
   //신규 이미지 등록
   const addFilesData = (e) => {
     const selectedPhoto = e.target.files[0];
@@ -52,11 +65,11 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   };
 
   const hashList = watch("hashList", []);
-  const addHashtag = () => {
+  const addHashtag = (e) => {
     const inputValue = watch("hashTag");
-    if (inputValue.trim() !== "") {
-      setValue("hashList", [...hashList, `#${inputValue}`]);
-      setValue("inputValue", "");
+    if (e.keyCode === 13 && inputValue.trim() !== "") {
+      setValue("hashList", [...hashList, `${inputValue}`]);
+      setValue("hashTag", "");
     }
   };
 
@@ -65,6 +78,7 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
     updatedHashtags.splice(index, 1);
     setValue("hashList", updatedHashtags);
   };
+
   //기존이미지 & 삭제된 이미지 데이터 저장
   useEffect(() => {
     if (originData && isEdit === true) {
@@ -83,10 +97,14 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
       setValue("winePrice", originData.winePrice);
       setValue("starPoint", originData.starPoint);
       setValue("desc", originData.desc);
-      setValue("hashTag", originData.hashTag);
+      setValue("hashList", originData.hashTag);
       setFileView(originData.reviewImgs.filter((data) => data !== null));
     }
   }, [originData]);
+
+  const checkKeyDown = (e) => {
+    if (e.key === "Enter") e.preventDefault();
+  };
 
   const onSubmit = async (data) => {
     const userPid = getCookie("pid");
@@ -143,73 +161,76 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
         <h2 className="">COMMUNITY</h2>
         <span>게시글 작성</span>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="table-form">
-        <div className="tr-form">
-          <label htmlFor="reviewTitle" className="th-label">
-            <span className="req">제목</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="reviewTitle"
-              name="reviewTitle"
-              {...register("reviewTitle")}
-              className="form-control"
-            />
-          </div>
-        </div>
-
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onKeyDown={(e) => checkKeyDown(e)}
+        className="table-form review_editor"
+      >
+        <InputForm
+          label={"제목"}
+          type={"text"}
+          name={"reviewTitle"}
+          register={register}
+        />
+        <span className="err-msg">{errors.reviewTitle?.message}</span>
         <div className="flex flex-row">
-          <div className="tr-form basis-1/4">
-            <label htmlFor="wineType" className="th-label">
-              <span className="req">와인타입</span>
-            </label>
-            <div className="td-form">
-              <select
-                name="wineType"
-                {...register("wineType")}
-                className="form-control"
-              >
-                {wineType.map((data, index) => {
-                  return (
-                    <option key={index} value={data}>
-                      {data}
-                    </option>
-                  );
-                })}
-              </select>
+          <div className=" basis-1/4">
+            <div className="tr-form">
+              <label htmlFor="wineType" className="th-label">
+                <span className="req">와인타입</span>
+              </label>
+              <div className="td-form">
+                <select
+                  name="wineType"
+                  {...register("wineType")}
+                  className="form-control"
+                >
+                  {wineType.map((data, index) => {
+                    return (
+                      <option key={index} value={data}>
+                        {data}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
           </div>
-          <div className="tr-form basis-2/4">
-            <label htmlFor="wineName" className="th-label">
-              <span className="req">와인이름</span>
-            </label>
-            <div className="td-form">
-              <input
-                type="text"
-                id="wineName"
-                name="wineName"
-                {...register("wineName")}
-                className="form-control"
-              />
+          <div className=" basis-2/4">
+            <div className="tr-form">
+              <label htmlFor="wineName" className="th-label">
+                <span className="req">와인이름</span>
+              </label>
+              <div className="td-form">
+                <input
+                  type="text"
+                  id="wineName"
+                  name="wineName"
+                  {...register("wineName")}
+                  className="form-control"
+                />
+              </div>
             </div>
+            <span className="err-msg">{errors.wineName?.message}</span>
           </div>
-          <div className="tr-form basis-1/4">
-            <label htmlFor="winePrice" className="th-label">
-              <span className="req">구매가격</span>
-            </label>
-            <div className="td-form">
-              <input
-                type="number"
-                id="winePrice"
-                name="winePrice"
-                {...register("winePrice")}
-                className="form-control"
-              />
+          <div className="basis-1/4">
+            <div className="tr-form ">
+              <label htmlFor="winePrice" className="th-label">
+                <span className="req">구매가격</span>
+              </label>
+              <div className="td-form">
+                <input
+                  type="number"
+                  id="winePrice"
+                  name="winePrice"
+                  {...register("winePrice")}
+                  className="form-control"
+                />
+              </div>
             </div>
+            <span className="err-msg">{errors.winePrice?.message}</span>
           </div>
         </div>
-
         <div className="tr-form">
           <label htmlFor="starPoint" className="th-label">
             <span className="req">별점</span>
@@ -228,12 +249,14 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
                   starSpacing="2px"
                   changeRating={(newRating) => setValue("starPoint", newRating)}
                   numberOfStars={5}
+                  isAggregateRating={false}
                   name="starPoint"
                 />
               )}
             />
           </div>
         </div>
+        <span className="err-msg">{errors.starPoint?.message}</span>
         <div className="tr-form">
           <label htmlFor="files" className="th-label">
             <span className="req">이미지 업로드</span>
@@ -247,12 +270,12 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
             />
           </div>
         </div>
+
         <div className="tr-form">
           <label htmlFor="files" className="th-label"></label>
-
-          <ul className="image_preview">
-            {fileView &&
-              fileView.map((data, index) => (
+          {fileView.length > 0 ? (
+            <ul className="image_preview">
+              {fileView.map((data, index) => (
                 <li key={index} className="item">
                   <p className="imgs">
                     <img src={data} alt={`data-${index}`} />
@@ -261,12 +284,16 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
                     className="remove_btn"
                     onClick={() => removeFileData(index)}
                   >
-                    삭제
+                    <img src="/media/icon/close-btn.png" alt="삭제버튼" />
                   </span>
                 </li>
               ))}
-          </ul>
+            </ul>
+          ) : (
+            <p className="no_image_data">이미지를 선택하세요</p>
+          )}
         </div>
+        <span className="err-msg">{errors.reviewImgs?.message}</span>
         <div className="tr-form">
           <label htmlFor="desc" className="th-label">
             <span className="req">내용</span>
@@ -281,32 +308,41 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
             />
           </div>
         </div>
-
-        <div className="tr-form">
-          <label htmlFor="hashTag" className="th-label">
-            <span className="req">해시태그</span>
-          </label>
-          <div className="td-form">
-            <input
-              type="text"
-              id="hashTag"
-              name="hashTag"
-              {...register("hashTag")}
-              className="form-control"
-              laceholder="Enter hashtags"
-            />
-            <span onClick={addHashtag}>Add Hashtag</span>
+        <span className="err-msg">{errors.desc?.message}</span>
+        <div className="hashtag_area">
+          <div className="tr-form">
+            <label htmlFor="hashTag" className="th-label">
+              <span className="req">해시태그</span>
+            </label>
+            <div className="td-form">
+              <input
+                type="text"
+                id="hashTag"
+                name="hashTag"
+                {...register("hashTag")}
+                className="form-control"
+                laceholder="Enter hashtags"
+                onKeyUp={addHashtag}
+              />
+            </div>
           </div>
-          <div>
-            {hashList.map((tag, index) => (
-              <div key={index}>
-                <span>{tag} </span>
-                <span onClick={() => removeHashtag(index)}>Remove</span>
+          <span className="err-msg">{errors.hashTag?.message}</span>
+          <div className="tr-form hash_view">
+            <label className="th-label"></label>
+            <div className="td-form">
+              <div className="td-form">
+                {hashList.map((tag, index) => (
+                  <div key={index} className="item_list">
+                    <span>{tag} </span>
+                    <span onClick={() => removeHashtag(index)}>
+                      <img src="/media/icon/close-btn.png" alt="삭제버튼" />
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
-
         <div className="btn-area">
           <Button text={"뒤로가기"} onClick={() => router.back()}></Button>
           <Button type={"positive"} text={"발행"} />

@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
 import { EditCommentForm, ReplyCommentForm } from "./CommentForm";
-// import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import style from "./CommentItem.module.css";
 
 const CommentItem = ({
   data,
   editCommentHandler,
   replyCommentHandler,
+  likeCommentHandler,
   type,
 }) => {
   const inputType = ["parent", "child"].includes(type) ? type : "default";
@@ -91,11 +92,13 @@ const CommentItem = ({
             </div>
           ) : null}
         </div>
-        <p className={style.like_btn}>
-          <span>
-            <FaRegHeart />
-          </span>
-          <span>좋아요</span>
+        <p
+          className={style.like_btn}
+          onClick={() => {
+            likeCommentHandler(data.commentId);
+          }}
+        >
+          <span>{data.like === true ? <FaHeart /> : <FaRegHeart />}</span>
         </p>
       </div>
       {replyCommentBtn[data.commentId] ? (

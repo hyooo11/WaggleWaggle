@@ -47,11 +47,11 @@
   justify-content: center;
   background-color: #efefef;
 }
-.wine_info > p {
+.wine_info > div {
   margin: 0 1rem;
 }
 
-.wine_info > p span:first-child {
+.wine_info > div span:first-child {
   margin-right: 0.5rem;
   font-weight: 700;
 }

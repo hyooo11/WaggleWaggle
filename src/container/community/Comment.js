@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getCommentList, postComment } from "@/api/commentAPI";
+import { getCommentList, postComment, likeComment } from "@/api/commentAPI";
 import { useAppSelector } from "@/redux/hook";
 import CommentList from "./CommentList";
 import { NewCommentForm } from "./CommentForm";
@@ -56,6 +56,12 @@ const Comment = ({ reviewPid }) => {
       .then(getComment)
       .catch((error) => console.log(error));
   };
+  //댓글 좋아요 api
+  const likeCommentHandler = (commentId) => {
+    likeComment(commentId, token)
+      .then(getComment)
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="pt-10 border-t border-t-gray-200 mt-20">
@@ -63,6 +69,7 @@ const Comment = ({ reviewPid }) => {
         comments={comments}
         editCommentHandler={editCommentHandler}
         replyCommentHandler={replyCommentHandler}
+        likeCommentHandler={likeCommentHandler}
       />
       <NewCommentForm newCommentHandler={newCommentHandler} />
     </div>

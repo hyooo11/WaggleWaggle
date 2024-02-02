@@ -1,7 +1,12 @@
 "use client";
 import CommentItem from "./CommentItem";
 
-const CommentList = ({ comments, editCommentHandler, replyCommentHandler }) => {
+const CommentList = ({
+  comments,
+  editCommentHandler,
+  replyCommentHandler,
+  likeCommentHandler,
+}) => {
   return (
     <>
       {comments &&
@@ -12,6 +17,7 @@ const CommentList = ({ comments, editCommentHandler, replyCommentHandler }) => {
                 data={data}
                 editCommentHandler={editCommentHandler}
                 replyCommentHandler={replyCommentHandler}
+                likeCommentHandler={likeCommentHandler}
                 type={"parent"}
               />
               {data.child &&
@@ -22,6 +28,7 @@ const CommentList = ({ comments, editCommentHandler, replyCommentHandler }) => {
                         data={data}
                         editCommentHandler={editCommentHandler}
                         replyCommentHandler={replyCommentHandler}
+                        likeCommentHandler={likeCommentHandler}
                         type={"child"}
                       />
                     </div>

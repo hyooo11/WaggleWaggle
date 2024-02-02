@@ -1,3 +1,7 @@
+.TextCheckBox {
+  margin: 0.2rem;
+}
+
 .CheckBox input[type="checkbox"],
 .TextCheckBox input[type="checkbox"] {
   visibility: hidden;

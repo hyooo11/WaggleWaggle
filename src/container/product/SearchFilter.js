@@ -155,7 +155,7 @@ const SearchFilter = ({ setSearchData }) => {
           </div>
         </div>
         <div className="btn-area">
-          <Button text={"초기화"} />
+          {/* <Button text={"초기화"} /> */}
           <Button text={"검색"} type={"positive"} onClick={onSubmit} />
         </div>
       </div>

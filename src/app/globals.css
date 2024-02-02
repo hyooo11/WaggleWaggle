@@ -318,10 +318,10 @@ section.main-banner-sec {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .table-form .image_preview {
+  padding: 1rem 0 2rem;
   width: 100%;
   position: relative;
   display: flex;
-  height: 300px;
 }
 .table-form .image_preview .item {
   position: relative;
@@ -329,6 +329,9 @@ section.main-banner-sec {
 }
 .table-form .image_preview .imgs {
   width: 100%;
+  position: relative;
+  padding-top: 100%;
+  border: 1px solid #c8c8c8;
 }
 .table-form .image_preview .imgs img {
   display: block;
@@ -341,6 +344,32 @@ section.main-banner-sec {
   position: absolute;
   top: 0;
   right: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.table-form .image_preview .no_image_data {
+  padding: 1rem 0 2rem;
+}
+.table-form .hashtag_area .hash_view .item_list {
+  padding: 4px 15px;
+  margin-right: 5px;
+  border-radius: 50em;
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+.table-form .hashtag_area .hash_view .item_list span:last-child {
+  padding: 3px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.table-form .hashtag_area .hash_view .item_list img {
+  filter: brightness(100);
+}
+/* ReviewEditor form */
+.table-form.review_editor .th-label {
+  padding-left: 1rem;
 }
 
 /* BUTTON */

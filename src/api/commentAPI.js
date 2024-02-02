@@ -21,3 +21,16 @@ export const postComment = async (method, data, token) => {
   });
   return response;
 };
+
+export const likeComment = async (data, token) => {
+  const response = await axios({
+    method: "post",
+    url: "/api/comment/like",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `bearer ${token}`,
+    },
+    data: { commentId: data },
+  });
+  return response;
+};
