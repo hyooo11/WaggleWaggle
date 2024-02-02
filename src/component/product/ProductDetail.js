@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import style from "./ProductDetail.module.css";
+import style from "./productDetail.module.css";
 import { DrawScore } from "@/ui/DrawScore";
 import StarRatings from "react-star-ratings";
 
