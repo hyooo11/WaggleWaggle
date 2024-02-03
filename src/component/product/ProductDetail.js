@@ -5,7 +5,6 @@ import { DrawScore } from "@/ui/DrawScore";
 import StarRatings from "react-star-ratings";
 
 const ProductDetail = ({ productDetail }) => {
-  console.log(productDetail);
   const [snackList, setSnackList] = useState([]);
 
   useEffect(() => {

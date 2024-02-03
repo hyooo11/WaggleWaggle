@@ -42,6 +42,14 @@ const Community = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [reviewList, renderList, lastPage]);
 
+  if (renderList) {
+    renderList.map((data, _) =>
+      data.writerProfileImg === null
+        ? (data.writerProfileImg = "/media/img/default_profile.jpeg")
+        : ""
+    );
+  }
+
   return (
     <div className="maxframe sub_p_wrap">
       <div className="sub_p_title">

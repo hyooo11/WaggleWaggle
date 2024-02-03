@@ -63,6 +63,14 @@ const Comment = ({ reviewPid }) => {
       .catch((error) => console.log(error));
   };
 
+  if (comments) {
+    comments.map((data, _) =>
+      data.writerProfile === null
+        ? (data.writerProfile = "/media/img/default_profile.jpeg")
+        : ""
+    );
+  }
+
   return (
     <div className="pt-10 border-t border-t-gray-200 mt-20">
       <CommentList

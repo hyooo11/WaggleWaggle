@@ -16,6 +16,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => {
+    return state.user;
+  });
+
+  // console.log(user.data.memberInfo.profileImg);
   const router = useRouter();
   const query = useSearchParams();
 
@@ -47,10 +52,6 @@ const Header = () => {
     };
     reissueToken();
   }, [userPid, refreshToken, dispatch]);
-
-  const user = useAppSelector((state) => {
-    return state.user;
-  });
 
   const [pageState, setPageState] = useState("");
   const pathname = usePathname();

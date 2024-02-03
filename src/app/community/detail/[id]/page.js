@@ -11,6 +11,11 @@ const CommunityDetailPage = (props) => {
       setReviewDetail(response.data.data);
     });
   }, [reviewPid]);
+
+  if (reviewDetail && reviewDetail.writerProfileImg === null) {
+    reviewDetail.writerProfileImg = "/media/img/default_profile.jpeg";
+  }
+
   return (
     <div>
       <CommunityDetail reviewDetail={reviewDetail} reviewPid={reviewPid} />
