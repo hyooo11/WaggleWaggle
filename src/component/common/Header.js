@@ -97,7 +97,7 @@ const Header = () => {
             href="/"
             className={`${style.logo} ${isScroll ? style.fixed : ""}`}
           >
-            WAGU
+            Waggle Waggle
           </Link>
           <nav className={`${style.gnb} ${isScroll ? style.fixed : ""}`}>
             <Link href="/product?page=1">PRODUCT</Link>
