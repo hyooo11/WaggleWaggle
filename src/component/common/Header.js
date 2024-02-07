@@ -97,13 +97,13 @@ const Header = () => {
             href="/"
             className={`${style.logo} ${isScroll ? style.fixed : ""}`}
           >
-            WAGU
+            WAGU1
           </Link>
           <nav className={`${style.gnb} ${isScroll ? style.fixed : ""}`}>
             <Link href="/product?page=1">PRODUCT</Link>
             <Link href="/community">COMMUNITY</Link>
-            <Link href="/qna">QnA</Link>
-            <Link href="/notice">NOTICE</Link>
+            {/* <Link href="/qna">QnA</Link> */}
+            {/* <Link href="/notice">NOTICE</Link> */}
           </nav>
         </div>
         {user.isLogin ? (
