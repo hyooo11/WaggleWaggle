@@ -60,7 +60,7 @@ const Ranking = () => {
       <div className="maxframe">
         <div className="title-sec">
           <h4>카테고리별 랭킹</h4>
-          <span>CATECORY’S RANKING</span>
+          <span>Catecory's Ranking</span>
         </div>
         <div>
           <div className={styled.tablist}>

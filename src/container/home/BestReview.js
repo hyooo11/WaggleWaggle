@@ -31,8 +31,8 @@ const BestReview = () => {
     <section className={styled.BestReview}>
       <div className="maxframe">
         <div className="title-sec">
-          <h4>와구 베스트 리뷰</h4>
-          <span>WAGU BEST REVIEW</span>
+          <h4>와글와글 베스트 리뷰</h4>
+          <span>Waggle Waggle Best Review</span>
         </div>
         <div>
           <ul className={styled.reviewList}>
