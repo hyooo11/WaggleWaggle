@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "Signatra";
+  src: url("/font/Signatra.otf") format("opentype"); /* url경로는 public아래 경로를 적용 */
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -224,8 +231,8 @@ section.main-banner-sec {
   left: 50%;
   transform: translateX(-50%);
   color: var(--primary);
-  font-size: 15px;
-  font-family: "campton";
+  font-size: 18px;
+  font-family: "Signatra";
   font-weight: 700;
 }
 
