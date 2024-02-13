@@ -19,7 +19,7 @@ URL - https://project-wagu.vercel.app/
 
 ## 🔍 개발기간
 
-2023.12.20 ~ ing<br>
+2023.12.20 ~ ing<br><br>
 
 ## ⚙ 기술스택
 
@@ -29,7 +29,7 @@ URL - https://project-wagu.vercel.app/
   <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-</div>
+</div><br>
 
 ## 📌 주요기능
 
@@ -60,18 +60,20 @@ URL - https://project-wagu.vercel.app/
 - 👤 대댓글 등록, 수정, 삭제
 - 👤 댓글 좋아요 및 해제
 - 무한스크롤(Infinite Scroll) 구현
+  <br><br>
+  > ▶️ 테스트 계정<br>
+  > 아이디 : test004<br>
+  > 비밀번호 : 112233
 
----
-
-> ▶️ 테스트 계정<br>
-> 아이디 : test004<br>
-> 비밀번호 : 112233
+<br>
 
 ## ✅ 프로젝트 배포
 
 이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.<br>
 
 > main 브랜치에서 커밋 시 자동 배포
+
+<br>
 
 ## 💡 Reference
 
