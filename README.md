@@ -1,10 +1,12 @@
 # Project Waggle Waggle
 
-<p align="center"><img width="250" alt="logo" src="https://github.com/hyooo11/project_fuzimi/assets/98132929/fa69842b-8a41-4c41-bdb3-c4200aca1e83"></p>
+<br>
+
+<p align="center"><img width="250" alt="logo" src="https://github.com/hyooo11/project_fuzimi/assets/98132929/fa69842b-8a41-4c41-bdb3-c4200aca1e83"></p><br>
 
 와인 소개 및 커뮤니티 사이트<br>
 URL - https://project-wagu.vercel.app/
-<br>
+<br><br>
 
 ## 💁 프로젝트 소개
 
@@ -17,9 +19,9 @@ URL - https://project-wagu.vercel.app/
 
 ## 🔍 개발기간
 
-2023.12.20 ~ ing
+2023.12.20 ~ ing<br>
 
-### ⚙ 기술스택
+## ⚙ 기술스택
 
 <div>
   <img src="https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=nextdotjs&logoColor=white">
@@ -29,7 +31,7 @@ URL - https://project-wagu.vercel.app/
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 </div>
 
-### 📌 주요기능
+## 📌 주요기능
 
 로그인시 이용 가능한 기능에는 👤 표시가 있습니다.<br>
 테스트 계정 아래에서 확인 가능합니다.
@@ -65,9 +67,11 @@ URL - https://project-wagu.vercel.app/
 > 아이디 : test004<br>
 > 비밀번호 : 112233
 
-### ✅ 프로젝트 배포
+## ✅ 프로젝트 배포
 
-이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.
+이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.<br>
+
+> main 브랜치에서 커밋 시 자동 배포
 
 ## 💡 Reference
 
