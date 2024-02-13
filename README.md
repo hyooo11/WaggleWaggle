@@ -45,7 +45,7 @@ URL - https://project-wagu.vercel.app/
 
 - 다음 주소 api 연동
 - 아이디,닉네임 중복체크
-- 유효성 검증<br><br>
+- 유효성 검증
 
 #### 상품페이지(PRODUCT) - [바로가기](https://project-wagu.vercel.app/product?page=1)
 
