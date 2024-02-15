@@ -115,9 +115,12 @@ const SignUpPage = () => {
       },
     })
       .then(function (response) {
-        console.log(response);
+        alert("회원가입 되었습니다 :)");
+        router.push("/");
+        router.replace("/");
       })
       .catch(function (error) {
+        alert("회원가입 실패입니다. 다시 시도해주세요.");
         console.log(error);
       });
   };
@@ -138,7 +141,6 @@ const SignUpPage = () => {
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
-    // console.log(fullAddress);
     setAddressInput(fullAddress);
     setModalState(false);
   };
