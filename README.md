@@ -71,27 +71,20 @@ URL - https://project-wagu.vercel.app/
 
 이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.<br>
 
-> main 브랜치에서 커밋 시 자동 배포
+> main 브랜치에서 build 명령어 입력 후 커밋 시 자동 배포
+
+```bash
+  npm run build
+```
 
 <br>
 
 ## 💡 Reference
 
-규칙적인 깃 커밋 메세지 위한 conventional commits<br/>
+- 규칙적인 깃 커밋 메세지 위한 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
-- https://www.conventionalcommits.org/en/v1.0.0/
+- 주요 프레임워크 및 라이브러리 [Next.js](https://nextjs.org/) | [React.js](https://ko.legacy.reactjs.org/) | [React Hook Form](https://react-hook-form.com/) | [Yup](https://www.npmjs.com/package/yup)
 
-주요 프레임워크 및 라이브러리
+- 상태관리 [Redux-Toolkit](https://redux-toolkit.js.org/)
 
-- https://nextjs.org/
-- https://ko.legacy.reactjs.org/
-- https://react-hook-form.com/
-- https://www.npmjs.com/package/yup
-
-상태관리
-
-- https://redux-toolkit.js.org/
-
-배포
-
-- https://vercel.com/
+- 배포 [Vercel](https://vercel.com/)
