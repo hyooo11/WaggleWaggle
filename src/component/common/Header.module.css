@@ -56,8 +56,19 @@
 .navLight.fixed {
   color: #333;
 }
-.navLight a {
+.navLight a,
+.navLight button {
   margin: 0 1rem;
+  display: flex;
+  align-items: center;
+}
+.navLight a figure,
+.navLight button figure {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50em;
+  margin-right: 0.5rem;
 }
 /* 서브페이지 헤더 */
 .SubPage {

@@ -19,8 +19,13 @@ const Header = () => {
   const user = useAppSelector((state) => {
     return state.user;
   });
+  // if (user.isLogin === true) {
+  //   if (user.data.memberInfo.profileImg == null) {
+  //     user.data.memberInfo.profileImg = "/media/img/default_profile.jpeg";
+  //   }
+  // }
 
-  // console.log(user.data.memberInfo.profileImg);
+  console.log(user);
   const router = useRouter();
   const query = useSearchParams();
 
@@ -108,6 +113,34 @@ const Header = () => {
         </div>
         {user.isLogin ? (
           <div className={`${style.navLight} ${isScroll ? style.fixed : ""}`}>
+            {/* <Link href="/auth/mypage">
+              <figure>
+                <img
+                  src={
+                    user.data.memberInfo.profileImg === null
+                      ? "/media/img/default_profile.jpeg"
+                      : user.data.memberInfo.profileImg
+                  }
+                />
+              </figure>
+              마이페이지
+            </Link> */}
+            <button
+              onClick={() => {
+                alert("서비스 준비중입니다 :)");
+              }}
+            >
+              <figure>
+                <img
+                  src={
+                    user.data.memberInfo.profileImg === null
+                      ? "/media/img/default_profile.jpeg"
+                      : user.data.memberInfo.profileImg
+                  }
+                />
+              </figure>
+              마이페이지
+            </button>
             <button
               onClick={() => {
                 dispatch(clearUser());
