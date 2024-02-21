@@ -89,7 +89,7 @@ const Header = () => {
       router.push("/auth/login");
     }
   }, [query, router]);
-
+  if (window.location.pathname === "/admin") return null;
   return (
     <header
       className={`${style.header} ${isScroll ? style.fixed : ""} ${
