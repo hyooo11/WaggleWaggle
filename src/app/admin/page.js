@@ -1,9 +1,7 @@
+import Admin from "@/component/admin/Admin";
+
 const AdminPage = () => {
-  return (
-    <div>
-      <p>어드민 페이지 입니다</p>
-    </div>
-  );
+  return <Admin />;
 };
 
 export default AdminPage;
