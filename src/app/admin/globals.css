@@ -1,0 +1,143 @@
+/* 어드민 공통 css */
+* {
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e2e2e2;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+@charset "UTF-8";
+.gloval-wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.gloval-twotone {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+.gloval-twotone > .__top {
+  flex: 0 0 300px;
+  background: #333;
+}
+.gloval-twotone > .__bottom {
+  flex: 1 1 auto;
+  min-height: calc(100% - 300px);
+  background-color: #f8f8f8;
+}
+.gloval-page {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.gloval-nav {
+  flex: 0 0 260px;
+  max-width: 260px;
+}
+.gloval-nav .nav_header {
+  position: relative;
+  height: 300px;
+  text-align: center;
+  z-index: 10;
+}
+.nav_header h1 {
+  color: #fff;
+}
+.nav_header .__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: calc(100% - 70px);
+  padding: 0 1rem;
+}
+.nav_header .thumbnail {
+  width: 86px;
+  height: 86px;
+  background-color: #fff;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.thumbnail img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+.nav_header .user_txt {
+  color: #fff;
+  margin-top: 20px;
+}
+.nav_header .user_txt .__name {
+  display: inline-block;
+  font-size: 1.24em;
+}
+.nav_header .user_txt .__belong {
+  opacity: 0.7;
+}
+.gloval-nav .nav_body {
+  position: relative;
+  width: 98%;
+  height: calc(100% - 340px);
+  padding: 10px 25px;
+  text-align: left;
+  color: #656565;
+  letter-spacing: -0.05em;
+  z-index: 10;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+}
+
+.gloval-content-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: calc(100% - 260px);
+  min-width: 1000px;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+.gloval-content-top {
+  flex: 0 0 70px;
+  min-height: 70px;
+  z-index: 1;
+  position: relative;
+}
+.gloval-content-top .contact__ {
+  height: 70px;
+  padding-right: 2.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.gloval-content-top .contact__ .cont {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7b7b7b;
+}
+.contact__ .cont .icon {
+  padding: 0 0.3rem 0 1.5rem;
+}
+.gloval-content {
+  position: relative;
+  flex: 1 1 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
+  z-index: 10;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
