@@ -1,5 +1,7 @@
 import "./globals.css";
 import SideBar from "@/container/admin/SideBar";
+import { SiGmail } from "react-icons/si";
+import { FaPhone } from "react-icons/fa6";
 
 export default function RootLayout({ children }) {
   return (
@@ -15,10 +17,20 @@ export default function RootLayout({ children }) {
             <SideBar />
             <div className="gloval-content-wrap">
               <div className="gloval-content-top">
-                <h2 class="_page_name">톡스앤필 - 지점패키지</h2>
+                <h2 class="_page_name">대시보드</h2>
                 <div className="contact__">
-                  <p className="cont">010-2835-2732</p>
-                  <p className="cont">tlsgywls1107@gmail.com</p>
+                  <p className="cont">
+                    <span className="icon">
+                      <FaPhone />
+                    </span>
+                    <span>010-2835-2732</span>
+                  </p>
+                  <p className="cont">
+                    <span className="icon">
+                      <SiGmail />
+                    </span>
+                    <span>tlsgywls1107@gmail.com</span>
+                  </p>
                 </div>
               </div>
               <main className="gloval-content">{children}</main>

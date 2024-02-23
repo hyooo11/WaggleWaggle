@@ -1,14 +1,19 @@
+import { SiPhpmyadmin } from "react-icons/si";
+
 const SideBar = () => {
   return (
     <div className="gloval-nav">
       <div className="nav_header">
-        <h1>Admin</h1>
+        <h1>
+          <SiPhpmyadmin />
+          <span>Admin</span>
+        </h1>
         <div className="__inner">
           <div className="thumbnail">
             <img src="/media/img/default_profile.jpeg" alt="기본 사진" />
           </div>
           <div className="user_txt">
-            <span className="__name">신효진 </span>
+            <span className="__name">신효진</span>
             <span className="__belong">관리자</span>
           </div>
         </div>
