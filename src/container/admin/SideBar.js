@@ -1,12 +1,16 @@
+"use client";
 import { SiPhpmyadmin } from "react-icons/si";
+import Link from "next/link";
 
 const SideBar = () => {
   return (
     <div className="gloval-nav">
       <div className="nav_header">
         <h1>
-          <SiPhpmyadmin />
-          <span>Admin</span>
+          <Link href="/admin">
+            <SiPhpmyadmin />
+            <span>Admin</span>
+          </Link>
         </h1>
         <div className="__inner">
           <div className="thumbnail">
@@ -19,8 +23,12 @@ const SideBar = () => {
         </div>
       </div>
       <ul className="nav_body">
-        <li>와인리스트 관리</li>
-        <li>회원 관리</li>
+        <li>
+          <Link href="/admin/product">와인리스트 관리</Link>
+        </li>
+        <li>
+          <Link href="/admin/member">회원 관리</Link>
+        </li>
       </ul>
     </div>
   );

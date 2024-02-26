@@ -39,9 +39,9 @@
   text-align: center;
   z-index: 10;
 }
-.nav_header h1 {
-  height: 70px;
+.nav_header h1 a {
   color: #fff;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,4 +148,12 @@
   z-index: 10;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 30px;
+}
+
+/* 대시보드 */
+.Admin .tit {
+  font-size: 17px;
+  color: #666;
+  margin: 0;
 }

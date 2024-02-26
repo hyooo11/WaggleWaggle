@@ -19,6 +19,7 @@
       }
     ],
     "strictNullChecks": true,
+    //경로
     "paths": {
       "@/*": ["./src/*"]
     }

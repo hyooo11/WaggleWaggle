@@ -1,5 +1,7 @@
+import Admin from "@/component/admin/Admin";
+
 const AdminPage = () => {
-  return <div className=""></div>;
+  return <Admin />;
 };
 
 export default AdminPage;
