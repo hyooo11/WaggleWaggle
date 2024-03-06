@@ -98,7 +98,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/156c3ff8-9a69-48dc-b61b-d234cef662b1" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/156c3ff8-9a69-48dc-b61b-d234cef662b1" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -118,7 +118,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/9382b384-917e-4083-944e-31e38a99b2b4" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/9382b384-917e-4083-944e-31e38a99b2b4" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -139,7 +139,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/8fa88f83-0f20-498f-95db-d7ed4a9ecca4" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/8fa88f83-0f20-498f-95db-d7ed4a9ecca4" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -168,7 +168,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/82132058-72a9-4878-80c8-0930470b9060" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/82132058-72a9-4878-80c8-0930470b9060" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -180,7 +180,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/73dfef22-e2c1-4f56-ba4c-4b6b4127c416" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/73dfef22-e2c1-4f56-ba4c-4b6b4127c416" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -192,7 +192,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/f4532fdd-c912-4203-ae0e-8144abde5dab" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/f4532fdd-c912-4203-ae0e-8144abde5dab" width="100%"/>
       </td>
     </tr>
   </tbody>
@@ -204,7 +204,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/3e58be54-34ec-4a51-a113-b983e91e33c8" width="700px"/>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/3e58be54-34ec-4a51-a113-b983e91e33c8" width="100%"/>
       </td>
     </tr>
   </tbody>
