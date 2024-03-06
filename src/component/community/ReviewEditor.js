@@ -27,8 +27,6 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
     winePrice: yup.string().required("구매가격을 입력해주세요."),
     starPoint: yup.string().required("별점을 선택해주세요."),
     desc: yup.string().required("내용을 입력해주세요."),
-    hashTag: yup.string().required("해시태그를 입력해주세요."),
-    reviewImgs: yup.string().required("리뷰이미지를 선택해주세요."),
   });
 
   const {
@@ -43,7 +41,6 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   const addFilesData = (e) => {
     const selectedPhoto = e.target.files[0];
     const photoURL = URL.createObjectURL(selectedPhoto);
-    console.log(selectedPhoto);
     if (fileView.length > 4) {
       alert("이미지는 5장 이하로 등록 가능합니다 :)");
       return;
@@ -107,6 +104,7 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   };
 
   const onSubmit = async (data) => {
+    console.log(data);
     const userPid = getCookie("pid");
     const formData = new FormData();
     //수정이미지 null값 추가
@@ -152,8 +150,15 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
 
     const method = `${isEdit === true ? "put" : "post"}`;
     postEditorHandler(method, formData)
-      .then((response) => console.log(response))
-      .catch((errors) => console.log(errors));
+      .then(function (response) {
+        alert("작성이 완료되었습니다 :)");
+        router.push("/community");
+        router.replace("/community");
+      })
+      .catch(function (error) {
+        alert("작성오류 입니다. 다시 시도해주세요.");
+        console.log(error);
+      });
   };
   return (
     <div className="maxframe sub_p_wrap">

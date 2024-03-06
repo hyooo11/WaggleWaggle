@@ -25,14 +25,11 @@ const Header = () => {
   //   }
   // }
 
-  console.log(user);
   const router = useRouter();
   const query = useSearchParams();
 
   const userPid = getCookie("pid");
   const refreshToken = getCookie("refreshToken");
-
-  // console.log(userPid, refreshToken);
 
   useEffect(() => {
     //로그인할떄 받은 리프레시토큰을 가져와서

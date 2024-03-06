@@ -1,4 +1,4 @@
-# 와인 소개 및 커뮤니티 사이트 Waggle Waggle
+# WaggleWaggle 🍷
 
 <br>
 
@@ -78,27 +78,73 @@
 
 ```
 
-## 📌 주요기능
+## 📌 페이지별 주요기능
 
 로그인시 이용 가능한 기능에는 👤 표시가 있습니다.<br>
 테스트 계정 아래에서 확인 가능합니다.
 
+#### 회원가입(SIGN UP) - [바로가기](https://project-wagu.vercel.app/auth/signup)
+
+- 입력과 동시에 유효성 검증 실행 및 경고 문구 표시
+- 아이디,닉네임 중복체크
+- 간편한 주소 입력을 위한 다음 주소 api 연동
+
+<table>
+  <thead>
+    <tr>
+      <td align="center">회원가입</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/156c3ff8-9a69-48dc-b61b-d234cef662b1" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 #### 로그인(LOGIN) - [바로가기](https://project-wagu.vercel.app/auth/login)
 
 - 리프레시 토큰(Refresh Token), 유저 고유 id 쿠키 생성
-- 엑세스 토큰(Access Token) 변수 저장 하여 로그인 체크
+- 엑세스 토큰(Access Token) 변수 저장
+- 사용자 정보 가져오기
 
-#### 회원가입(SIGN UP) - [바로가기](https://project-wagu.vercel.app/auth/signup)
-
-- 다음 주소 api 연동
-- 아이디,닉네임 중복체크
-- 유효성 검증
+<table>
+  <thead>
+    <tr>
+      <td align="center">로그인</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/9382b384-917e-4083-944e-31e38a99b2b4" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### 상품페이지(PRODUCT) - [바로가기](https://project-wagu.vercel.app/product?page=1)
 
 - 와인종류, 맛, 생산국가, 가격대 선택 후 검색시 상품 필터링
 - 👤 와인 좋아요 및 해제
 - 페이지네이션(Pagination) 구현
+
+<table>
+  <thead>
+    <tr>
+      <td align="center">상품페이지 필터 및 페이지네이션</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/8fa88f83-0f20-498f-95db-d7ed4a9ecca4" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### 커뮤니티 페이지(COMMUNITY) - [바로가기](https://project-wagu.vercel.app/community)
 
