@@ -136,6 +136,7 @@ const SearchFilter = ({ setSearchData }) => {
             </div>
           </div>
           <div>
+            <div className={style.tit}>가격범위</div>
             <Slider
               range
               className="rc-slider"
