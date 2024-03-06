@@ -1,12 +1,16 @@
-# Project Waggle Waggle
+# 와인 소개 및 커뮤니티 사이트 Waggle Waggle
 
 <br>
 
 <p align="center"><img width="250" alt="logo" src="https://github.com/hyooo11/project_fuzimi/assets/98132929/fa69842b-8a41-4c41-bdb3-c4200aca1e83"></p><br>
 
-와인 소개 및 커뮤니티 사이트<br>
-URL - https://project-wagu.vercel.app/
-<br><br>
+배포 URL - https://project-wagu.vercel.app/
+
+> ▶️ 테스트 계정<br>
+> 아이디 : test004<br>
+> 비밀번호 : 112233
+
+<br>
 
 ## 💁 프로젝트 소개
 
@@ -30,6 +34,49 @@ URL - https://project-wagu.vercel.app/
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 </div><br>
+
+## 🗂️ 프로젝트 구조
+
+```bash
+.
+.
+.
+📦public
+ ┣ 📂font #폰트파일
+ ┣ 📂media #아이콘, 이미지파일
+ ┃ ┣ 📂icon
+ ┃ ┗ 📂img
+ ┣ 📜index.html
+ ┣ 📜manifest.json
+ ┗ 📜robots.txt
+📦src
+┣ 📂api #각종 api요청
+┣ 📂app #라우팅
+┃ ┣ 📂admin
+┃ ┣ 📂auth
+┃ ┣ 📂community
+┃ ┣ 📂product
+┃ ┣ 📜favicon.ico
+┃ ┣ 📜globals.css
+┃ ┣ 📜layout.js
+┃ ┗ 📜page.js
+┣ 📂component #app폴더에서 직접적으로 라우팅 되는 컴포넌트 또는 재사용이 자주되는 컴포넌트
+┣ 📂container #component폴더에서 사용되는 작은 단위의 컴포넌트
+┣ 📂redux
+┃ ┣ 📂features # slices
+┃ ┣ 📜StoreProvider.js
+┃ ┣ 📜hook.js
+┃ ┗ 📜store.js
+┣ 📂ui #Button, inputForm 등 자주사용 되는 ui 컴포넌트
+┣ 📜App.js
+┣ 📜index.css
+┣ 📜index.js
+┗ 📜middleware.js
+.
+.
+.
+
+```
 
 ## 📌 주요기능
 
@@ -60,10 +107,6 @@ URL - https://project-wagu.vercel.app/
 - 👤 대댓글 등록, 수정, 삭제
 - 👤 댓글 좋아요 및 해제
 - 무한스크롤(Infinite Scroll) 구현
-  <br><br>
-  > ▶️ 테스트 계정<br>
-  > 아이디 : test004<br>
-  > 비밀번호 : 112233
 
 <br>
 
