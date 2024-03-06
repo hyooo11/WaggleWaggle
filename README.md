@@ -25,7 +25,8 @@
   npm run build
 ```
 
-- 배포 URL - https://project-wagu.vercel.app/
+- 배포 URL
+  - https://project-wagu.vercel.app/
 - 테스트 계정
   - 아이디 : test004
   - 비밀번호 : 112233
