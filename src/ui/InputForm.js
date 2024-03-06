@@ -14,6 +14,7 @@ const InputForm = ({ label, type, name, register }) => {
           name={name}
           {...(register && register(name))}
           className="form-control"
+          autocomplete="off"
         />
       </div>
     </div>
