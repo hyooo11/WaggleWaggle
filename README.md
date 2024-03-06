@@ -2,7 +2,7 @@
 
 <br>
 
-<p align="center"><img width="250" alt="logo" src="https://github.com/hyooo11/project_fuzimi/assets/98132929/fa69842b-8a41-4c41-bdb3-c4200aca1e83"></p><br>
+<p align="center"><img width="100%" alt="logo" src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/9f071421-1ab2-4eec-a910-f6e4262df2a2"></p><br>
 
 배포 URL - https://project-wagu.vercel.app/
 
@@ -108,7 +108,6 @@
 
 - 리프레시 토큰(Refresh Token), 유저 고유 id 쿠키 생성
 - 엑세스 토큰(Access Token) 변수 저장
-- 사용자 정보 가져오기
 
 <table>
   <thead>
@@ -148,11 +147,68 @@
 
 #### 커뮤니티 페이지(COMMUNITY) - [바로가기](https://project-wagu.vercel.app/community)
 
-- 👤 게시물 등록, 수정, 삭제
-- 👤 댓글 등록, 수정, 삭제
-- 👤 대댓글 등록, 수정, 삭제
+- 👤게시물 등록, 수정, 삭제
+  - 필수 입력 요소를 모두 입력 후 글 발행시 게시판 등록
+  - 내가 등록한 게시물에만 수정, 삭제 버튼이 보이도록 구성
+- 👤 댓글 등록, 수정
+  - 게시글 댓글 등록
+  - 내가 등록한 댓글에만 수정 버튼이 보이도록 구성
+- 👤 대댓글 등록, 수정
+  - 특정 댓글에 답글달기 버튼 클릭 시 입력폼 보이도록 구성
+  - 내가 등록한 댓글에만 수정 버튼이 보이도록 구성
 - 👤 댓글 좋아요 및 해제
 - 무한스크롤(Infinite Scroll) 구현
+
+<table>
+  <thead>
+    <tr>
+      <td align="center">게시물 등록</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/82132058-72a9-4878-80c8-0930470b9060" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <td align="center">게시물 수정</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/73dfef22-e2c1-4f56-ba4c-4b6b4127c416" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <td align="center">댓글 등록 및 수정 / 게시글 이미지 슬라이드</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/f4532fdd-c912-4203-ae0e-8144abde5dab" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <td align="center">커뮤니티 페이지 무한 스크롤</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/3e58be54-34ec-4a51-a113-b983e91e33c8" width="700px"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
