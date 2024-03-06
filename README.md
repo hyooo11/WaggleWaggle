@@ -4,12 +4,6 @@
 
 <p align="center"><img width="100%" alt="logo" src="https://github.com/hyooo11/WaggleWaggle/assets/98132929/9f071421-1ab2-4eec-a910-f6e4262df2a2"></p><br>
 
-배포 URL - https://project-wagu.vercel.app/
-
-> ▶️ 테스트 계정<br>
-> 아이디 : test004<br>
-> 비밀번호 : 112233
-
 <br>
 
 ## 💁 프로젝트 소개
@@ -20,6 +14,23 @@
 > 와글와글 : 사람들이 한곳에 많이 모여 잇따라 떠들거나 움직이는 소리. 또는 그 모양
 
 <br>
+
+## ✅ 프로젝트 배포
+
+이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.<br>
+
+> main 브랜치에서 build 명령어 입력 후 커밋 시 자동 배포
+
+```bash
+  npm run build
+```
+
+- 배포 URL - https://project-wagu.vercel.app/
+- 테스트 계정
+  - 아이디 : test004
+  - 비밀번호 : 112233
+
+<br/>
 
 ## 🔍 개발기간
 
@@ -209,18 +220,6 @@
     </tr>
   </tbody>
 </table>
-
-<br>
-
-## ✅ 프로젝트 배포
-
-이 프로젝트는 [Vercel](https://vercel.com/)을 사용하여 배포되었습니다.<br>
-
-> main 브랜치에서 build 명령어 입력 후 커밋 시 자동 배포
-
-```bash
-  npm run build
-```
 
 <br>
 
