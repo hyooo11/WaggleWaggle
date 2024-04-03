@@ -15,6 +15,7 @@
 /* root */
 /* layout */
 /*home.css 공통 영역*/
+/* mediaQuery */
 
 /* reset */
 * {
@@ -143,10 +144,15 @@ main {
 * {
   box-sizing: border-box;
 }
+canvas {
+  display: none;
+}
 
 html {
   font-family: "Noto Sans", "Malgun Gothic", sans-serif;
   font-size: var(--h5);
+  overflow-x: hidden;
+  width: 100vw;
   /* overflow: hidden; */
 }
 
@@ -175,7 +181,7 @@ button {
   cursor: pointer;
   outline: none;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
@@ -185,7 +191,7 @@ button {
 }
 ::-webkit-scrollbar-track {
   background-color: transparent;
-}
+} */
 
 /* root */
 @layer base {
@@ -421,8 +427,17 @@ section.main-banner-sec {
 .Button_negative {
 }
 
-@media screen and (max-device-width: 586px) {
+/* mediaQuery */
+@media screen and (max-width: 1250px) {
+  .maxframe {
+    max-width: 990px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .maxframe {
+    max-width: 900px;
+  }
   section {
-    padding: 120px 0 150px;
+    padding: 100px 0 120px;
   }
 }

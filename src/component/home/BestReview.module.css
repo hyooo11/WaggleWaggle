@@ -126,3 +126,18 @@
 .BestReview .modal_inner .wine_info p:nth-child(2) {
   padding-right: 10px;
 }
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .reviewList {
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 760px) {
+  .reviewList {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+  .reviewList > li figure {
+    padding-top: 50%;
+  }
+}

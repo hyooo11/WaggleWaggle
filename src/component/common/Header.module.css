@@ -1,8 +1,7 @@
 .header {
+  width: 100vw;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 2;
   height: 60px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -37,6 +36,7 @@
   align-items: center;
   flex-wrap: wrap;
   font-weight: 700;
+  margin-left: 300px;
 }
 .gnb a {
   padding: 0 2rem;
@@ -107,4 +107,90 @@
 .MyButton_negative {
   background-color: #fd565f;
   color: #fff;
+}
+
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .header {
+    /* display: block; */
+    justify-content: space-between;
+  }
+  .navLight {
+    display: block;
+  }
+  .logo {
+    position: static;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+  }
+  .ham_menu .ham_btn {
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+  }
+  .ham_menu .ham_btn svg {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+  }
+  .SubPage .ham_menu .ham_btn svg {
+    color: #333;
+  }
+  .header.fixed .ham_menu .ham_btn svg {
+    color: #333;
+  }
+  .toggle_nav {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+  }
+  .toggle_nav_wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .toggle_nav .top {
+    height: 60px;
+    background-color: var(--secondary);
+  }
+  .toggle_nav .navLight {
+    position: static;
+    display: block;
+    color: #333;
+  }
+  .toggle_nav .navLight .menu {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #c8c8c8;
+  }
+  .toggle_nav .navLight .menu a,
+  .toggle_nav .navLight .menu button {
+    padding: 1rem 0;
+    width: 100%;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .toggle_nav .nav {
+    padding: 1rem;
+  }
+  .toggle_nav .nav a {
+    padding: 0.5rem 0;
+    display: block;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+@media screen and (max-width: 760px) {
 }
