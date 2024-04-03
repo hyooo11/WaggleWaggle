@@ -20,6 +20,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .MainSwiper .swiper-slide figure {
+    position: relative;
+    padding-top: 60%;
+  }
+}
+@media screen and (max-width: 760px) {
+  .MainSwiper .swiper-slide figure {
+    position: relative;
+    padding-top: 70%;
+  }
+}
 
 .SwiperPerView {
   padding-bottom: 50px;

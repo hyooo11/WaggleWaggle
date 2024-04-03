@@ -198,7 +198,7 @@
   </tbody>
   <thead>
     <tr>
-      <td align="center">댓글 등록 및 수정 / 게시글 이미지 슬라이드</td>
+      <td align="center">댓글 등록 및 수정/게시글 이미지 슬라이드</td>
     </tr>
   </thead>
   <tbody>

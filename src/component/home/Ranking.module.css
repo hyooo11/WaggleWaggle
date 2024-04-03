@@ -1,4 +1,4 @@
-.tablist>ul {
+.tablist > ul {
   padding-bottom: 30px;
   display: flex;
   justify-content: center;
@@ -46,6 +46,7 @@
   position: relative;
   grid-column: 1 / 1;
   grid-row: 2 / 1;
+  overflow: hidden;
 }
 
 .rank_wrap .rankcard:nth-child(1) {
@@ -79,6 +80,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 80%;
+  overflow: hidden;
 }
 
 .rank_wrap .rankcard figure img {
@@ -132,17 +134,17 @@
   padding-right: 0.5em;
 }
 
-.rank_wrap .tasty_area .inner>div {
+.rank_wrap .tasty_area .inner > div {
   display: flex;
   align-items: center;
 }
 
-.rank_wrap .tasty_area .inner>div svg {
+.rank_wrap .tasty_area .inner > div svg {
   fill: var(--primary);
   stroke: var(--primary);
 }
 
-.rank_wrap .tasty_area .inner>ul li path {
+.rank_wrap .tasty_area .inner > ul li path {
   color: var(--primary);
 }
 
@@ -179,7 +181,7 @@
   font-size: 15px;
 }
 
-.rankcard:first-child .tasty_area .inner>div svg {
+.rankcard:first-child .tasty_area .inner > div svg {
   height: 1.2em;
   width: 1.2em;
 }
@@ -187,4 +189,29 @@
 .smallWinename {
   width: 120px !important;
   word-break: keep-all;
+}
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 760px) {
+  .tablist ul li {
+    width: 100px;
+    padding: 5px 0;
+    margin: 0 2px;
+    font-size: 1.1rem;
+  }
+  .rank_wrap {
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  .rank_wrap .rankcard {
+    width: 50%;
+    padding-top: 50%;
+  }
+  .rankcard:first-child {
+    width: 100%;
+    padding-top: 100%;
+  }
 }

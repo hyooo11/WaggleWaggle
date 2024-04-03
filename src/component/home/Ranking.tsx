@@ -4,6 +4,24 @@ import { useState, useEffect } from "react";
 import styled from "./Ranking.module.css";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
 import Link from "next/link";
+import ScoreDraw from "@/ui/ScoreDraw";
+
+interface ProductRankingType {
+  pid: number;
+  rank: number;
+  type: number;
+  korName: string;
+  price: number;
+  imageUrl: string;
+  sweet: number;
+  acidity: number;
+}
+interface ProductRankingDataType {
+  red: ProductRankingType[];
+  white: ProductRankingType[];
+  sparkling: ProductRankingType[];
+  port: ProductRankingType[];
+}
 
 const tab = [
   { label: "레드", values: "red" },
@@ -14,8 +32,8 @@ const tab = [
 
 const Ranking = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [rankData, setRankData] = useState([]);
-  const [rankList, setRankList] = useState([]);
+  const [rankData, setRankData] = useState<ProductRankingDataType[]>();
+  const [rankList, setRankList] = useState<ProductRankingType[]>();
 
   useEffect(() => {
     getProductRank().then((response) => {
@@ -24,32 +42,9 @@ const Ranking = () => {
   }, []);
 
   useEffect(() => {
-    const rankInfo = rankData[tab[currentTab].values];
+    const rankInfo = rankData && rankData[tab[currentTab].values];
     setRankList(rankInfo);
   }, [currentTab, rankData]);
-
-  // 당도 아이콘
-  const sweetDraw = (score) => {
-    let sweet = Array.from({ length: 5 }, (_, index) =>
-      index < Math.round(score) ? (
-        <IoWater key={index} />
-      ) : (
-        <IoWaterOutline key={index} />
-      )
-    );
-    return sweet;
-  };
-  //산미 아이콘
-  const acidDraw = (score) => {
-    let acidity = Array.from({ length: 5 }, (_, index) =>
-      index < Math.round(score) ? (
-        <IoWater key={index} />
-      ) : (
-        <IoWaterOutline key={index} />
-      )
-    );
-    return acidity;
-  };
 
   if (rankList === undefined) {
     return null;
@@ -67,7 +62,6 @@ const Ranking = () => {
             <ul className={styled.tablistinner}>
               {tab.map((tabname, index) => (
                 <li
-                  id={index}
                   key={index}
                   className={index === currentTab ? styled.active : ""}
                   onClick={() => setCurrentTab(index)}
@@ -81,7 +75,7 @@ const Ranking = () => {
         <div className={styled.rank_wrap}>
           {rankList &&
             rankList.map((data, index) => (
-              <div id={index} key={index} className={styled.rankcard}>
+              <div key={index} className={styled.rankcard}>
                 <Link href={`product/detail/${data.pid}`}>
                   <figure>
                     <img
@@ -109,11 +103,23 @@ const Ranking = () => {
                   <div className={styled.tasty_area}>
                     <div className={styled.inner}>
                       <p>당도</p>
-                      <div>{sweetDraw(data.sweet)}</div>
+                      <div>
+                        <ScoreDraw
+                          score={data.sweet}
+                          fillIcon={IoWater}
+                          outLineIcon={IoWaterOutline}
+                        />
+                      </div>
                     </div>
                     <div className={styled.inner}>
                       <p>산도</p>
-                      <div>{acidDraw(data.acidity)}</div>
+                      <div>
+                        <ScoreDraw
+                          score={data.acidity}
+                          fillIcon={IoWater}
+                          outLineIcon={IoWaterOutline}
+                        />
+                      </div>
                     </div>
                   </div>
                 </Link>

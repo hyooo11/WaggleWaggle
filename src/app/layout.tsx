@@ -1,20 +1,24 @@
+import type { Metadata } from "next";
 import StoreProvider from "@/redux/StoreProvider";
-// import store from "../redux/store";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/component/common/Header.js";
-import Footer from "@/component/common/Footer.js";
+import Header from "@/component/common/Header";
+import Footer from "@/component/common/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "waggle waggle",
   description: "와인 입문자들을 위한 사람들의 놀이터 와글와글",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={inter.className}>
         <StoreProvider>
           <Header />

@@ -1,18 +1,21 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { loginUser } from "@/redux/features/userSlice";
 import InputForm from "@/ui/InputForm";
 import Button from "@/ui/Button";
+import { LoginInputType } from "@/types";
 
 const LoginPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const loginState = useAppSelector((state) => state.user);
+
+  console.log(loginState);
 
   const schema = yup.object().shape({
     id: yup.string().required("id를 입력해주세요."),
@@ -23,9 +26,12 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
+  } = useForm<LoginInputType>({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<LoginInputType> = (data) => {
     const userData = data;
     dispatch(loginUser(userData));
   };

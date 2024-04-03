@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setCookie, deleteCookie } from "cookies-next";
+import { UserStateType, LoginInputType } from "@/types";
 
 // 로그인 되지 않은 초기상태
-const initialState = {
+const initialState: UserStateType = {
   isLoading: false, //로딩중
   isLogin: false, //로그인 유무
   isLoginError: false, //로그인 에러
@@ -22,7 +23,7 @@ const initialState = {
 //createAsyncThunk에서는 반환값 then을 쓰면 안됨 post를 직접 await해야함
 export const loginUser = createAsyncThunk(
   "user/login",
-  async (userData, { rejectWithValue }) => {
+  async (userData: LoginInputType, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "/api/auth/login",
@@ -46,7 +47,7 @@ export const loginUser = createAsyncThunk(
 // 로그인 확인 함수
 export const loginCheck = createAsyncThunk(
   "login/check",
-  async (token, { rejectWithValue }) => {
+  async (token: string, { rejectWithValue }) => {
     try {
       const response = await axios.get("/api/auth/login-check", {
         headers: {
@@ -73,7 +74,7 @@ const user = createSlice({
   initialState,
   reducers: {
     //로그아웃 함수
-    clearUser(state, action) {
+    clearUser(state) {
       state.isLogin = false;
       state.data.memberInfo = null;
       deleteCookie("pid");
