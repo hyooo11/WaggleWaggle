@@ -31,3 +31,13 @@ export interface LoginInputType {
   id: string;
   password: string;
 }
+
+export interface SignUpInputType {
+  id: string;
+  password: string;
+  name: string;
+  nickName: string;
+  email: string;
+  address: string;
+  phone: string;
+}

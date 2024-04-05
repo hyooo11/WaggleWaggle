@@ -92,7 +92,7 @@ const Header = () => {
   return (
     <header
       className={`${style.header} ${isScroll ? style.fixed : ""} ${
-        pageState == "MainPage" ? "" : style.SubPage
+        pageState === "MainPage" ? "" : style.SubPage
       }`}
     >
       {/* <div> */}
@@ -131,6 +131,7 @@ const Header = () => {
                           ? "/media/img/default_profile.jpeg"
                           : user.data.memberInfo?.profileImg
                       }
+                      alt="프로필 이미지"
                     />
                   </figure>
                   마이페이지
@@ -204,6 +205,7 @@ const MobileNav = ({ setMobileNav }) => {
                           ? "/media/img/default_profile.jpeg"
                           : user.data.memberInfo?.profileImg
                       }
+                      alt="프로필 이미지"
                     />
                   </figure>
                   마이페이지

@@ -15,8 +15,6 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const loginState = useAppSelector((state) => state.user);
 
-  console.log(loginState);
-
   const schema = yup.object().shape({
     id: yup.string().required("id를 입력해주세요."),
     password: yup.string().required("비밀번호를 입력해주세요."),
@@ -43,7 +41,8 @@ const LoginPage = () => {
   }, [loginState, router]);
 
   return (
-    <div className="maxframe sub_p_wrap px-72">
+
+    <div className="maxframe sub_p_wrap lg:px-60 md:px-4 px-4">
       <div className="sub_p_title center">
         <h2 className="">SING IN</h2>
         <span>로그인하기</span>
