@@ -2,11 +2,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DaumPostcode from "react-daum-postcode";
 import InputForm from "@/ui/InputForm";
+import { SignUpInputType } from "@/types";
 import Modal from "@/ui/Modal";
 import Button from "@/ui/Button";
 
@@ -38,14 +39,10 @@ const SignUpPage = () => {
       .matches(validateForm.idRegex, {
         message: "아이디는 영소문자, 숫자로 조합하여 3~20자 이내로 작성하세요.",
       })
-      .test(
-        "uniqueId",
-        "이미 사용 중인 아이디입니다.",
-        async (value) =>
-          await axios.get(`/api/auth/id-check?id=${value}`).then((res) => {
-            return !res.data.data.duplicate;
-          })
-      ),
+      .test("uniqueId", "이미 사용 중인 아이디입니다.", async function (value) {
+        const response = await axios.get(`/api/auth/id-check?id=${value}`);
+        return !response.data.data.duplicate;
+      }),
     password: yup
       .string()
       .required("비밀번호는 필수 값 입니다.")
@@ -70,12 +67,12 @@ const SignUpPage = () => {
       .test(
         "uniqueNickName",
         "이미 사용 중인 닉네임 입니다.",
-        async (value) =>
-          await axios
-            .get(`/api/auth/nickname-check?nickName=${value}`)
-            .then((res) => {
-              return !res.data.data.duplicate;
-            })
+        async function (value) {
+          const response = await axios.get(
+            `/api/auth/nickname-check?nickName=${value}`
+          );
+          return !response.data.data.duplicate;
+        }
       ),
     email: yup
       .string()
@@ -95,9 +92,12 @@ const SignUpPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
+  } = useForm<SignUpInputType>({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<SignUpInputType> = async (data) => {
     await axios({
       method: "post",
       url: "/api/auth/join",
@@ -146,7 +146,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="maxframe sub_p_wrap px-72">
+    <div className="maxframe sub_p_wrap lg:px-60 md:px-4 px-4">
       <div className="sub_p_title center">
         <h2 className="">SING UP</h2>
         <span>회원정보입력</span>
@@ -196,7 +196,7 @@ const SignUpPage = () => {
             <input
               type="address"
               id="address"
-              name="address"
+              // name="address"
               {...register("address")}
               value={addressInput}
               placeholder="주소검색하기"

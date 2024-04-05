@@ -118,7 +118,7 @@
 
 #### 로그인(LOGIN) - [바로가기](https://project-wagu.vercel.app/auth/login)
 
-- 리프레시 토큰(Refresh Token), 유저 고유 id 쿠키 생성
+- 리프레시 토큰(Refresh Token), 유저 고유 id 브라우저 쿠키(Cookie)에 저장하여 요청시 인증
 - 엑세스 토큰(Access Token) 변수 저장
 
 <table>
@@ -140,7 +140,7 @@
 
 - 와인종류, 맛, 생산국가, 가격대 선택 후 검색시 상품 필터링
 - 👤 와인 좋아요 및 해제
-- 페이지네이션(Pagination) 구현
+- 링크 공유가 편리하도록 페이지네이션(Pagination)으로 구현
 
 <table>
   <thead>
@@ -169,7 +169,7 @@
   - 특정 댓글에 답글달기 버튼 클릭 시 입력폼 보이도록 구성
   - 내가 등록한 댓글에만 수정 버튼이 보이도록 구성
 - 👤 댓글 좋아요 및 해제
-- 무한스크롤(Infinite Scroll) 구현
+- 편리한 사용자 경험을 위하여 무한스크롤(Infinite Scroll)으로 구현
 
 <table>
   <thead>
@@ -233,3 +233,11 @@
 - 상태관리 [Redux-Toolkit](https://redux-toolkit.js.org/)
 
 - 배포 [Vercel](https://vercel.com/)
+
+<!-- ## 💡 ToDoList
+
+- [x] ~~메인페이지 반응형 적용~~
+- [ ] 서브페이지 반응형 적용
+- [ ] TypeScript 마이그레이션
+- [ ] 스켈레톤 컴포넌트 적용
+- [ ] 이미지, 폰트 최적화 -->

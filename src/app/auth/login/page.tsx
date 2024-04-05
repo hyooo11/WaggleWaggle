@@ -43,7 +43,7 @@ const LoginPage = () => {
   }, [loginState, router]);
 
   return (
-    <div className="maxframe sub_p_wrap px-72">
+    <div className="maxframe sub_p_wrap lg:px-60 md:px-4 px-4">
       <div className="sub_p_title center">
         <h2 className="">SING IN</h2>
         <span>로그인하기</span>
