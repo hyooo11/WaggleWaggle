@@ -31,6 +31,7 @@ export interface LoginInputType {
   id: string;
   password: string;
 }
+
 export interface SignUpInputType {
   id: string;
   password: string;
