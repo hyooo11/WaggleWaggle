@@ -41,7 +41,7 @@ export interface SignUpInputType {
   address: string;
   phone: string;
 }
-//productSlice
+
 export interface ProductDataType {
   pid: number;
   imageUrl: string;
