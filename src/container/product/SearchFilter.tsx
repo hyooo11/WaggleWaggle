@@ -14,10 +14,9 @@ const SearchFilter = ({ setSearchData }) => {
   const [acidity, setAcidity] = useState([]);
   const [tannin, setTannin] = useState([]);
   const [countryList, setCountryList] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [priceRange, setPriceRange] = useState<number[] | number>([0, 100000]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     setSearchData({
       type: wineType,
       body: body,
@@ -156,7 +155,6 @@ const SearchFilter = ({ setSearchData }) => {
           </div>
         </div>
         <div className="btn-area">
-          {/* <Button text={"초기화"} /> */}
           <Button text={"검색"} type={"positive"} onClick={onSubmit} />
         </div>
       </div>

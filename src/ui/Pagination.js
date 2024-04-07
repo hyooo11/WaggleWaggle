@@ -26,7 +26,7 @@ const Pagination = ({
           <Link
             href={{
               pathname: "/product",
-              query: { page: start - 1, ...queryState },
+              query: { page: start - 1, queryState },
             }}
           >
             이전
@@ -39,7 +39,7 @@ const Pagination = ({
                 <Link
                   href={{
                     pathname: "/product",
-                    query: { page: start + index, ...queryState },
+                    query: { page: start + index },
                   }}
                 >
                   <span
@@ -57,7 +57,7 @@ const Pagination = ({
           <Link
             href={{
               pathname: "/product",
-              query: { page: start + pageCount, ...queryState },
+              query: { page: start + pageCount },
             }}
           >
             다음
