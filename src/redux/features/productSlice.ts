@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import { ProductType } from "@/types";
 
 //아무것도 검색되지 않은 상품리스트 초기상태
-const initialState = {
+const initialState: ProductType = {
   isLoading: false,
   isSuccess: false,
   isProductListError: "",
@@ -14,7 +15,7 @@ const initialState = {
 //상품리스트 가져오기
 export const productItem = createAsyncThunk(
   "product/fetchList",
-  async (params, { rejectWithValue }) => {
+  async (params: string, { rejectWithValue }) => {
     const userPid = getCookie("pid");
     try {
       const response = await axios.get(
@@ -35,7 +36,7 @@ export const productItem = createAsyncThunk(
 //상품리스트 갯수 가져오기
 export const productItemCount = createAsyncThunk(
   "product/fetchListCount",
-  async (params, { rejectWithValue }) => {
+  async (params: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/product/wine/count?${params}`, {
         headers: {
@@ -59,12 +60,12 @@ const product = createSlice({
       .addCase(productItem.pending, (state, action) => {
         state.isLoading = true;
         state.isSuccess = false;
-        state.isProductListError = false;
+        state.isProductListError = "";
       })
       .addCase(productItem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.isProductListError = false;
+        state.isProductListError = "";
         state.data = action.payload.data;
       })
       .addCase(productItem.rejected, (state, action) => {
@@ -76,7 +77,7 @@ const product = createSlice({
       .addCase(productItemCount.pending, (state, action) => {
         state.isLoading = true;
         state.isSuccess = false;
-        state.isProductListError = false;
+        state.isProductListError = "";
       })
       .addCase(productItemCount.fulfilled, (state, action) => {
         state.isSuccess = true;

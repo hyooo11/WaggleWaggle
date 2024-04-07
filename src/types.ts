@@ -41,3 +41,33 @@ export interface SignUpInputType {
   address: string;
   phone: string;
 }
+
+export interface ProductDataType {
+  pid: number;
+  imageUrl: string;
+  korName: string;
+  engName: string;
+  desc: string;
+  type: number;
+  country: string;
+  grapeVariety: string;
+  price: number;
+  like: boolean;
+}
+export interface ProductType {
+  isLoading: boolean;
+  isSuccess: boolean;
+  isProductListError?: string;
+  searchCount: number;
+  data: ProductDataType[] | null;
+}
+export interface ProductSearchType {
+  type?: number[];
+  body?: number[];
+  sweet?: number[];
+  acidity?: number[];
+  tannin?: number[];
+  country?: number[];
+  maxPrice?: number;
+  minPrice?: number;
+}

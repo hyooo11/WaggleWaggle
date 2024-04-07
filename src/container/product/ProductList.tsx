@@ -5,10 +5,15 @@ import style from "./ProductList.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { getCookie } from "cookies-next";
 import { useAppSelector } from "@/redux/hook";
+import { ProductDataType } from "@/types";
 
-const ProductList = ({ productList }) => {
+type Props = {
+  productList: ProductDataType[] | null;
+};
+
+const ProductList = ({ productList }: Props) => {
   const user = useAppSelector((state) => state.user);
-  const likeToggle = async (data) => {
+  const likeToggle = async (data: number) => {
     const userPid = getCookie("pid");
     if (user.isLogin === true) {
       await axios
@@ -30,7 +35,6 @@ const ProductList = ({ productList }) => {
           } else if (response.data.data.action === "delete") {
             alert("좋아하는 상품 삭제");
           }
-          console.log(response);
         })
         .catch(function (error) {
           console.log(error);

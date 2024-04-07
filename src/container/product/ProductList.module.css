@@ -104,3 +104,12 @@
   font-weight: 700;
   text-align: center;
 }
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .ProductList .card {
+    width: 50%;
+  }
+  .ProductList .card > a {
+    margin: 0 2px 20px;
+  }
+}
