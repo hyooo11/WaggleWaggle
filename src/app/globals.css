@@ -428,15 +428,15 @@ section.main-banner-sec {
 }
 
 /* mediaQuery */
-@media screen and (max-width: 1250px) {
+/* @media screen and (max-width: 1250px) {
   .maxframe {
     max-width: 990px;
   }
-}
+} */
 @media screen and (max-width: 1024px) {
-  .maxframe {
-    max-width: 900px;
-  }
+  /* .maxframe {
+    max-width: 1000px;
+  } */
   section {
     padding: 100px 0 120px;
   }

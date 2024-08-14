@@ -13,9 +13,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import style from "./Header.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Desktop, Tablet } from "@/util/MediaQuery";
+import { Desktop, Mobile } from "@/util/MediaQuery";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { SiteMap } from "@/constants/SiteMap";
 
 const Header = () => {
   const [pageState, setPageState] = useState<string>("");
@@ -37,7 +38,7 @@ const Header = () => {
   const refreshToken = getCookie("refreshToken");
 
   useEffect(() => {
-    //로그인할떄 받은 리프레시토큰을 가져와서
+    //로그인할때 받은 리프레시토큰을 가져와서
     const reissueToken = async () => {
       if (userPid && refreshToken) {
         await axios
@@ -88,89 +89,96 @@ const Header = () => {
       router.push("/auth/login");
     }
   }, [query, router]);
+
   if (pathname.includes("admin")) return null;
   return (
     <header
-      className={`${style.header} ${isScroll ? style.fixed : ""} ${
+      className={`${style.HeaderWrapper} ${isScroll && style.fixed} ${
         pageState === "MainPage" ? "" : style.SubPage
       }`}
     >
-      {/* <div> */}
-      <div className={style.navRight}>
-        <Link
-          href="/"
-          className={`${style.logo} ${isScroll ? style.fixed : ""}`}
-        >
-          Waggle Waggle
-        </Link>
-        {mount && (
+      {mount && (
+        <div className={`${style.HeaderWrap} maxframe`}>
+          <h1 className={`${style.logo} ${isScroll && style.fixed}`}>
+            <Link href="/">Waggle Waggle</Link>
+          </h1>
+
           <Desktop>
-            <nav className={`${style.gnb} ${isScroll ? style.fixed : ""}`}>
-              <Link href="/product?page=1">PRODUCT</Link>
-              <Link href="/community">COMMUNITY</Link>
-            </nav>
-          </Desktop>
-        )}
-      </div>
-      {mount && (
-        <Desktop>
-          <>
-            {user.isLogin ? (
-              <div
-                className={`${style.navLight} ${isScroll ? style.fixed : ""}`}
-              >
-                <button
-                  onClick={() => {
-                    alert("서비스 준비중입니다 :)");
-                  }}
-                >
-                  <figure>
-                    <img
-                      src={
-                        user.data.memberInfo?.profileImg === null
-                          ? "/media/img/default_profile.jpeg"
-                          : user.data.memberInfo?.profileImg
-                      }
-                      alt="프로필 이미지"
-                    />
-                  </figure>
-                  마이페이지
-                </button>
-                <button
-                  onClick={() => {
-                    dispatch(clearUser());
-                  }}
-                >
-                  로그아웃
-                </button>
+            <div className={style.navMenu}>
+              <nav className={`${style.gnb} ${isScroll && style.fixed}`}>
+                {SiteMap.mainCategory.map((data, _) => {
+                  return (
+                    <Link href={data.url} key={data.id}>
+                      {data.engName}
+                    </Link>
+                  );
+                })}
+              </nav>
+              <div>
+                {/* 로그아웃 상태 */}
+                {!user.isLogin && (
+                  <div
+                    className={`${style.navLight} ${isScroll && style.fixed}`}
+                  >
+                    {SiteMap.auth.logoutState.map((data, _) => {
+                      return (
+                        <Link href={data.url} key={data.id}>
+                          {data.engName}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+                {/* 로그인상태 */}
+                {user.isLogin && (
+                  <div
+                    className={`${style.navLight} ${isScroll && style.fixed}`}
+                  >
+                    <button
+                      onClick={() => {
+                        alert("서비스 준비중입니다 :)");
+                      }}
+                    >
+                      <figure>
+                        <img
+                          src={
+                            user.data.memberInfo?.profileImg === null
+                              ? "/media/img/default_profile.jpeg"
+                              : user.data.memberInfo?.profileImg
+                          }
+                          alt="프로필 이미지"
+                        />
+                      </figure>
+                      마이페이지
+                    </button>
+                    <button
+                      onClick={() => {
+                        dispatch(clearUser());
+                      }}
+                    >
+                      로그아웃
+                    </button>
+                  </div>
+                )}
               </div>
-            ) : (
-              <div
-                className={`${style.navLight} ${isScroll ? style.fixed : ""}`}
-              >
-                <Link href="/auth/login">로그인</Link>
-                <Link href="/auth/signup">회원가입</Link>
-              </div>
-            )}
-          </>
-        </Desktop>
-      )}
-      {mount && (
-        <Tablet>
-          <div className={style.ham_menu}>
-            <div
-              onClick={() => {
-                setMobileNav(!mobileNav);
-              }}
-              className={style.ham_btn}
-            >
-              {mobileNav ? <IoClose /> : <IoIosMenu />}
             </div>
-            {mobileNav ? <MobileNav setMobileNav={setMobileNav} /> : ""}
-          </div>
-        </Tablet>
+          </Desktop>
+
+          <Mobile>
+            <div className={style.ham_menu}>
+              <div
+                onClick={() => {
+                  setMobileNav(!mobileNav);
+                }}
+                className={style.ham_btn}
+              >
+                {mobileNav ? <IoClose /> : <IoIosMenu />}
+              </div>
+              {mobileNav ? <MobileNav setMobileNav={setMobileNav} /> : ""}
+            </div>
+          </Mobile>
+        </div>
       )}
-      {/* </div> */}
     </header>
   );
 };

@@ -1,21 +1,11 @@
 import { useMediaQuery } from "react-responsive";
-
 export const Desktop = ({
   children,
 }: {
   children: JSX.Element;
 }): JSX.Element | null => {
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1025 });
   return isDesktop ? children : null;
-};
-
-export const Tablet = ({
-  children,
-}: {
-  children: JSX.Element;
-}): JSX.Element | null => {
-  const isTablet = useMediaQuery({ maxWidth: 1023 });
-  return isTablet ? children : null;
 };
 
 export const Mobile = ({
@@ -23,7 +13,7 @@ export const Mobile = ({
 }: {
   children: JSX.Element;
 }): JSX.Element | null => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
   return isMobile ? children : null;
 };
 

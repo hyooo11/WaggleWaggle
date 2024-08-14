@@ -25,6 +25,7 @@
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.14.1",
     "react-star-ratings": "^2.3.0",
     "swiper": "^10.3.1",
     "web-vitals": "^2.1.4",

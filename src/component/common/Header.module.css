@@ -1,28 +1,44 @@
-.header {
+.HeaderWrapper {
   width: 100vw;
+  padding: 23px 10px;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 2;
-  height: 60px;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
+  min-height: 90px;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
-.header.fixed {
+.HeaderWrapper.fixed {
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
+.HeaderWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .logo {
-  position: absolute;
-  left: 2rem;
-  top: 1rem;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: #fff;
   font-weight: 900;
   font-family: "Signatra";
+  text-align: center;
+}
+.logo a {
+  width: 180px;
+  display: block;
 }
 .logo.fixed {
   color: #61002e;
 }
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .navRight {
   display: flex;
   height: 100%;
@@ -32,26 +48,24 @@
   height: 100%;
   color: var(--secondary);
   font-size: 18px;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   font-weight: 700;
-  margin-left: 300px;
+  text-transform: uppercase;
+  margin-left: 1rem;
 }
 .gnb a {
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 .gnb.fixed {
   color: #333;
 }
 .navLight {
-  position: absolute;
-  top: 0;
-  right: 2rem;
   display: flex;
   color: #fff;
   height: 100%;
   align-items: center;
+  text-transform: uppercase;
 }
 .navLight.fixed {
   color: #333;
@@ -111,7 +125,7 @@
 
 /* mediaQuery */
 @media screen and (max-width: 1024px) {
-  .header {
+  .HeaderWrapper {
     /* display: block; */
     justify-content: space-between;
   }
@@ -131,6 +145,9 @@
     position: relative;
     z-index: 5;
     cursor: pointer;
+  }
+  .HeaderWrapper.fixed .ham_menu .ham_btn svg {
+    color: #000;
   }
   .ham_menu .ham_btn svg {
     width: 100%;
@@ -160,7 +177,8 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
   .toggle_nav .top {
-    height: 60px;
+    min-height: 90px;
+    height: 90px;
     background-color: var(--secondary);
   }
   .toggle_nav .navLight {
