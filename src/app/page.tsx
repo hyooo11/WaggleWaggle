@@ -1,13 +1,5 @@
-import MainVisual from "@/component/home/MainVisual";
-import BestReview from "@/component/home/BestReview";
-import Ranking from "@/component/home/Ranking";
+import Home from "@/component/home/Home";
 
 export default function Page() {
-  return (
-    <>
-      <MainVisual />
-      <BestReview />
-      <Ranking />
-    </>
-  );
+  return <Home />;
 }
