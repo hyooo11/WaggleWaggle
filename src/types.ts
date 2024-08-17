@@ -71,3 +71,31 @@ export interface ProductSearchType {
   maxPrice?: number;
   minPrice?: number;
 }
+
+export interface StoreResultType {
+  address_name: string;
+  id: string;
+  place_name: string;
+  x: string;
+  y: string;
+}
+export interface StorePaginationType {
+  current: number;
+  gotoFirst: () => void;
+  gotoLast: () => void;
+  last: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  totalCount: number;
+}
+export interface storeDataType {
+  result: StoreResultType[];
+  pagination: StorePaginationType;
+}
+export interface StoreListType {
+  region: string;
+  coord?: { latitude: number; longitude: number };
+  storeData?: storeDataType;
+  status: string;
+  error: string | null;
+}

@@ -89,7 +89,7 @@ const ProductDetail = ({ productDetail }) => {
                   <span>추천안주</span>
                   {snackList.map((data, index) => {
                     return (
-                      <>
+                      <div key={index}>
                         {data !== "null" ? (
                           <div>
                             <span>
@@ -106,7 +106,7 @@ const ProductDetail = ({ productDetail }) => {
                         ) : (
                           <span>준비중입니다.</span>
                         )}
-                      </>
+                      </div>
                     );
                   })}
                 </div>
