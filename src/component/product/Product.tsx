@@ -85,6 +85,7 @@ const Product = () => {
           pageCount={5}
           itemCountPerPage={20}
           queryState={queryState}
+          pathname={"/product"}
         />
       </div>
     </div>

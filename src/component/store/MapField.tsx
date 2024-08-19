@@ -9,11 +9,10 @@ declare global {
 }
 
 const MapField = () => {
-  const coord = useAppSelector((state) => state.store.coord);
-  const storeList = useAppSelector((state) => state.store.storeData?.result);
+  const storeList = useAppSelector((state) => state.store.storeData);
   const mapRef = useRef<HTMLDivElement>(null);
 
-  const createMap = (lat: number, lng: number) => {
+  const createMap = (lat: string, lng: string) => {
     const map = new window.naver.maps.Map(mapRef.current, {
       center: new window.naver.maps.LatLng(lat, lng),
       zoom: 11,
@@ -28,9 +27,7 @@ const MapField = () => {
     });
   };
   useEffect(() => {
-    // if (coord) {
-    coord && createMap(coord.latitude, coord.longitude);
-    // }
+    storeList && createMap(storeList[0].y, storeList[0].x);
   }, [storeList]);
 
   return (

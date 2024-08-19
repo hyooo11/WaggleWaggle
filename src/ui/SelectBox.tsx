@@ -1,21 +1,32 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import styled from "./SelectBox.module.css";
 
-const SelectBox = ({ options, onChange }) => {
-  const [isOn, setIsOn] = useState(false);
-  const [text, setText] = useState("도/시 선택");
+interface Props {
+  options: string[];
+  onChange: (target: string) => void;
+  selectedValue: string;
+  disabled?: boolean;
+  placeholder: string;
+}
 
+const SelectBox = ({
+  options,
+  onChange,
+  selectedValue,
+  placeholder,
+  disabled,
+}: Props) => {
+  const [isOn, setIsOn] = useState(false);
   const selectBoxRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setIsOn((prev) => !prev);
   };
 
-  const handleSelect = (text: string, value: string) => {
-    setText(text);
-    onChange(value);
+  const handleSelect = (option: string) => {
+    // setText(text);
+    onChange(option);
     setIsOn(false);
   };
 
@@ -36,19 +47,19 @@ const SelectBox = ({ options, onChange }) => {
   }, []);
 
   return (
-    <div className={styled.SelectBox}>
+    <div className={styled.SelectBox} ref={selectBoxRef}>
       <div className={`${styled.select_option} ${isOn && styled.on}`}>
-        <div onClick={toggleDropdown}>{text}</div>
+        <div onClick={toggleDropdown}>{selectedValue || placeholder}</div>
       </div>
       <div className={`${styled.option_box} ${isOn && styled.on}`}>
-        {options.map((data, index) => {
+        {options.map((data, _) => {
           return (
             <div
-              onClick={() => handleSelect(data.name, data.name)}
+              onClick={() => handleSelect(data)}
               className={styled.option}
-              key={index}
+              key={data}
             >
-              {data.name}
+              {data}
             </div>
           );
         })}

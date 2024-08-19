@@ -87,6 +87,7 @@ export interface StorePaginationType {
   hasNextPage: boolean;
   hasPrevPage: boolean;
   totalCount: number;
+  perPage: number;
 }
 export interface storeDataType {
   result: StoreResultType[];
@@ -94,8 +95,8 @@ export interface storeDataType {
 }
 export interface StoreListType {
   region: string;
-  coord?: { latitude: number; longitude: number };
-  storeData?: storeDataType;
+  storeData?: StoreResultType[];
+  pagination?: StorePaginationType;
   status: string;
   error: string | null;
 }

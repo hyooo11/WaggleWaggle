@@ -9,8 +9,8 @@ declare global {
 
 const initialState: StoreListType = {
   region: "서울시 강남구",
-  coord: undefined,
   storeData: undefined,
+  pagination: undefined,
   status: "",
   error: null,
 };
@@ -25,11 +25,11 @@ const store = createSlice({
     setResults: (state, action) => {
       state.storeData = action.payload;
     },
-    setCoord: (state, action) => {
-      state.coord = action.payload;
+    setPagination: (state, action) => {
+      state.pagination = action.payload;
     },
   },
 });
 
-export const { setCoord, setLocation, setResults } = store.actions;
+export const { setLocation, setResults, setPagination } = store.actions;
 export default store;
