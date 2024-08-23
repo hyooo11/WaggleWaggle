@@ -1,5 +1,23 @@
 .SearchArea {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 .select_box_wrap {
   display: flex;
+  width: 100%;
+}
+.btn_wrap {
+  display: flex;
+}
+
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .SearchArea {
+    flex-direction: column;
+  }
+  .btn_wrap {
+    padding-top: 1rem;
+    justify-content: center;
+  }
 }

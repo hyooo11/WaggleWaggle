@@ -1,3 +1,37 @@
 .StoreList {
-  /* width: 300px; */
+  /* height: 600px; */
+}
+.search_count {
+  height: 30px;
+  margin: 0 10px;
+}
+.search_count span {
+  font-weight: 700;
+  color: var(--primary);
+}
+.name {
+  color: #333;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+.search_list {
+  height: 542px;
+  overflow-y: scroll;
+}
+.search_list li {
+  background-color: #fff;
+  margin: 5px 10px;
+  padding: 1rem 0;
+  color: #c4b8b9;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .search_count {
+    line-height: 2.5;
+  }
+  .search_list {
+    height: auto;
+  }
 }

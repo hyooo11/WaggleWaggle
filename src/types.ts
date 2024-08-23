@@ -74,8 +74,12 @@ export interface ProductSearchType {
 
 export interface StoreResultType {
   address_name: string;
+  road_address_name: string;
+  category_name: string;
   id: string;
+  phone: string;
   place_name: string;
+  place_url: string;
   x: string;
   y: string;
 }
@@ -97,6 +101,9 @@ export interface StoreListType {
   region: string;
   storeData?: StoreResultType[];
   pagination?: StorePaginationType;
+  mapCoords?: { x: string; y: string };
+  markers: any;
+  infoWindows: any;
   status: string;
   error: string | null;
 }

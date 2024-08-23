@@ -4,3 +4,16 @@
 .MapWarp {
   flex: 1;
 }
+.side_bar {
+  width: 300px;
+}
+
+/* mediaQuery */
+@media screen and (max-width: 1024px) {
+  .Store {
+    flex-direction: column-reverse;
+  }
+  .side_bar {
+    width: 100%;
+  }
+}

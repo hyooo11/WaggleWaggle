@@ -4,6 +4,7 @@ import {
   setLocation,
   setResults,
   setPagination,
+  setMapCoords,
 } from "@/redux/features/storeSlice";
 import { CityData } from "@/constants/CityData";
 import { useState, useEffect } from "react";
@@ -49,6 +50,7 @@ const SearchArea = ({ currentPage, setPage }) => {
     if (status === window.kakao.maps.services.Status.OK) {
       dispatch(setResults(result));
       dispatch(setPagination(pagination));
+      dispatch(setMapCoords({ x: result[0].x, y: result[0].y }));
     }
   };
   //키워드 검색 옵션 객체
@@ -114,26 +116,26 @@ const SearchArea = ({ currentPage, setPage }) => {
   };
   return (
     <div className={styles.SearchArea}>
-      <div>
-        <div className={styles.select_box_wrap}>
-          <SelectBox
-            options={Object.keys(CityData)}
-            onChange={cityChangehandle}
-            selectedValue={city}
-            placeholder="도/시 선택"
-          />
-          <SelectBox
-            options={districts}
-            onChange={subAreaChangehandle}
-            selectedValue={subArea}
-            placeholder="구/군 선택"
-            disabled={!city}
-          />
-        </div>
+      <div className={styles.select_box_wrap}>
+        <SelectBox
+          options={Object.keys(CityData)}
+          onChange={cityChangehandle}
+          selectedValue={city}
+          placeholder="도/시 선택"
+        />
+        <SelectBox
+          options={districts}
+          onChange={subAreaChangehandle}
+          selectedValue={subArea}
+          placeholder="구/군 선택"
+          disabled={!city}
+        />
+      </div>
+      <div className={styles.btn_wrap}>
         <Button text={"검색"} type={"positive"} onClick={searchHandle} />
         <Button
           text={"내 주변 매장 검색"}
-          type={"positive"}
+          type={"default"}
           onClick={locationSearch}
         />
       </div>
