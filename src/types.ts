@@ -80,8 +80,8 @@ export interface StoreResultType {
   phone: string;
   place_name: string;
   place_url: string;
-  x: string;
-  y: string;
+  x: number;
+  y: number;
 }
 export interface StorePaginationType {
   current: number;
@@ -101,7 +101,7 @@ export interface StoreListType {
   region: string;
   storeData?: StoreResultType[];
   pagination?: StorePaginationType;
-  mapCoords?: { x: string; y: string };
+  mapCoords?: { x: number; y: number };
   markers: any;
   infoWindows: any;
   status: string;

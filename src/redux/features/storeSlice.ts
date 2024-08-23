@@ -5,7 +5,7 @@ const initialState: StoreListType = {
   region: "서울시 강남구",
   storeData: undefined,
   pagination: undefined,
-  mapCoords: { x: "", y: "" },
+  mapCoords: { x: 0, y: 0 },
   markers: {}, // 마커 객체를 ID로 매핑
   infoWindows: {}, // 정보창 객체를 ID로 매핑
   status: "",
