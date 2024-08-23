@@ -1,16 +1,16 @@
 "use client";
 import dynamic from "next/dynamic";
-const MapField = dynamic(() => import("./MapField"), {
-  ssr: false,
-});
-import styled from "./Store.module.css";
-const SearchArea = dynamic(() => import("./SearchArea"), {
-  ssr: false,
-});
 import { useState } from "react";
 import StoreList from "./StoreList";
 import Pagination from "./Pagination";
 import { useAppSelector } from "@/redux/hook";
+import styled from "./Store.module.css";
+const MapField = dynamic(() => import("./MapField"), {
+  ssr: false,
+});
+const SearchArea = dynamic(() => import("./SearchArea"), {
+  ssr: false,
+});
 
 const Store = () => {
   const pagination = useAppSelector((state) => state.store.pagination);
