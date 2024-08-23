@@ -21,7 +21,6 @@ const StoreList = () => {
       marker.getMap().panTo(marker.position);
     }
   };
-  console.log(searchList);
 
   return (
     <div className={styles.StoreList}>

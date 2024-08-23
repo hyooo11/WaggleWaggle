@@ -37,7 +37,6 @@ const EditCommentForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(tagWriterId);
     editCommentHandler(comment, commentId, tagWriterId);
     // setComment("");
     setCommentEditBtn(!commentId);

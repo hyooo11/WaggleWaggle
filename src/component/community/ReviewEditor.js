@@ -104,7 +104,6 @@ const ReviewEditor = ({ isEdit, originData, reviewPid }) => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     const userPid = getCookie("pid");
     const formData = new FormData();
     //수정이미지 null값 추가
