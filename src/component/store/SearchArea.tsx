@@ -18,13 +18,11 @@ declare global {
     kakao: any;
   }
 }
-
 const geolocationOptions = {
   enableHighAccuracy: true,
   timeout: 1000 * 10,
   maximumAge: 1000 * 3600 * 24,
 };
-
 const SearchArea = ({ currentPage, setPage }) => {
   const region = useAppSelector((state) => state.store.region);
   const dispatch = useAppDispatch();
