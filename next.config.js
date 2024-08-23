@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   async rewrites() {
     return [
+      {
+        source: "/:path*",
+        destination: "https://naveropenapi.apigw.ntruss.com/:path*",
+      },
       {
         source: "/api/:path*",
         destination:
@@ -21,4 +27,4 @@ const nextConfig = {
   },
 };
 
-https: module.exports = nextConfig;
+module.exports = nextConfig;
