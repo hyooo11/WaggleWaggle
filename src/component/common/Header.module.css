@@ -133,6 +133,7 @@
     display: block;
   }
   .logo {
+    font-size: 1.5rem;
     position: static;
     display: flex;
     align-items: center;
