@@ -1,7 +1,4 @@
-import dynamic from "next/dynamic";
-const Store = dynamic(() => import("@/component/store/Store"), {
-  ssr: false,
-});
+import Store from "@/component/store/Store";
 
 const StorePage = () => {
   return (

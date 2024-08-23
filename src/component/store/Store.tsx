@@ -1,7 +1,12 @@
 "use client";
-import MapField from "./MapField";
+import dynamic from "next/dynamic";
+const MapField = dynamic(() => import("./MapField"), {
+  ssr: false,
+});
 import styled from "./Store.module.css";
-import SearchArea from "./SearchArea";
+const SearchArea = dynamic(() => import("./SearchArea"), {
+  ssr: false,
+});
 import { useState } from "react";
 import StoreList from "./StoreList";
 import Pagination from "./Pagination";
