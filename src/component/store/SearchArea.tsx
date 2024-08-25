@@ -33,6 +33,10 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   //키워드 검색요청 함수
   const searchKeyword = (keyword) => {
+    if (!window.kakao || !window.kakao.maps) {
+      console.error("Kakao Maps API is not loaded yet.");
+      return;
+    }
     window.kakao.maps.load(() => {
       // 장소 검색 객체를 생성
       const place = new window.kakao.maps.services.Places();
@@ -59,6 +63,10 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   //카카오 좌표 주소변환
   const transAddress = (latitude, longitude) => {
+    if (!window.kakao || !window.kakao.maps) {
+      console.error("Kakao Maps API is not loaded yet.");
+      return;
+    }
     window.kakao.maps.load(() => {
       // 좌표계 변환 객체 생성
       const geocoder = new window.kakao.maps.services.Geocoder();
