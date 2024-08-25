@@ -224,6 +224,34 @@
   </tbody>
 </table>
 
+#### 스토어 페이지(STORE) - [바로가기](https://project-wagu.vercel.app/store)
+
+- 내 주변 와인샵 리스트 조회 / 시도, 구군별 와인샵 리스트 조회
+  - 내 주변 와인샵 리스트 조회(위치정보제공 동의 시)
+  - 셀렉트 박스에서 지역 선택 후 검색 시 해당하는 지역의 와인샵 리스트 조회
+  - kakao map api 활용
+- 지도 렌더링
+
+  - 와인샵 리스트 클릭 시 해당하는 위치로 이동
+  - 지도 위의 마커 클릭 시 해당하는 와인샵의 위치로 이동
+  - 지도 위에 클릭한 와인샵의 정보 창 표출
+  - naver map api 활용
+
+<table>
+  <thead>
+    <tr>
+      <td align="center">내 주변 / 지역별 와인샵 검색</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://github.com/user-attachments/assets/c0ad6cd2-52c5-43bb-a4c1-2d5f283e7d29" width="100%"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <br>
 
 ## 💡 Reference
