@@ -81,6 +81,7 @@ const SearchArea = ({ currentPage, setPage }) => {
   const locationSearch = () => {
     setPage(1);
     if (location) {
+      if (!kakao) return;
       transAddress(location.latitude, location.longitude);
       searchKeyword(region);
     } else if (error) {
@@ -96,6 +97,7 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   useEffect(() => {
     if (region) {
+      if (!kakao) return;
       searchKeyword(region);
     }
   }, [region, currentPage]);
