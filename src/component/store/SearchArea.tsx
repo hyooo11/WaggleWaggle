@@ -33,19 +33,17 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   //키워드 검색요청 함수
   const searchKeyword = (keyword) => {
-    if (!window.kakao || !window.kakao.maps) {
-      console.error("Kakao Maps API is not loaded yet.");
-      return;
+    if (window.kakao || window.kakao.maps) {
+      window.kakao.maps.load(() => {
+        // 장소 검색 객체를 생성
+        const place = new window.kakao.maps.services.Places();
+        place.keywordSearch(
+          `${keyword} 와인샵`,
+          searchKeywordCallback,
+          searchKeywordOption
+        );
+      });
     }
-    window.kakao.maps.load(() => {
-      // 장소 검색 객체를 생성
-      const place = new window.kakao.maps.services.Places();
-      place.keywordSearch(
-        `${keyword} 와인샵`,
-        searchKeywordCallback,
-        searchKeywordOption
-      );
-    });
   };
   //키워드 검색 걸과 함수
   const searchKeywordCallback = (result: any, status: any, pagination: any) => {
@@ -63,16 +61,14 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   //카카오 좌표 주소변환
   const transAddress = (latitude, longitude) => {
-    if (!window.kakao || !window.kakao.maps) {
-      console.error("Kakao Maps API is not loaded yet.");
-      return;
+    if (window.kakao || window.kakao.maps) {
+      window.kakao.maps.load(() => {
+        // 좌표계 변환 객체 생성
+        const geocoder = new window.kakao.maps.services.Geocoder();
+        const current = new window.kakao.maps.LatLng(latitude, longitude);
+        geocoder.coord2Address(current.getLng(), current.getLat(), soduguName);
+      });
     }
-    window.kakao.maps.load(() => {
-      // 좌표계 변환 객체 생성
-      const geocoder = new window.kakao.maps.services.Geocoder();
-      const current = new window.kakao.maps.LatLng(latitude, longitude);
-      geocoder.coord2Address(current.getLng(), current.getLat(), soduguName);
-    });
   };
   //좌표를 주소로 변환 결과 함수
   const soduguName = (result: any, status: any) => {
