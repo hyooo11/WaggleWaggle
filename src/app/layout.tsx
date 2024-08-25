@@ -24,12 +24,12 @@ export default function RootLayout({
         <Script
           type="text/javascript"
           src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
-          strategy="beforeInteractive"
+          // strategy="beforeInteractive"
         />
         <Script
           type="text/javascript"
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false&libraries=services`}
-          strategy="beforeInteractive"
+          // strategy="beforeInteractive"
         />
         <StoreProvider>
           <Header />
