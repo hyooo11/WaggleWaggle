@@ -133,11 +133,7 @@
     display: block;
   }
   .logo {
-    font-size: 1.5rem;
-    position: static;
-    display: flex;
-    align-items: center;
-    padding-left: 1rem;
+    font-size: 2rem;
   }
   .ham_menu .ham_btn {
     padding: 10px;

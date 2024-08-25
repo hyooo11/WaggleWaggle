@@ -24,6 +24,7 @@
   padding: 1rem 0;
   color: #c4b8b9;
   border-bottom: 1px solid #f4f4f4;
+  cursor: pointer;
 }
 
 /* mediaQuery */
