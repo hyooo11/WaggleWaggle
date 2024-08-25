@@ -236,7 +236,7 @@ const MobileNav = ({ setMobileNav }) => {
           <nav className={style.nav}>
             <Link href="/product?page=1">PRODUCT</Link>
             <Link href="/community">COMMUNITY</Link>
-            {/* <Link href="/store">STORE</Link> */}
+            <Link href="/store">STORE</Link>
           </nav>
         </div>
       </div>

@@ -44,12 +44,12 @@ export const SiteMap = {
       korName: "커뮤니티",
       url: "/community",
     },
-    // {
-    //   id: "02",
-    //   engName: "Store",
-    //   korName: "스토어",
-    //   url: "/store",
-    // },
+    {
+      id: "02",
+      engName: "Store",
+      korName: "스토어",
+      url: "/store",
+    },
   ],
   auth: {
     logoutState: [
