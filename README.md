@@ -246,7 +246,7 @@
   <tbody>
     <tr>
       <td>
-        <img src="https://github.com/user-attachments/assets/c0ad6cd2-52c5-43bb-a4c1-2d5f283e7d29" width="100%" style="max-width: 600px"/>
+        <img src="https://github.com/user-attachments/assets/2ac7ac1d-68ff-499c-82ab-1ae943c157ff" width="100%" style="max-width: 600px"/>
       </td>
     </tr>
   </tbody>
