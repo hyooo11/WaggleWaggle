@@ -18,6 +18,7 @@ declare global {
     kakao: any;
   }
 }
+
 const geolocationOptions = {
   enableHighAccuracy: true,
   timeout: 1000 * 10,
@@ -30,24 +31,23 @@ const SearchArea = ({ currentPage, setPage }) => {
   const [city, setCity] = useState("");
   const [subArea, setSubArea] = useState("");
   const [districts, setDistricts] = useState([]);
+  const { kakao } = window;
 
   //키워드 검색요청 함수
   const searchKeyword = (keyword) => {
-    if (window.kakao || window.kakao.maps) {
-      window.kakao.maps.load(() => {
-        // 장소 검색 객체를 생성
-        const place = new window.kakao.maps.services.Places();
-        place.keywordSearch(
-          `${keyword} 와인샵`,
-          searchKeywordCallback,
-          searchKeywordOption
-        );
-      });
-    }
+    kakao.maps.load(() => {
+      // 장소 검색 객체를 생성
+      const place = new kakao.maps.services.Places();
+      place.keywordSearch(
+        `${keyword} 와인샵`,
+        searchKeywordCallback,
+        searchKeywordOption
+      );
+    });
   };
   //키워드 검색 걸과 함수
   const searchKeywordCallback = (result: any, status: any, pagination: any) => {
-    if (status === window.kakao.maps.services.Status.OK) {
+    if (status === kakao.maps.services.Status.OK) {
       dispatch(setResults(result));
       dispatch(setPagination(pagination));
       dispatch(setMapCoords({ x: result[0].x, y: result[0].y }));
@@ -61,18 +61,16 @@ const SearchArea = ({ currentPage, setPage }) => {
 
   //카카오 좌표 주소변환
   const transAddress = (latitude, longitude) => {
-    if (window.kakao || window.kakao.maps) {
-      window.kakao.maps.load(() => {
-        // 좌표계 변환 객체 생성
-        const geocoder = new window.kakao.maps.services.Geocoder();
-        const current = new window.kakao.maps.LatLng(latitude, longitude);
-        geocoder.coord2Address(current.getLng(), current.getLat(), soduguName);
-      });
-    }
+    kakao.maps.load(() => {
+      // 좌표계 변환 객체 생성
+      const geocoder = new kakao.maps.services.Geocoder();
+      const current = new kakao.maps.LatLng(latitude, longitude);
+      geocoder.coord2Address(current.getLng(), current.getLat(), soduguName);
+    });
   };
   //좌표를 주소로 변환 결과 함수
   const soduguName = (result: any, status: any) => {
-    if (status === window.kakao.maps.services.Status.OK) {
+    if (status === kakao.maps.services.Status.OK) {
       const sido = result[0].address.region_1depth_name;
       const gungu = result[0].address.region_2depth_name;
       dispatch(setLocation(`${sido} ${gungu}`));
@@ -110,7 +108,9 @@ const SearchArea = ({ currentPage, setPage }) => {
   };
   // 구군 셀렉트
   const subAreaChangehandle = (target: string) => {
-    setSubArea(target);
+    if (kakao.maps!) {
+      setSubArea(target);
+    }
   };
   const searchHandle = () => {
     setPage(1);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import StoreProvider from "@/redux/StoreProvider";
-// import Script from "next/script";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/component/common/Header";
@@ -20,6 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <Script
+        type="text/javascript"
+        src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
+        strategy="beforeInteractive"
+      />
+      <Script
+        type="text/javascript"
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false&libraries=services`}
+        strategy="beforeInteractive"
+      />
       <body className={inter.className}>
         <StoreProvider>
           <Header />

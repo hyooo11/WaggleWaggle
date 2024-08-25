@@ -18,16 +18,6 @@ const Store = () => {
   const [page, setPage] = useState(1);
   return (
     <div className="maxframe sub_p_wrap">
-      <Script
-        type="text/javascript"
-        src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
-        strategy="beforeInteractive"
-      />
-      <Script
-        type="text/javascript"
-        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false&libraries=services`}
-        strategy="beforeInteractive"
-      />
       <div className="sub_p_title">
         <h2 className="">Store</h2>
         <span>지역별/내 주변 와인샵 검색하기</span>
