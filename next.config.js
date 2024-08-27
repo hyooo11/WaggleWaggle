@@ -5,10 +5,6 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
-        destination: "https://naveropenapi.apigw.ntruss.com/:path*",
-      },
-      {
         source: "/api/:path*",
         destination:
           "http://ec2-3-35-210-207.ap-northeast-2.compute.amazonaws.com:8080/api/:path*",
